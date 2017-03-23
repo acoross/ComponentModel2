@@ -1,16 +1,13 @@
 #pragma once
 
-#pragma comment(lib, "mswsock.lib")
-#pragma comment(lib, "ws2_32.lib")
-
-#include <WS2tcpip.h>
 #include <atomic>
 
 #include "Pipeline.h"
+#include "./NetworkInitializer.h"
+#include "Numerics.h"
 
 namespace scl
 {
-	// network
 	class NetworkWorker : public IThreadWorker
 	{
 	public:
@@ -30,15 +27,16 @@ namespace scl
 		NetworkWorker(const NetworkWorker&) = delete;
 		NetworkWorker& operator=(const NetworkWorker&) = delete;
 
+		void OnSessionEstablished(Sp<class Session> session);
+
 	private:
 		// IThreadWorker
 		virtual void Run() sealed override;
-		void ProcessAccept();
-
 		void AddListener(Sp<IListener> listener);
 
 	private:
 		std::vector<Sp<class IListener>> _listeners;
+		Sp<class NetworkThread> _networkThread;
 		static std::atomic<bool> _init;
 	};
 }

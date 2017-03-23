@@ -1,18 +1,13 @@
 #pragma once
 
 #include <functional>
+
+#include "./NetworkInitializer.h"
 #include "./NetworkWorker.h"
+#include "./Session.h"
 
 namespace scl
 {
-	class Session
-	{
-	public:
-
-	private:
-
-	};
-
 	class Listener
 		: public NetworkWorker::IListener
 		, public std::enable_shared_from_this<Listener>
@@ -21,7 +16,6 @@ namespace scl
 		using AcceptHandlerType = std::function<void(Sp<Session>)>;
 
 		Listener(Sp<NetworkWorker> networkWorker);
-
 		void Listen(std::string address, unsigned short port, AcceptHandlerType acceptor);
 
 	private:

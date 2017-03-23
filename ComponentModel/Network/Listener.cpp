@@ -1,6 +1,7 @@
 #include "./Listener.h"
 #include <MSWSock.h>
 #include "exception.h"
+#include "./NetworkWorker.h"
 
 namespace scl
 {
@@ -40,7 +41,6 @@ namespace scl
 		::memset(&serveraddr, 0, sizeof(serveraddr));
 		serveraddr.sin_family = AF_INET;
 		serveraddr.sin_port = htons(port);
-
 		serveraddr.sin_addr.S_un.S_addr = inet_addr(address.c_str());
 
 		if (SOCKET_ERROR == ::bind(_listenSocket, (SOCKADDR*)&serveraddr, sizeof(serveraddr)))
@@ -74,9 +74,17 @@ namespace scl
 		auto result = ::WaitForSingleObject(_hAcceptEvent, 0);
 		if (WAIT_OBJECT_0 == result)
 		{
-
-			auto session = New<Session>();
-			Accept();
+			auto session = New<Session>(_clientsock);
+			if (auto netWorker = _networkWorker.lock())
+			{
+				netWorker->OnSessionEstablished(session);
+				_acceptor(session);
+				Accept();
+			}
+			else
+			{
+				Exception::RaiseException();
+			}
 		}
 		else if (WAIT_FAILED == result)
 		{

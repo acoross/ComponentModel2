@@ -1,13 +1,14 @@
 #include "./NetworkWorker.h"
-#include <MSWSock.h>
-
 #include "exception.h"
+#include "./Session.h"
+#include "./NetworkThread.h"
 
 namespace scl
 {
 	std::atomic<bool> NetworkWorker::_init = false;
 
 	NetworkWorker::NetworkWorker()
+		: _networkThread(New<NetworkThread>())
 	{
 		bool exp = false;
 		if (_init.compare_exchange_strong(exp, true))
@@ -29,17 +30,19 @@ namespace scl
 		}
 	}
 
+	void NetworkWorker::OnSessionEstablished(Sp<Session> session)
+	{
+		_networkThread->Register(session);
+	}
+
 	void NetworkWorker::Run()
 	{
+		_networkThread->ProcessIo();
+
 		for (auto& l : _listeners)
 		{
 			l->ProcessAccept();
 		}
-	}
-
-	void NetworkWorker::ProcessAccept()
-	{
-
 	}
 
 	void NetworkWorker::AddListener(Sp<class IListener> listener)
