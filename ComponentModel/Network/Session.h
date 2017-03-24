@@ -11,7 +11,7 @@
 
 namespace scl
 {
-	typedef std::function<void(const char* buf, ulong size, ulong& processed)> PacketHandler;
+	typedef std::function<void(char* buf, ulong size, ulong& processed)> PacketHandler;
 
 	class Session : public std::enable_shared_from_this<Session>
 	{

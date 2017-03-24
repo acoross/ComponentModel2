@@ -127,13 +127,16 @@
   <ItemGroup>
     <ClInclude Include="exception.h" />
     <ClInclude Include="memory.h" />
+    <ClInclude Include="Message\CSProtocol.h" />
+    <ClInclude Include="Message\CSProtocol.stub.h" />
     <ClInclude Include="Network.h" />
-    <ClInclude Include="Network\CerealArchive.h" />
+    <ClInclude Include="Network\CerealPacket.h" />
     <ClInclude Include="Network\IocpTask.h" />
     <ClInclude Include="Network\Listener.h" />
     <ClInclude Include="Network\NetworkInitializer.h" />
     <ClInclude Include="Network\NetworkThread.h" />
     <ClInclude Include="Network\NetworkWorker.h" />
+    <ClInclude Include="Network\PacketHandlerTable.h" />
     <ClInclude Include="Network\SessionBuffer.h" />
     <ClInclude Include="Numerics.h" />
     <ClInclude Include="Network\Session.h" />
