@@ -4,7 +4,7 @@
 #include <cereal\types\vector.hpp>
 #include <cereal\types\string.hpp>
 #include <strstream>
-#include "Numerics.h"
+#include "Types.h"
 
 namespace scl
 {
@@ -40,7 +40,7 @@ namespace scl
 		PacketBuffer Write(const T& val)
 		{
 			_ar((uint32)0);	//frame
-			_ar(val.mid);	//type
+			_ar(val.PacketId);	//type
 			_ar(val);		//msg
 			_buf->filled += _stream.tellp();
 

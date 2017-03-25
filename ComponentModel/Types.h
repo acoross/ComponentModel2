@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace scl
 {
 	typedef unsigned char byte;
@@ -10,4 +12,5 @@ namespace scl
 	typedef __int64 int64;
 	typedef unsigned __int64 uint64;
 	typedef unsigned long ulong;
+	typedef std::wstring String;
 }

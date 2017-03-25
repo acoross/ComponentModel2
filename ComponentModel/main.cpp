@@ -1,14 +1,15 @@
 #include "Pipeline.h"
 #include "Network.h"
-#include "Message\CSProtocol.h"
+#include <strstream>
+#include "Message\CSProtocol.message.h"
 #include "Message\CSProtocol.stub.h"
 #include "Network\CerealPacket.h"
 #include "Network\PacketHandlerTable.h"
 
 using namespace scl;
-using namespace CSProtocol::CS;
+using namespace CSProtocol::Command;
 
-class CSProtocolHandler : public CSProtocol::CS::IStub
+class CSProtocolHandler : public CSProtocol::Command::IStub
 {
 public:
 	static void Initialize()
@@ -34,9 +35,16 @@ public:
 		wprintf(L"%s, %s\n", msg.id.c_str(), msg.password.c_str());
 	}
 
+	static String ToString(shared::FVector& vec)
+	{
+		std::wstringstream stream;
+		stream << "(" << vec.X << ", " << vec.Y << ", " << vec.Z << ")";
+		return stream.str();
+	}
+
 	virtual void Process(Move & msg) override
 	{
-		wprintf(L"%s, %s\n", msg.position.ToString().c_str(), msg.velocity.ToString().c_str());
+		wprintf(L"%s, %s\n", ToString(msg.position).c_str(), ToString(msg.velocity).c_str());
 	}
 
 private:
@@ -61,7 +69,7 @@ void testMessageHandlerTable(T& msg)
 int main()
 {
 	{
-		CSProtocol::CS::RequestLogin msg;
+		CSProtocol::Command::RequestLogin msg;
 		msg.id = L"shin";
 		msg.password = L"0080";
 
@@ -69,9 +77,9 @@ int main()
 	}
 
 	{
-		CSProtocol::CS::Move msg;
-		msg.position = CSProtocol::FVector(1, 2, 3);
-		msg.velocity = CSProtocol::FVector(10, 20, 30);
+		CSProtocol::Command::Move msg;
+		msg.position = shared::FVector(1, 2, 3);
+		msg.velocity = shared::FVector(10, 20, 30);
 
 		testMessageHandlerTable(msg);
 	}

@@ -9,7 +9,7 @@
 #include "memory.h"
 #include "TemplateHelper.h"
 #include "./NetworkInitializer.h"
-#include "Numerics.h"
+#include "Types.h"
 
 namespace scl
 {

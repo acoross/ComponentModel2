@@ -65,16 +65,10 @@
     <ClInclude Include="Network\NetworkThread.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Numerics.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Network\SessionBuffer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Network\IocpTask.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Message\CSProtocol.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Message\CSProtocol.stub.h">
@@ -84,6 +78,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Network\PacketHandlerTable.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Message\csprotocol.include.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Message\CSProtocol.message.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Message\shared.shared.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -77,6 +77,9 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -86,6 +89,9 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -101,6 +107,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -116,6 +125,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -127,8 +139,10 @@
   <ItemGroup>
     <ClInclude Include="exception.h" />
     <ClInclude Include="memory.h" />
-    <ClInclude Include="Message\CSProtocol.h" />
+    <ClInclude Include="Message\csprotocol.include.h" />
+    <ClInclude Include="Message\CSProtocol.message.h" />
     <ClInclude Include="Message\CSProtocol.stub.h" />
+    <ClInclude Include="Message\shared.shared.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="Network\CerealPacket.h" />
     <ClInclude Include="Network\IocpTask.h" />
@@ -138,7 +152,7 @@
     <ClInclude Include="Network\NetworkWorker.h" />
     <ClInclude Include="Network\PacketHandlerTable.h" />
     <ClInclude Include="Network\SessionBuffer.h" />
-    <ClInclude Include="Numerics.h" />
+    <ClInclude Include="Types.h" />
     <ClInclude Include="Network\Session.h" />
     <ClInclude Include="UniqueId.h" />
     <ClInclude Include="Pipeline.h" />

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "./CSProtocol.h"
+#include "./csprotocol.message.h"
 
 namespace CSProtocol
 {
-	namespace CS
+	namespace Command
 	{
 		class IStub
 		{
@@ -13,7 +13,7 @@ namespace CSProtocol
 		};
 	}
 
-	namespace SC
+	namespace Noti
 	{
 		class IStub
 		{

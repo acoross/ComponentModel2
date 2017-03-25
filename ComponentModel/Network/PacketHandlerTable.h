@@ -13,7 +13,7 @@ namespace scl
 		template <class MessageT>
 		void RegisterHandler()
 		{
-			_table[MessageT::mid] = [](HandlerT& handler, PacketReader& reader)
+			_table[MessageT::PacketId] = [](HandlerT& handler, PacketReader& reader)
 			{
 				MessageT msg;
 				reader.ReadBody(msg);
