@@ -33,7 +33,8 @@ namespace MessageBuilderLib
 
         static void setProtocolData(Type protocol, ProtocolAttribute protocolAttr)
         {
-            var protocolName = protocolAttr.protocolName;
+            //var protocolName = protocolAttr.protocolName;
+            var protocolName = protocol.Name;
             var direction = protocolAttr.direction;
 
             ProtocolData protocolData = null;

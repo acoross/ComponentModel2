@@ -142,6 +142,7 @@
     <ClInclude Include="Message\csprotocol.include.h" />
     <ClInclude Include="Message\CSProtocol.message.h" />
     <ClInclude Include="Message\CSProtocol.stub.h" />
+    <ClInclude Include="Message\SCProtocol.message.h" />
     <ClInclude Include="Message\shared.shared.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="Network\CerealPacket.h" />

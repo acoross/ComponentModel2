@@ -3,7 +3,7 @@
 #include "Types.h"
 using namespace scl;
 
-namespace shared
+namespace Shared
 {
 	struct FVector
 	{

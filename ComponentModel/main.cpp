@@ -35,7 +35,7 @@ public:
 		wprintf(L"%s, %s\n", msg.id.c_str(), msg.password.c_str());
 	}
 
-	static String ToString(shared::FVector& vec)
+	static String ToString(Shared::FVector& vec)
 	{
 		std::wstringstream stream;
 		stream << "(" << vec.X << ", " << vec.Y << ", " << vec.Z << ")";
@@ -78,8 +78,8 @@ int main()
 
 	{
 		CSProtocol::Command::Move msg;
-		msg.position = shared::FVector(1, 2, 3);
-		msg.velocity = shared::FVector(10, 20, 30);
+		msg.position = Shared::FVector(1, 2, 3);
+		msg.velocity = Shared::FVector(10, 20, 30);
 
 		testMessageHandlerTable(msg);
 	}

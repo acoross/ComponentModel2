@@ -40,7 +40,9 @@ namespace MessageBuilderLib
 
         static void setSharedInfo(Type shared, SharedTypeAttribute shareAttr)
         {
-            var filename = shareAttr.fileName;
+            //var filename = shareAttr.fileName;
+            var filename = shared.Name;
+
             SharedFile shareFile;
             if (!sharedFiles.TryGetValue(filename, out shareFile))
             {
@@ -49,10 +51,10 @@ namespace MessageBuilderLib
                 sharedFiles[filename] = shareFile;
             }
 
-            shareFile.namespaces.Add(new SharedNamespace { namespaceName = shareAttr.namespaceName, type = shared });
+            shareFile.namespaces.Add(new SharedNamespace { namespaceName = shared.Name, type = shared });
             foreach (var msgT in shared.GetNestedTypes())
             {
-                RegisteredTypeBox.registerType(msgT, $"{shareAttr.namespaceName}::{msgT.Name}");
+                RegisteredTypeBox.registerType(msgT, $"{shared.Name}::{msgT.Name}");
             }
         }
 

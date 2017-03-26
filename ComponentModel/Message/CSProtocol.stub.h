@@ -1,6 +1,7 @@
 #pragma once
 
 #include "./csprotocol.message.h"
+#include "./SCProtocol.message.h"
 
 namespace CSProtocol
 {
@@ -12,7 +13,10 @@ namespace CSProtocol
 			virtual void Process(Move&) = 0;
 		};
 	}
+}
 
+namespace SCProtocol
+{
 	namespace Noti
 	{
 		class IStub

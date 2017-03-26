@@ -81,7 +81,14 @@ namespace MessageBuilderLib
                                 // messages
                                 foreach (var msgT in dirData.messageTypes)
                                 {
-                                    MessageWriter.PrintMessage(gen, msgT.Value, msgT.Key);
+                                    if (msgT.Value.IsEnum)
+                                    {
+                                        MessageWriter.PrintEnumType(gen, msgT.Value);
+                                    }
+                                    else
+                                    {
+                                        MessageWriter.PrintMessage(gen, msgT.Value, msgT.Key);
+                                    }
                                     gen.print("");
                                 }
                             }

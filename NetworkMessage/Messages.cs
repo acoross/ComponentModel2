@@ -9,7 +9,7 @@ namespace NetworkMessage
 {
     using static Shared;
 
-    [SharedType("shared", "shared")]
+    [SharedType]
     class Shared
     {
         public struct FVector
@@ -27,51 +27,68 @@ namespace NetworkMessage
         }
     }
 
-    namespace CSProtocol
+    [Protocol(Direction.Command)]
+    struct CSProtocol
     {
-        [Protocol("CSProtocol", Direction.Command)]
-        struct Command
+        public enum TestEnum : Int32
         {
-            public struct RequestLogin
-            {
-                public String id;
-                public String password;
-            }
-
-            public struct Move
-            {
-                public FVector position;
-                public FVector velocity;
-            }
+            Foo,
+            Bar,
+            Max
         }
 
-        [Protocol("CSProtocol", Direction.Noti)]
-        struct Noti
+        public struct RequestLogin
         {
-            public struct ResponseLogin
-            {
-                public bool ok;
-                public UInt64 gameObjectId;
-            }
-
-            public struct NotiMove
-            {
-                public UInt64 gameObjectId;
-                public FVector position;
-                FVector velocity;
-            }
-
-            public struct NotiEnterZone
-            {
-                public UInt64 gameObjectId;
-                public FVector position;
-                public FVector velocity;
-            }
-
-            public struct NotiLeaveZone
-            {
-                public UInt64 gameObjectId;
-            }
+            public String id;
+            public String password;
         }
+
+        public struct Move
+        {
+            public FVector position;
+            public FVector velocity;
+        }
+    }
+
+    [Protocol(Direction.Noti)]
+    struct SCProtocol
+    {
+        public struct ResponseLogin
+        {
+            public bool ok;
+            public UInt64 gameObjectId;
+        }
+
+        public struct NotiMove
+        {
+            public UInt64 gameObjectId;
+            public FVector position;
+            FVector velocity;
+        }
+
+        public struct NotiEnterZone
+        {
+            public UInt64 gameObjectId;
+            public FVector position;
+            public FVector velocity;
+        }
+
+        public struct NotiLeaveZone
+        {
+            public UInt64 gameObjectId;
+        }
+    }
+
+    [Rpc("CSService", typeof(CSProtocol), typeof(SCProtocol))]
+    interface CSServiceRpc
+    {
+        // client to server (and server to client response)
+        SCProtocol.ResponseLogin Process(CSProtocol.RequestLogin msg);
+        void Process(CSProtocol.Move msg);
+
+        // server to client noti
+        event Action<SCProtocol.NotiEnterZone> OnEnterZone;
+        event Action<SCProtocol.NotiLeaveZone> OnLeaveZone;
+        event Action<SCProtocol.NotiMove> OnMove;
     }
 }

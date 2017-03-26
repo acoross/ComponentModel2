@@ -92,5 +92,8 @@
     <ClInclude Include="Message\shared.shared.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Message\SCProtocol.message.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
