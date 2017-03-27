@@ -11,9 +11,17 @@ namespace CSProtocol
 	{
 		enum class PacketType : uint32
 		{
+			TestEnum, 
 			RequestLogin, 
 			Move, 
 			MAX
+		};
+		
+		enum class TestEnum : int32
+		{
+			Foo, 
+			Bar, 
+			Max, 
 		};
 		
 		struct RequestLogin

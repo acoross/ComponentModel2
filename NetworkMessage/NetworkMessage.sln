@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkMessage", "NetworkMessage.csproj", "{D073F41F-F97F-418B-AA9B-AF6653DF101C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBuilder", "..\MessageBuilder\MessageBuilder.csproj", "{0D0A2AF7-AC7A-4B9D-93ED-AE7E643C3A92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D073F41F-F97F-418B-AA9B-AF6653DF101C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D073F41F-F97F-418B-AA9B-AF6653DF101C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D073F41F-F97F-418B-AA9B-AF6653DF101C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D073F41F-F97F-418B-AA9B-AF6653DF101C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D0A2AF7-AC7A-4B9D-93ED-AE7E643C3A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D0A2AF7-AC7A-4B9D-93ED-AE7E643C3A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D0A2AF7-AC7A-4B9D-93ED-AE7E643C3A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D0A2AF7-AC7A-4B9D-93ED-AE7E643C3A92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
