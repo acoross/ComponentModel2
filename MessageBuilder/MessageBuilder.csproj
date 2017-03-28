@@ -45,7 +45,7 @@
     <Compile Include="CodeGenerator\Box\SharedTypeBox.cs" />
     <Compile Include="CodeGenerator\Core\CodeWriter.cs" />
     <Compile Include="Attribute.cs" />
-    <Compile Include="CodeGenerator\MessageSpecific\MessageWriter.cs" />
+    <Compile Include="CodeGenerator\MessageWriter.cs" />
     <Compile Include="CodeGenerator\ProtocolData.cs" />
     <Compile Include="CodeGenerator\protocolWriter.cs" />
     <Compile Include="CodeGenerator\SharedTypeWriter.cs" />

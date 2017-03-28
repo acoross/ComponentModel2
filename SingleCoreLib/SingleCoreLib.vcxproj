@@ -19,32 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{371549B4-D0AC-4C7D-B82A-95EE54F3E974}</ProjectGuid>
-    <RootNamespace>ComponentModel</RootNamespace>
+    <ProjectGuid>{DB617796-520B-4A60-A0C5-E83D93103426}</ProjectGuid>
+    <RootNamespace>SingleCoreLib</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -74,24 +74,18 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/;$(ProjectDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/;$(ProjectDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -100,16 +94,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/;$(ProjectDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -118,34 +109,41 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/;$(ProjectDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClInclude Include="MathLib.h" />
+    <ClInclude Include="exception.h" />
+    <ClInclude Include="memory.h" />
+    <ClInclude Include="Network.h" />
+    <ClInclude Include="Network\CerealPacket.h" />
+    <ClInclude Include="Network\IocpTask.h" />
+    <ClInclude Include="Network\Listener.h" />
+    <ClInclude Include="Network\NetworkInitializer.h" />
+    <ClInclude Include="Network\NetworkThread.h" />
+    <ClInclude Include="Network\NetworkWorker.h" />
+    <ClInclude Include="Network\PacketHandlerTable.h" />
+    <ClInclude Include="Network\Session.h" />
+    <ClInclude Include="Network\SessionBuffer.h" />
+    <ClInclude Include="PhysicsLib.h" />
+    <ClInclude Include="Pipeline.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="TemplateHelper.h" />
+    <ClInclude Include="TemplateUtility.h" />
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="UniqueId.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngine\Component.h" />
-    <ClInclude Include="GameEngine\GameComponent.h" />
-    <ClInclude Include="Message\csprotocol.include.h" />
-    <ClInclude Include="Message\CSProtocol.message.h" />
-    <ClInclude Include="Message\CSProtocol.stub.h" />
-    <ClInclude Include="Message\SCProtocol.message.h" />
-    <ClInclude Include="Message\shared.shared.h" />
-    <ClInclude Include="CSProtocolHandler.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SingleCoreLib\SingleCoreLib.vcxproj">
-      <Project>{db617796-520b-4a60-a0c5-e83d93103426}</Project>
-    </ProjectReference>
+    <ClCompile Include="Network\Listener.cpp" />
+    <ClCompile Include="Network\NetworkThread.cpp" />
+    <ClCompile Include="Network\NetworkWorker.cpp" />
+    <ClCompile Include="Network\Session.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
