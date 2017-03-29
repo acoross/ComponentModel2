@@ -28,7 +28,19 @@ namespace GameEngine
 			: _id(scl::UniqueId <GameObject, scl::uint64>::Generate())
 		{}
 
+		uint64 Id() const
+		{
+			return _id;
+		}
+
+		Sp<class GameObjectContainer> GetContainer()
+		{
+			return _container.lock();
+		}
+
+	private:
 		const scl::uint64 _id;
 		scl::Transform _transform;
+		Wp<class GameObjectContainer> _container;
 	};
 }

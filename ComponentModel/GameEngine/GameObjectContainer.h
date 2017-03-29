@@ -8,6 +8,8 @@
 
 namespace GameEngine
 {
+	using namespace scl;
+
 	class GameObjectContainer
 	{
 	public:
@@ -17,10 +19,27 @@ namespace GameEngine
 		{
 			return _gameObjectMap;
 		}
-
-		void ForAll()
+		
+		void Add(Sp<GameObject> gameObject)
 		{
+			if (!gameObject) return;
+			_gameObjectMap[gameObject->Id()] = gameObject;
+		}
 
+		void Remove(Sp<GameObject> gameObject)
+		{
+			if (!gameObject) return;
+			_gameObjectMap.erase(gameObject->Id());
+		}
+
+		template <class TMessage, 
+			class = std::enable_if_t<IComponentMessage<TMessage>, TMessage>::value>
+		void BroadcastMessage(Sp<TMessage> message)
+		{
+			for (auto& pair : _gameObjectMap)
+			{
+				pair.second->SendMessage_(message);
+			}
 		}
 
 	private:
