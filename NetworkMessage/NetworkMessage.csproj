@@ -51,13 +51,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CerealSchemaGenerator\CerealSchemaGenerator.csproj">
+    <ProjectReference Include="..\MessageBuilder\CerealCodeGenerator\CerealCodeGenerator.csproj">
       <Project>{dec41c65-7ce4-4be2-9464-afc8254ca882}</Project>
-      <Name>CerealSchemaGenerator</Name>
+      <Name>CerealCodeGenerator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MessageBuilder\MessageBuilder.csproj">
+    <ProjectReference Include="..\MessageBuilder\MessageBuilderCore\MessageBuilderCore.csproj">
       <Project>{0d0a2af7-ac7a-4b9d-93ed-ae7e643c3a92}</Project>
-      <Name>MessageBuilder</Name>
+      <Name>MessageBuilderCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
