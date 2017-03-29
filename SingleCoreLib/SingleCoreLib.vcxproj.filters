@@ -51,6 +51,8 @@
     <ClInclude Include="Task.h" />
     <ClInclude Include="MathLib.h" />
     <ClInclude Include="PhysicsLib.h" />
+    <ClInclude Include="SingleCoreLib.h" />
+    <ClInclude Include="Component.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Network\Listener.cpp">

@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
     <ClInclude Include="MathLib.h" />
     <ClInclude Include="exception.h" />
     <ClInclude Include="memory.h" />
@@ -138,6 +139,7 @@
     <ClInclude Include="TemplateUtility.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UniqueId.h" />
+    <ClInclude Include="SingleCoreLib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Network\Listener.cpp" />

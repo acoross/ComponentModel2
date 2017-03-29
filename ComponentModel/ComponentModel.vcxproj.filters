@@ -4,6 +4,9 @@
     <Filter Include="Message">
       <UniqueIdentifier>{9654e2fb-9916-4d36-abbc-2bb979b9dac2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine">
+      <UniqueIdentifier>{0ca6f4c9-d207-4207-8290-644c51bd602d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Message\csprotocol.include.h">
@@ -22,8 +25,11 @@
       <Filter>Message</Filter>
     </ClInclude>
     <ClInclude Include="CSProtocolHandler.h" />
-    <ClInclude Include="GameEngine\Component.h" />
-    <ClInclude Include="GameEngine\GameComponent.h" />
+    <ClInclude Include="GameEngine\GameComponent.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\Zone.h" />
+    <ClInclude Include="GameEngine\GameObjectContainer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

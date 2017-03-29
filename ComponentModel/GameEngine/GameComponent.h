@@ -4,7 +4,7 @@
 #include "memory.h"
 #include "MathLib.h"
 #include "PhysicsLib.h"
-#include "./Component.h"
+#include "Component.h"
 
 namespace GameEngine
 {
@@ -15,6 +15,10 @@ namespace GameEngine
 	class GameComponent : public Component<GameObject>
 	{
 	public:
+		Sp<GameObject> GetGameObject()
+		{
+			return GetOwner();
+		}
 	};
 
 	class GameObject : public ComponentOwner<GameObject, GameComponent>
