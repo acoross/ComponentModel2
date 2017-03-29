@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MessageBuilderLib
 {
-    class GroupSchema
+    public class GroupSchema
     {
         public readonly string Name = "";
         public readonly ICollection<Type> dependencies_type;
@@ -49,8 +49,8 @@ namespace MessageBuilderLib
             enumTypes.Add(new EnumSchema(eT));
         }
     }
-    
-    class EnumSchema
+
+    public class EnumSchema
     {
         public readonly string Name;
         public readonly List<string> EnumNames = new List<string>();
@@ -71,7 +71,7 @@ namespace MessageBuilderLib
         }
     }
 
-    class MemberSchema
+    public class MemberSchema
     {
         public Type MemberType;
         public string MemberName;
@@ -83,7 +83,7 @@ namespace MessageBuilderLib
         }
     }
 
-    class MessageSchema
+    public class MessageSchema
     {
         public readonly Int32 Id;
         public readonly string Name;

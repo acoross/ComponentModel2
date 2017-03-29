@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MessageBuilderLib
 {
-    static class SchemaBox
+    public static class SchemaBox
     {
         static Dictionary<string, GroupSchema> groupMap = new Dictionary<string, GroupSchema>();
 

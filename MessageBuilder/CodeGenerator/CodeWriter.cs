@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MessageBuilderLib
 {
-    class CodeWriter
+    public class CodeWriter
     {
         StreamWriter sw = null;
         int indent_state = 0;

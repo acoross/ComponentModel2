@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MessageBuilderLib
 {
-    class GroupWriter
+    public class GroupWriter
     {
         string getFileName(string groupName)
         {

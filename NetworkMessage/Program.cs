@@ -26,7 +26,10 @@ namespace NetworkMessage
                 includeFile = args[1];
             }
 
-            MessageBuilderLib.MessageBuilder.Build(outputDir, includeFile);
+            SchemaBox.Parse();
+
+            GroupWriter groupWriter = new GroupWriter();
+            groupWriter.GenerateCode(outputDir, includeFile);
         }
     }
 }

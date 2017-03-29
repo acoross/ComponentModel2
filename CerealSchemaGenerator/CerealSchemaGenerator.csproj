@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D073F41F-F97F-418B-AA9B-AF6653DF101C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{DEC41C65-7CE4-4BE2-9464-AFC8254CA882}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetworkMessage</RootNamespace>
-    <AssemblyName>NetworkMessage</AssemblyName>
+    <RootNamespace>CerealSchemaGenerator</RootNamespace>
+    <AssemblyName>CerealSchemaGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,18 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messages.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="MessageWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GroupWriter.cs" />
+    <Compile Include="TypeTranslationBox.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CerealSchemaGenerator\CerealSchemaGenerator.csproj">
-      <Project>{dec41c65-7ce4-4be2-9464-afc8254ca882}</Project>
-      <Name>CerealSchemaGenerator</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MessageBuilder\MessageBuilder.csproj">
       <Project>{0d0a2af7-ac7a-4b9d-93ed-ae7e643c3a92}</Project>
       <Name>MessageBuilder</Name>
