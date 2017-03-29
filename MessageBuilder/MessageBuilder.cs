@@ -10,11 +10,10 @@ namespace MessageBuilderLib
     {
         public static void Build(string outputDir, string includeFile)
         {
-            SharedTypeWriter sharedWriter = new SharedTypeWriter();
-            sharedWriter.Run(outputDir, includeFile);
+            SchemaBox.Parse();
 
-            ProtocolWriter protocolWriter = new ProtocolWriter();
-            protocolWriter.Run(outputDir, includeFile);
+            GroupWriter groupWriter = new GroupWriter();
+            groupWriter.GenerateCode(outputDir, includeFile);
         }
     }
 }

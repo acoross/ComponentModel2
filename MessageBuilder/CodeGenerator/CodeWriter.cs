@@ -20,7 +20,7 @@ namespace MessageBuilderLib
             public Block(CodeWriter gen, string appix = "")
             {
                 this.gen = gen;
-                gen.print("{");
+                gen.prn("{");
                 gen.indent_state++;
                 this.postfix = appix;
             }
@@ -28,7 +28,7 @@ namespace MessageBuilderLib
             public void Dispose()
             {
                 gen.indent_state--;
-                gen.print($"}}{postfix}");
+                gen.prn($"}}{postfix}");
             }
         }
 
@@ -52,32 +52,31 @@ namespace MessageBuilderLib
         {
             this.sw = sw;
         }
-
-        void prnIndent()
-        {
-            for (int i = 0; i < indent_state; ++i)
-            {
-                sw.Write("\t");
-            }
-        }
-        public void print()
+        
+        public void prn()
         {
             prnIndent();
             sw.WriteLine();
         }
 
-        public Block type(string title)
-        {
-            print(title);
-            return new Block(this, ";");
-        }
-
-        public void print(string content)
+        public void prn(string content)
         {
             prnIndent();
             sw.WriteLine(content);
         }
 
+        public Block type(string title)
+        {
+            prn(title);
+            return new Block(this, ";");
+        }
+
+        public Block func(string title)
+        {
+            prn(title);
+            return new Block(this);
+        }
+        
         public Block br()
         {
             return new Block(this);
@@ -86,6 +85,21 @@ namespace MessageBuilderLib
         public Indent indent()
         {
             return new Indent(this);
+        }
+
+        public void acc(string val)
+        {
+            indent_state--;
+            prn(val);
+            indent_state++;
+        }
+
+        void prnIndent()
+        {
+            for (int i = 0; i < indent_state; ++i)
+            {
+                sw.Write("\t");
+            }
         }
     }
 }

@@ -7,9 +7,9 @@
 #include "Message\CSProtocol.stub.h"
 
 using namespace scl;
-using namespace CSProtocol::Command;
+using namespace CSProtocol;
 
-class CSProtocolHandler : public CSProtocol::Command::IStub
+class CSProtocolHandler : public CSProtocol::IStub
 {
 public:
 	static void Initialize()
@@ -35,7 +35,7 @@ public:
 		wprintf(L"%s, %s\n", msg.id.c_str(), msg.password.c_str());
 	}
 
-	static std::wstring ToString(Shared::FVector& vec)
+	static std::wstring ToString(Shared::NetVector& vec)
 	{
 		std::wstringstream stream;
 		stream << "(" << vec.X << ", " << vec.Y << ", " << vec.Z << ")";

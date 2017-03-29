@@ -3,74 +3,71 @@
 #include "scl/Types.h"
 using namespace scl;
 
-#include "Shared.shared.h"
+#include "Shared.message.h"
+#include "SCProtocol.message.h"
 
 namespace CSProtocol
 {
-	namespace Command
+	enum class PacketType : uint32
 	{
-		enum class PacketType : uint32
-		{
-			TestEnum, 
-			RequestLogin, 
-			Move, 
-			MAX
-		};
+		RequestLogin, 
+		Move, 
+		MAX
+	};
+	
+	enum class TestEnum : int32
+	{
+		Foo, 
+		Bar, 
+		Max, 
+	};
+	
+	struct RequestLogin
+	{
+		const static uint32 PacketId = (uint32)PacketType::RequestLogin;
 		
-		enum class TestEnum : int32
+		RequestLogin()
 		{
-			Foo, 
-			Bar, 
-			Max, 
-		};
+		}
 		
-		struct RequestLogin
+		RequestLogin(String inid, String inpassword)
+			: id(inid)
+			, password(inpassword)
 		{
-			const static uint32 PacketId = (uint32)PacketType::RequestLogin;
-			
-			RequestLogin()
-			{
-			}
-			
-			RequestLogin(String id, String password)
-				: id(id)
-				, password(password)
-			{
-			}
-			
-			String id;
-			String password;
-			
-			template <class Ar>
-			void serialize(Ar& ar)
-			{
-				ar(id, password);
-			}
-		};
+		}
 		
-		struct Move
+		String id;
+		String password;
+		
+		template <class Ar>
+		void serialize(Ar& ar)
 		{
-			const static uint32 PacketId = (uint32)PacketType::Move;
-			
-			Move()
-			{
-			}
-			
-			Move(Shared::FVector position, Shared::FVector velocity)
-				: position(position)
-				, velocity(velocity)
-			{
-			}
-			
-			Shared::FVector position;
-			Shared::FVector velocity;
-			
-			template <class Ar>
-			void serialize(Ar& ar)
-			{
-				ar(position, velocity);
-			}
-		};
+			ar(id, password);
+		}
+	};
+	
+	struct Move
+	{
+		const static uint32 PacketId = (uint32)PacketType::Move;
 		
-	}
+		Move()
+		{
+		}
+		
+		Move(Shared::NetVector inposition, Shared::NetVector invelocity)
+			: position(inposition)
+			, velocity(invelocity)
+		{
+		}
+		
+		Shared::NetVector position;
+		Shared::NetVector velocity;
+		
+		template <class Ar>
+		void serialize(Ar& ar)
+		{
+			ar(position, velocity);
+		}
+	};
+	
 }

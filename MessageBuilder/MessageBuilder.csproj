@@ -40,18 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGenerator\Box\ProtocolBox.cs" />
-    <Compile Include="CodeGenerator\Box\RegisteredTypeBox.cs" />
-    <Compile Include="CodeGenerator\Box\SharedTypeBox.cs" />
-    <Compile Include="CodeGenerator\Core\CodeWriter.cs" />
-    <Compile Include="Attribute.cs" />
-    <Compile Include="CodeGenerator\MessageWriter.cs" />
-    <Compile Include="CodeGenerator\ProtocolData.cs" />
-    <Compile Include="CodeGenerator\protocolWriter.cs" />
-    <Compile Include="CodeGenerator\SharedTypeWriter.cs" />
+    <Compile Include="Box\DefaultTypeBox.cs" />
+    <Compile Include="Box\SchemaBox.cs" />
+    <Compile Include="CodeGenerator\TypeTranslationBox.cs" />
+    <Compile Include="CodeGenerator\CodeWriter.cs" />
+    <Compile Include="Box\Attribute.cs" />
+    <Compile Include="CerealTypeGenerator\MessageWriter.cs" />
+    <Compile Include="Box\Schema.cs" />
+    <Compile Include="CerealTypeGenerator\protocolWriter.cs" />
     <Compile Include="MessageBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS0649
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +11,10 @@ namespace NetworkMessage
 {
     using static Shared;
 
-    [SharedType]
+    [Message]
     class Shared
     {
-        public struct FVector
+        public struct NetVector
         {
             public float X;
             public float Y;
@@ -27,7 +29,7 @@ namespace NetworkMessage
         }
     }
 
-    [Protocol(Direction.Command)]
+    [Message(typeof(Shared), typeof(SCProtocol))]
     struct CSProtocol
     {
         public enum TestEnum : Int32
@@ -45,12 +47,12 @@ namespace NetworkMessage
 
         public struct Move
         {
-            public FVector position;
-            public FVector velocity;
+            public NetVector position;
+            public NetVector velocity;
         }
     }
 
-    [Protocol(Direction.Noti)]
+    [Message(typeof(Shared))]
     struct SCProtocol
     {
         public struct ResponseLogin
@@ -62,15 +64,15 @@ namespace NetworkMessage
         public struct NotiMove
         {
             public UInt64 gameObjectId;
-            public FVector position;
-            FVector velocity;
+            public NetVector position;
+            public NetVector velocity;
         }
 
         public struct NotiEnterZone
         {
             public UInt64 gameObjectId;
-            public FVector position;
-            public FVector velocity;
+            public NetVector position;
+            public NetVector velocity;
         }
 
         public struct NotiLeaveZone
@@ -92,3 +94,5 @@ namespace NetworkMessage
         event Action<SCProtocol.NotiMove> OnMove;
     }
 }
+
+#pragma warning restore CS0649

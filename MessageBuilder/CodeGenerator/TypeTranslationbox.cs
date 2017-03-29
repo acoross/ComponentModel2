@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MessageBuilderLib
 {
-    static class RegisteredTypeBox
+    static class TypeTranslator
     {
         static Dictionary<Type, string> registeredTypes = new Dictionary<Type, string>
         {
@@ -37,7 +37,7 @@ namespace MessageBuilderLib
                 return ret;
             }
 
-            return null;
+            return t.Name;
         }
     }
 }

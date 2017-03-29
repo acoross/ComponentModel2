@@ -137,12 +137,12 @@
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="GameEngine\Zone.h" />
+    <ClInclude Include="Message\Shared.message.h" />
     <ClInclude Include="UnitTest.h" />
     <ClInclude Include="Message\csprotocol.include.h" />
     <ClInclude Include="Message\CSProtocol.message.h" />
     <ClInclude Include="Message\CSProtocol.stub.h" />
     <ClInclude Include="Message\SCProtocol.message.h" />
-    <ClInclude Include="Message\shared.shared.h" />
     <ClInclude Include="CSProtocolHandler.h" />
   </ItemGroup>
   <ItemGroup>

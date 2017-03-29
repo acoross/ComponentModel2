@@ -6,7 +6,6 @@
 #include "CSProtocolHandler.h"
 
 using namespace scl;
-using namespace CSProtocol::Command;
 
 #include "UnitTest.h"
 

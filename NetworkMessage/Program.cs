@@ -10,14 +10,6 @@ namespace NetworkMessage
 {
     class Program
     {
-        public static object GetDefaultValue(Type t)
-        {
-            if (t.IsValueType && Nullable.GetUnderlyingType(t) == null)
-                return Activator.CreateInstance(t);
-            else
-                return null;
-        }
-
         static void Main(string[] args)
         {
             if (args.Length < 1)
@@ -34,7 +26,7 @@ namespace NetworkMessage
                 includeFile = args[1];
             }
 
-            MessageBuilder.Build(outputDir, includeFile);
+            MessageBuilderLib.MessageBuilder.Build(outputDir, includeFile);
         }
     }
 }
