@@ -27,9 +27,11 @@
     <ClInclude Include="GameEngine\GameComponent.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngine\Zone.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="CSProtocolHandler.h" />
+    <ClInclude Include="UnitTest.h" />
+    <ClInclude Include="GameEngine\Component\Collider.h" />
+    <ClInclude Include="GameEngine\Zone.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

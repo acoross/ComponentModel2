@@ -5,12 +5,15 @@
 #include "GameEngine/GameComponent.h"
 #include "CSProtocolHandler.h"
 
-
 using namespace scl;
 using namespace CSProtocol::Command;
 
+#include "UnitTest.h"
+
 int main()
 {
+	::Tests();
+
 	auto networkWorker = New<NetworkWorker>();
 	auto listener = New<Listener>(networkWorker);
 	

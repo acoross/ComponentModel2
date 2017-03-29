@@ -40,7 +40,9 @@ namespace GameEngine
 
 	private:
 		const scl::uint64 _id;
+		
 		scl::Transform _transform;
+
 		Wp<class GameObjectContainer> _container;
 	};
 }

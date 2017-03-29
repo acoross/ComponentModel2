@@ -133,9 +133,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameEngine\Component\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="GameEngine\Zone.h" />
+    <ClInclude Include="UnitTest.h" />
     <ClInclude Include="Message\csprotocol.include.h" />
     <ClInclude Include="Message\CSProtocol.message.h" />
     <ClInclude Include="Message\CSProtocol.stub.h" />
