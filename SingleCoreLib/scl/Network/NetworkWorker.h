@@ -1,10 +1,11 @@
 #pragma once
 
+#include "./NetworkInitializer.h"
+
 #include <atomic>
 
-#include "Pipeline.h"
-#include "./NetworkInitializer.h"
-#include "Types.h"
+#include "scl/Pipeline.h"
+#include "scl/Types.h"
 
 namespace scl
 {

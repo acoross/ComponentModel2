@@ -1,7 +1,7 @@
 #pragma once
 
 #include "./NetworkInitializer.h"
-#include "Types.h"
+#include "scl/Types.h"
 
 namespace scl
 {

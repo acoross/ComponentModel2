@@ -118,34 +118,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="MathLib.h" />
-    <ClInclude Include="exception.h" />
-    <ClInclude Include="memory.h" />
-    <ClInclude Include="Network.h" />
-    <ClInclude Include="Network\CerealPacket.h" />
-    <ClInclude Include="Network\IocpTask.h" />
-    <ClInclude Include="Network\Listener.h" />
-    <ClInclude Include="Network\NetworkInitializer.h" />
-    <ClInclude Include="Network\NetworkThread.h" />
-    <ClInclude Include="Network\NetworkWorker.h" />
-    <ClInclude Include="Network\PacketHandlerTable.h" />
-    <ClInclude Include="Network\Session.h" />
-    <ClInclude Include="Network\SessionBuffer.h" />
-    <ClInclude Include="PhysicsLib.h" />
-    <ClInclude Include="Pipeline.h" />
-    <ClInclude Include="Task.h" />
-    <ClInclude Include="TemplateHelper.h" />
-    <ClInclude Include="TemplateUtility.h" />
-    <ClInclude Include="Types.h" />
-    <ClInclude Include="UniqueId.h" />
-    <ClInclude Include="SingleCoreLib.h" />
+    <ClInclude Include="scl\Component.h" />
+    <ClInclude Include="scl\MathLib.h" />
+    <ClInclude Include="scl\exception.h" />
+    <ClInclude Include="scl\memory.h" />
+    <ClInclude Include="scl\Network.h" />
+    <ClInclude Include="scl\Network\CerealPacket.h" />
+    <ClInclude Include="scl\Network\IocpTask.h" />
+    <ClInclude Include="scl\Network\Listener.h" />
+    <ClInclude Include="scl\Network\NetworkInitializer.h" />
+    <ClInclude Include="scl\Network\NetworkThread.h" />
+    <ClInclude Include="scl\Network\NetworkWorker.h" />
+    <ClInclude Include="scl\Network\PacketHandlerTable.h" />
+    <ClInclude Include="scl\Network\Session.h" />
+    <ClInclude Include="scl\Network\SessionBuffer.h" />
+    <ClInclude Include="scl\PhysicsLib.h" />
+    <ClInclude Include="scl\Pipeline.h" />
+    <ClInclude Include="scl\TemplateHelper.h" />
+    <ClInclude Include="scl\TemplateUtility.h" />
+    <ClInclude Include="scl\Types.h" />
+    <ClInclude Include="scl\UniqueId.h" />
+    <ClInclude Include="scl\SingleCoreLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Network\Listener.cpp" />
-    <ClCompile Include="Network\NetworkThread.cpp" />
-    <ClCompile Include="Network\NetworkWorker.cpp" />
-    <ClCompile Include="Network\Session.cpp" />
+    <ClCompile Include="scl\Network\Listener.cpp" />
+    <ClCompile Include="scl\Network\NetworkThread.cpp" />
+    <ClCompile Include="scl\Network\NetworkWorker.cpp" />
+    <ClCompile Include="scl\Network\Session.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

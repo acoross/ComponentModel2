@@ -1,13 +1,15 @@
 #pragma once
 
 #include "./NetworkInitializer.h"
-#include "Types.h"
-#include "UniqueId.h"
+
 #include <functional>
-#include "exception.h"
-#include "Network\SessionBuffer.h"
-#include "Network\IocpTask.h"
-#include "memory.h"
+
+#include "scl/Types.h"
+#include "scl/UniqueId.h"
+#include "scl/Network/SessionBuffer.h"
+#include "scl/Network/IocpTask.h"
+#include "scl/exception.h"
+#include "scl/memory.h"
 
 namespace scl
 {

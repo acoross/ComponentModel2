@@ -1,6 +1,8 @@
 #include "./NetworkThread.h"
+
+#include "scl/exception.h"
 #include "./Session.h"
-#include "exception.h"
+
 
 namespace scl
 {

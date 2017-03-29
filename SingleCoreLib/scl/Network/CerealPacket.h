@@ -1,10 +1,10 @@
 #pragma once
 
-#include <cereal\archives\binary.hpp>
-#include <cereal\types\vector.hpp>
-#include <cereal\types\string.hpp>
+#include <cereal/archives/binary.hpp>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/string.hpp>
 #include <strstream>
-#include "Types.h"
+#include "scl/Types.h"
 
 namespace scl
 {

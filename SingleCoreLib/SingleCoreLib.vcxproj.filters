@@ -13,58 +13,57 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="memory.h" />
-    <ClInclude Include="Network.h" />
-    <ClInclude Include="Pipeline.h" />
-    <ClInclude Include="TemplateHelper.h" />
-    <ClInclude Include="TemplateUtility.h" />
-    <ClInclude Include="Types.h" />
-    <ClInclude Include="UniqueId.h" />
-    <ClInclude Include="exception.h" />
-    <ClInclude Include="Network\CerealPacket.h">
+    <ClInclude Include="scl\Network\CerealPacket.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\IocpTask.h">
+    <ClInclude Include="scl\Network\IocpTask.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\Listener.h">
+    <ClInclude Include="scl\Network\Listener.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\NetworkInitializer.h">
+    <ClInclude Include="scl\Network\NetworkInitializer.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\NetworkThread.h">
+    <ClInclude Include="scl\Network\NetworkThread.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\NetworkWorker.h">
+    <ClInclude Include="scl\Network\NetworkWorker.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\PacketHandlerTable.h">
+    <ClInclude Include="scl\Network\PacketHandlerTable.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\Session.h">
+    <ClInclude Include="scl\Network\Session.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\SessionBuffer.h">
+    <ClInclude Include="scl\Network\SessionBuffer.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Task.h" />
-    <ClInclude Include="MathLib.h" />
-    <ClInclude Include="PhysicsLib.h" />
-    <ClInclude Include="SingleCoreLib.h" />
-    <ClInclude Include="Component.h" />
+    <ClInclude Include="scl\Component.h" />
+    <ClInclude Include="scl\exception.h" />
+    <ClInclude Include="scl\MathLib.h" />
+    <ClInclude Include="scl\memory.h" />
+    <ClInclude Include="scl\Network.h" />
+    <ClInclude Include="scl\UniqueId.h" />
+    <ClInclude Include="scl\Types.h" />
+    <ClInclude Include="scl\TemplateUtility.h" />
+    <ClInclude Include="scl\TemplateHelper.h" />
+    <ClInclude Include="scl\SingleCoreLib.h" />
+    <ClInclude Include="scl\Pipeline.h" />
+    <ClInclude Include="scl\PhysicsLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Network\Listener.cpp">
+    <ClCompile Include="scl\Network\Listener.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\NetworkThread.cpp">
+    <ClCompile Include="scl\Network\NetworkThread.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\NetworkWorker.cpp">
+    <ClCompile Include="scl\Network\NetworkWorker.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\Session.cpp">
+    <ClCompile Include="scl\Network\Session.cpp">
       <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>

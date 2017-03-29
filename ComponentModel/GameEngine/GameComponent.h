@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Types.h"
-#include "memory.h"
-#include "MathLib.h"
-#include "PhysicsLib.h"
-#include "Component.h"
+#include "scl/Types.h"
+#include "scl/memory.h"
+#include "scl/MathLib.h"
+#include "scl/PhysicsLib.h"
+#include "scl/Component.h"
 
 namespace GameEngine
 {

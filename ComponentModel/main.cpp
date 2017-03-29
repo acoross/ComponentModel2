@@ -1,10 +1,10 @@
-#include "SingleCoreLib.h"
+#include "scl/Pipeline.h"
+#include "scl/Network.h"
+#include "scl/MathLib.h"
 
-#include "Pipeline.h"
-#include "Network.h"
+#include "GameEngine/GameComponent.h"
 #include "CSProtocolHandler.h"
-#include "MathLib.h"
-#include "GameEngine\GameComponent.h"
+
 
 using namespace scl;
 using namespace CSProtocol::Command;

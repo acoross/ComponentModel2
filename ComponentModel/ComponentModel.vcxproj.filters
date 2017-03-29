@@ -24,12 +24,12 @@
     <ClInclude Include="Message\shared.shared.h">
       <Filter>Message</Filter>
     </ClInclude>
-    <ClInclude Include="CSProtocolHandler.h" />
     <ClInclude Include="GameEngine\GameComponent.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="GameEngine\Zone.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
+    <ClInclude Include="CSProtocolHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

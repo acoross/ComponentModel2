@@ -1,9 +1,9 @@
 #pragma once
 
 #include <map>
-#include "Types.h"
-#include "UniqueId.h"
-#include "memory.h"
+#include "scl/Types.h"
+#include "scl/UniqueId.h"
+#include "scl/memory.h"
 
 namespace scl
 {

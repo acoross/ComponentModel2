@@ -1,15 +1,16 @@
 #pragma once
 
+#include "./NetworkInitializer.h"
+
 #include <thread>
 #include <map>
 #include <queue>
 #include <concurrent_queue.h>
 
-#include "Pipeline.h"
-#include "memory.h"
-#include "TemplateHelper.h"
-#include "./NetworkInitializer.h"
-#include "Types.h"
+#include "scl/Pipeline.h"
+#include "scl/memory.h"
+#include "scl/TemplateHelper.h"
+#include "scl/Types.h"
 
 namespace scl
 {

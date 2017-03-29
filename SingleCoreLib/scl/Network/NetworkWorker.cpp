@@ -1,5 +1,6 @@
 #include "./NetworkWorker.h"
-#include "exception.h"
+
+#include "scl/exception.h"
 #include "./Session.h"
 #include "./NetworkThread.h"
 

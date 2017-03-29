@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MathLib.h"
+#include "scl/MathLib.h"
 
 namespace scl
 {
