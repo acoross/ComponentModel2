@@ -52,6 +52,7 @@
     <ClInclude Include="scl\SingleCoreLib.h" />
     <ClInclude Include="scl\Pipeline.h" />
     <ClInclude Include="scl\PhysicsLib.h" />
+    <ClInclude Include="scl\EventDispatcher.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scl\Network\Listener.cpp">

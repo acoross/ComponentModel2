@@ -119,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="scl\Component.h" />
+    <ClInclude Include="scl\EventDispatcher.h" />
     <ClInclude Include="scl\MathLib.h" />
     <ClInclude Include="scl\exception.h" />
     <ClInclude Include="scl\memory.h" />

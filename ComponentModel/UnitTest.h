@@ -1,9 +1,9 @@
 #pragma once
 
 #include "scl/MathLib.h"
+#include "scl/EventDispatcher.h"
 
 using namespace scl;
-using namespace GameEngine;
 
 inline std::string ToString(const Vector3f& vec)
 {
@@ -56,8 +56,22 @@ inline void TestVectorDiv()
 	printf("%f\n", vec.Yaw());
 }
 
+inline void StaticEventHandlerTest()
+{
+	EventDispatcher e1;
+	e1.RegisterHandler<Event<int>>([](const Event<int>& e)
+	{
+		std::cout << e.value << std::endl;
+	});
+
+	Event<int> ee(1);
+	e1(ee);
+	e1.InvokeEvent(ee);
+	e1.InvokeEvent(Event<int>(2));
+	e1.InvokeEvent(Event<float>(3.f));
+}
+
 inline void Tests()
 {
 	TestVectorDiv();
 }
-
