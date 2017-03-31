@@ -6,6 +6,8 @@
 #include "scl/EventDispatcher.h"
 #include "GameEngine/GameComponent.h"
 #include "GameEngine/GameObjectContainer.h"
+#include "GameEngine/LazyMotionObject.h"
+#include "scl/time.h"
 
 #include "gtest/gtest.h"
 
@@ -146,4 +148,37 @@ TEST_F(SendMsgFixture, GameObjectContainer)
 	comp->value = 0;
 	container.BroadcastMsg(fuck);
 	EXPECT_EQ(comp->value, 0);
+}
+
+TEST(LazyRigidBody, TestLazyMotionObject)
+{
+	EXPECT_EQ(Math::AdjustAngle(370), 10);
+	EXPECT_EQ(Math::AdjustAngle(-240), 120);
+
+	auto tick = scl::GetSystemTickMilli();
+	LazyRigidBody body(Vector3f(0, 0, 0), 0, { 0, 0, 0 }, 0, tick);
+
+	auto current = tick + 100;
+	EXPECT_EQ(body.Position(current), Vector3f(0, 0, 0));
+	EXPECT_EQ(body.Yaw(current), 0);
+
+	body.SetVelocity(Vector3f(1, 2, 3), current);
+	body.SetAngVelocity(2, current);
+
+	current += 100;
+	EXPECT_EQ(body.Position(current), Vector3f(100, 200, 300));
+	EXPECT_EQ(body.Yaw(current), 200);
+
+	EXPECT_EQ(body.Position(current), Vector3f(100, 200, 300));
+	EXPECT_EQ(body.Yaw(current), 200);
+
+	current += 100;
+	EXPECT_EQ(body.Position(current), Vector3f(200, 400, 600));
+	EXPECT_EQ(body.Yaw(current), 40);
+
+	body.SetPosition(Vector3f(1, 2, 3), current);
+	EXPECT_EQ(body.Position(current), Vector3f(1, 2, 3));
+
+	current += 200;
+	EXPECT_EQ(body.Position(current), Vector3f(201, 402, 603));
 }

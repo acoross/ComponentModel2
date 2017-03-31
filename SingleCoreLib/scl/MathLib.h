@@ -8,23 +8,41 @@
 
 namespace scl
 {
-	template<class T>
-	typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type
-		almost_equal(T x, T y)
+	namespace Math
 	{
-		// the machine epsilon has to be scaled to the magnitude of the values used
-		// and multiplied by the desired precision in ULPs (units in the last place)
-		return std::abs(x - y) < std::numeric_limits<T>::epsilon() * std::abs(x + y) * 1
-			// unless the result is subnormal
-			|| std::abs(x - y) < std::numeric_limits<T>::min();
-	}
+		template<class T>
+		typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type
+			almost_equal(T x, T y)
+		{
+			// the machine epsilon has to be scaled to the magnitude of the values used
+			// and multiplied by the desired precision in ULPs (units in the last place)
+			return std::abs(x - y) < std::numeric_limits<T>::epsilon() * std::abs(x + y) * 1
+				// unless the result is subnormal
+				|| std::abs(x - y) < std::numeric_limits<T>::min();
+		}
 
-	template<class T>
-	typename std::enable_if<std::numeric_limits<T>::is_integer, bool>::type
-		almost_equal(T x, T y)
-	{
-		return x == y;
+		template<class T>
+		typename std::enable_if<std::numeric_limits<T>::is_integer, bool>::type
+			almost_equal(T x, T y)
+		{
+			return x == y;
+		}
+
+		float AdjustAngle(float degree)
+		{
+			if (degree >= 0)
+			{
+				int n = int(degree / 360);
+				return degree - n * 360;
+			}
+			else
+			{
+				int n = int(degree / -360);
+				return degree - (n - 1) * 360;
+			}
+		}
 	}
+	
 
 	template <class T>
 	class Vector3
@@ -35,10 +53,9 @@ namespace scl
 		T X{ 0 };
 		T Y{ 0 };
 		T Z{ 0 };
-		const T W{ 0 };	// 0: point, !0: vector
 
 		Vector3() : X(0), Y(0), Z(0) {}
-		Vector3(T x, T y, T z, T w = 0) : X(x), Y(y), Z(z), W(w) {}
+		Vector3(T x, T y, T z) : X(x), Y(y), Z(z) {}
 
 		Vector3 operator * (T v) const
 		{
@@ -67,7 +84,7 @@ namespace scl
 
 		friend bool operator == (const Vector3& v1, const Vector3& v)
 		{
-			return almost_equal<T>(v1.X, v.X) && almost_equal<T>(v1.Y, v.Y) && almost_equal<T>(v1.Z, v.Z);
+			return Math::almost_equal<T>(v1.X, v.X) && Math::almost_equal<T>(v1.Y, v.Y) && Math::almost_equal<T>(v1.Z, v.Z);
 		}
 
 		Vector3 ComponentProduct(const Vector3& v) const

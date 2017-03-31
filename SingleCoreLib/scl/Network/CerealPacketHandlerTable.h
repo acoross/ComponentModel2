@@ -7,7 +7,7 @@
 namespace scl
 {
 	template <class HandlerT>
-	class PacketHandlerTable
+	class CerealPacketHandlerTable
 	{
 	public:
 		template <class MessageT>

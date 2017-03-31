@@ -1,7 +1,7 @@
 #pragma once
 
 #include "scl\Network\CerealPacket.h"
-#include "scl\Network\PacketHandlerTable.h"
+#include "scl\Network\CerealPacketHandlerTable.h"
 
 #include "Message\CSProtocol.message.h"
 #include "Message\CSProtocol.stub.h"
@@ -48,7 +48,5 @@ public:
 	}
 
 private:
-	static PacketHandlerTable<CSProtocolHandler> _handler;
+	static CerealPacketHandlerTable<CSProtocolHandler> _handler;
 };
-
-PacketHandlerTable<CSProtocolHandler> CSProtocolHandler::_handler;

@@ -6,6 +6,7 @@
 #include "scl/PhysicsLib.h"
 #include "scl/Component.h"
 #include "scl/EventDispatcher.h"
+#include "GameEngine/LazyMotionObject.h"
 
 namespace GameEngine
 {
@@ -60,7 +61,7 @@ namespace GameEngine
 	private:
 		const scl::uint64 _id;
 		
-		scl::Transform _transform;
+		LazyRigidBody _rigidBody;
 
 		Wp<class GameObjectContainer> _container;
 

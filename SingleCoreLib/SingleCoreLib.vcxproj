@@ -131,7 +131,7 @@
     <ClInclude Include="scl\Network\NetworkInitializer.h" />
     <ClInclude Include="scl\Network\NetworkThread.h" />
     <ClInclude Include="scl\Network\NetworkWorker.h" />
-    <ClInclude Include="scl\Network\PacketHandlerTable.h" />
+    <ClInclude Include="scl\Network\CerealPacketHandlerTable.h" />
     <ClInclude Include="scl\Network\Session.h" />
     <ClInclude Include="scl\Network\SessionBuffer.h" />
     <ClInclude Include="scl\PhysicsLib.h" />
@@ -139,10 +139,11 @@
     <ClInclude Include="scl\Strigify.h" />
     <ClInclude Include="scl\TemplateHelper.h" />
     <ClInclude Include="scl\TemplateUtility.h" />
+    <ClInclude Include="scl\time.h" />
     <ClInclude Include="scl\Types.h" />
     <ClInclude Include="scl\TypeTraits.h" />
     <ClInclude Include="scl\UniqueId.h" />
-    <ClInclude Include="scl\SingleCoreLib.h" />
+    <ClInclude Include="scl\scl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scl\Network\Listener.cpp" />

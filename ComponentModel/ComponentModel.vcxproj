@@ -130,12 +130,14 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CSProtocolHandler.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\Component\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
+    <ClInclude Include="GameEngine\LazyMotionObject.h" />
     <ClInclude Include="GameEngine\Zone.h" />
     <ClInclude Include="Message\Shared.message.h" />
     <ClInclude Include="UnitTest.h" />
