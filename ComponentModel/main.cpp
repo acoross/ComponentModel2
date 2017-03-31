@@ -1,5 +1,5 @@
-#include "scl/Pipeline.h"
-#include "scl/Network.h"
+#include "scl/IO/Pipeline.h"
+#include "scl/IO/Network.h"
 #include "scl/MathLib.h"
 
 #include "GameEngine/GameComponent.h"

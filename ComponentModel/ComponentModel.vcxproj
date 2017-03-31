@@ -134,7 +134,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngine\Component\Collider.h" />
+    <ClInclude Include="GameEngine\GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="GameEngine\LazyMotionObject.h" />

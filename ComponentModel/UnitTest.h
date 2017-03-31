@@ -156,7 +156,7 @@ TEST(LazyRigidBody, TestLazyMotionObject)
 	EXPECT_EQ(Math::AdjustAngle(-240), 120);
 
 	auto tick = scl::GetSystemTickMilli();
-	LazyRigidBody body(Vector3f(0, 0, 0), 0, { 0, 0, 0 }, 0, tick);
+	GameEngine::LazyRigidBody body(Vector3f(0, 0, 0), 0, { 0, 0, 0 }, 0, tick);
 
 	auto current = tick + 100;
 	EXPECT_EQ(body.Position(current), Vector3f(0, 0, 0));

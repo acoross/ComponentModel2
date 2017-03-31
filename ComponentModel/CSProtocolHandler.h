@@ -1,10 +1,10 @@
 #pragma once
 
-#include "scl\Network\CerealPacket.h"
-#include "scl\Network\CerealPacketHandlerTable.h"
+#include "scl/IO/Network/CerealPacket.h"
+#include "scl/IO/Network/CerealPacketHandlerTable.h"
 
-#include "Message\CSProtocol.message.h"
-#include "Message\CSProtocol.stub.h"
+#include "Message/CSProtocol.message.h"
+#include "Message/CSProtocol.stub.h"
 
 using namespace scl;
 using namespace CSProtocol;

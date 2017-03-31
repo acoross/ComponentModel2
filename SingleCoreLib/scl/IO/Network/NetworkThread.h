@@ -7,7 +7,7 @@
 #include <queue>
 #include <concurrent_queue.h>
 
-#include "scl/Pipeline.h"
+#include "scl/IO/Pipeline.h"
 #include "scl/memory.h"
 #include "scl/TemplateHelper.h"
 #include "scl/Types.h"

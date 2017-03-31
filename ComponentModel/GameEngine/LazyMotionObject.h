@@ -4,7 +4,9 @@
 #include "scl/MathLib.h"
 #include "scl/Types.h"
 
-namespace scl
+using namespace scl;
+
+namespace GameEngine
 {
 	class LazyRigidBody
 	{

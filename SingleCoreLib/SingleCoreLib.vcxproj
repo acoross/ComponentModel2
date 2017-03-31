@@ -124,18 +124,18 @@
     <ClInclude Include="scl\MathLib.h" />
     <ClInclude Include="scl\exception.h" />
     <ClInclude Include="scl\memory.h" />
-    <ClInclude Include="scl\Network.h" />
-    <ClInclude Include="scl\Network\CerealPacket.h" />
-    <ClInclude Include="scl\Network\IocpTask.h" />
-    <ClInclude Include="scl\Network\Listener.h" />
-    <ClInclude Include="scl\Network\NetworkInitializer.h" />
-    <ClInclude Include="scl\Network\NetworkThread.h" />
-    <ClInclude Include="scl\Network\NetworkWorker.h" />
-    <ClInclude Include="scl\Network\CerealPacketHandlerTable.h" />
-    <ClInclude Include="scl\Network\Session.h" />
-    <ClInclude Include="scl\Network\SessionBuffer.h" />
+    <ClInclude Include="scl\IO\Network.h" />
+    <ClInclude Include="scl\IO\Network\CerealPacket.h" />
+    <ClInclude Include="scl\IO\Network\IocpTask.h" />
+    <ClInclude Include="scl\IO\Network\Listener.h" />
+    <ClInclude Include="scl\IO\Network\NetworkInitializer.h" />
+    <ClInclude Include="scl\IO\Network\NetworkThread.h" />
+    <ClInclude Include="scl\IO\Network\NetworkWorker.h" />
+    <ClInclude Include="scl\IO\Network\CerealPacketHandlerTable.h" />
+    <ClInclude Include="scl\IO\Network\Session.h" />
+    <ClInclude Include="scl\IO\Network\SessionBuffer.h" />
     <ClInclude Include="scl\PhysicsLib.h" />
-    <ClInclude Include="scl\Pipeline.h" />
+    <ClInclude Include="scl\IO\Pipeline.h" />
     <ClInclude Include="scl\Strigify.h" />
     <ClInclude Include="scl\TemplateHelper.h" />
     <ClInclude Include="scl\TemplateUtility.h" />
@@ -146,10 +146,10 @@
     <ClInclude Include="scl\scl.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="scl\Network\Listener.cpp" />
-    <ClCompile Include="scl\Network\NetworkThread.cpp" />
-    <ClCompile Include="scl\Network\NetworkWorker.cpp" />
-    <ClCompile Include="scl\Network\Session.cpp" />
+    <ClCompile Include="scl\IO\Network\Listener.cpp" />
+    <ClCompile Include="scl\IO\Network\NetworkThread.cpp" />
+    <ClCompile Include="scl\IO\Network\NetworkWorker.cpp" />
+    <ClCompile Include="scl\IO\Network\Session.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

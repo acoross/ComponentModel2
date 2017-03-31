@@ -4,7 +4,7 @@
 
 #include <atomic>
 
-#include "scl/Pipeline.h"
+#include "scl/IO/Pipeline.h"
 #include "scl/Types.h"
 
 namespace scl

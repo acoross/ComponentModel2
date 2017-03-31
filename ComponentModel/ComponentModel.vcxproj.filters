@@ -27,10 +27,10 @@
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="CSProtocolHandler.h" />
     <ClInclude Include="UnitTest.h" />
-    <ClInclude Include="GameEngine\Component\Collider.h" />
     <ClInclude Include="GameEngine\Zone.h" />
     <ClInclude Include="Message\Shared.message.h" />
     <ClInclude Include="GameEngine\LazyMotionObject.h" />
+    <ClInclude Include="GameEngine\GameComponents\Collider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

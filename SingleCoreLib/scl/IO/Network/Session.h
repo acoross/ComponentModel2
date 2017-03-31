@@ -6,8 +6,8 @@
 
 #include "scl/Types.h"
 #include "scl/UniqueId.h"
-#include "scl/Network/SessionBuffer.h"
-#include "scl/Network/IocpTask.h"
+#include "scl/IO/Network/SessionBuffer.h"
+#include "scl/IO/Network/IocpTask.h"
 #include "scl/exception.h"
 #include "scl/memory.h"
 
