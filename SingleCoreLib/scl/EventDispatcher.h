@@ -6,7 +6,6 @@
 #include <functional>
 #include "scl/UniqueId.h"
 #include "scl/TypeTraits.h"
-#include <typeinfo>
 
 namespace scl
 {

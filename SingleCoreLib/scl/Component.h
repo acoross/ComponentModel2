@@ -8,62 +8,6 @@
 
 namespace scl
 {
-	class IComponentMessageBase : public std::enable_shared_from_this<IComponentMessageBase>
-	{
-	public:
-		template <class TMessage>
-		struct MessageTypeIdHelper
-		{
-			static_assert(std::is_base_of<IComponentMessageBase, TMessage>::value,
-				"ComponentTypeIdHelper<> should have template arg TComp derived from Component");
-
-			static int typeId;
-		};
-
-		template <class TMessage, class = Require<IComponentMessageBase, TMessage>>
-		static int TypeId()
-		{
-			return MessageTypeIdHelper<std::remove_reference<TMessage>::type>::typeId;
-		}
-
-		template <class U, class = Require<IComponentMessageBase, U>>
-		bool Is()
-		{
-			auto myId = GetTypeId();
-			auto uId = TypeId<U>();
-
-			return myId == uId;
-		}
-
-		template <class U, class = Require<IComponentMessageBase, U>>
-		Sp<U> As()
-		{
-			if (Is<U>())
-			{
-				auto self = shared_from_this();
-				return std::static_pointer_cast<U>();
-			}
-			return nullptr;
-		}
-
-	protected:
-		virtual int GetTypeId() = 0;
-	};
-
-	template <class TMessage>
-	int IComponentMessageBase::MessageTypeIdHelper<TMessage>::typeId = scl::UniqueId<IComponentMessageBase, int>::Generate();
-
-
-	template <class T>
-	class IComponentMessage : public IComponentMessageBase
-	{
-	public:
-		int GetTypeId() override sealed
-		{
-			return TypeId<T>();
-		}
-	};
-
 	// Component
 	template <class TOwner>
 	class Component

@@ -5,6 +5,7 @@
 #include "scl/MathLib.h"
 #include "scl/EventDispatcher.h"
 #include "GameEngine/GameComponent.h"
+#include "GameEngine/GameObjectContainer.h"
 
 #include "gtest/gtest.h"
 
@@ -45,7 +46,34 @@ TEST(Default, TestVectorDiv)
 	EXPECT_FLOAT_EQ(vec.Yaw(), Vector3f(1, 2, 3).Yaw());
 }
 
-TEST(Default, TestEventDispatcher)
+
+class SendMsgFixture : public ::testing::Test
+{
+public:
+	class TestComponent : public GameEngine::GameComponent
+	{
+	public:
+		void OnBound() override
+		{
+			if (auto o = _owner.lock())
+			{
+				o->RegisterMsgHandler<int>([&](const int& v)
+				{
+					value = 1;
+					std::cout << v << std::endl;
+				});
+				o->RegisterMsgHandler<std::string>([&](const std::string& str)
+				{
+					value = 2;
+				});
+			}
+		}
+
+		int value = 0;
+	};
+};
+
+TEST_F(SendMsgFixture, TestEventDispatcher)
 {
 	EventDispatcher e1;
 	bool invoked = false;
@@ -72,30 +100,8 @@ TEST(Default, TestEventDispatcher)
 	EXPECT_EQ(invoked, false);
 }
 
-TEST(Default, TestGameObjectSendMsg)
+TEST_F(SendMsgFixture, TestGameObjectSendMsg)
 {
-	class TestComponent : public GameEngine::GameComponent
-	{
-	public:
-		void OnBound() override
-		{
-			if (auto o = _owner.lock())
-			{
-				o->RegisterMsgHandler<int>([&](const int& v)
-				{
-					value = 1;
-					std::cout << v << std::endl;
-				});
-				o->RegisterMsgHandler<std::string>([&](const std::string& str)
-				{
-					value = 2;
-				});
-			}
-		}
-
-		int value = 0;
-	};
-
 	auto obj = New<GameEngine::GameObject>();
 	auto comp = New<TestComponent>();
 
@@ -112,4 +118,32 @@ TEST(Default, TestGameObjectSendMsg)
 	comp->value = 0;
 	obj->SendMsg<std::string>("fuck");
 	EXPECT_EQ(comp->value, 2);
+}
+
+TEST_F(SendMsgFixture, GameObjectContainer)
+{
+	GameEngine::GameObjectContainer container;
+	auto obj = New<GameEngine::GameObject>();
+	auto comp = New<TestComponent>();
+
+	obj->SetComponent<TestComponent>(comp);
+
+	container.Add(obj);
+
+	comp->value = 0;
+	container.BroadcastMsg(Event<int>(1));
+	EXPECT_EQ(comp->value, 1);
+
+	comp->value = 0;
+	container.BroadcastMsg(1);
+	EXPECT_EQ(comp->value, 1);
+
+	comp->value = 0;
+	container.BroadcastMsg<std::string>("fuck");
+	EXPECT_EQ(comp->value, 2);
+
+	const char* fuck = "fuck";
+	comp->value = 0;
+	container.BroadcastMsg(fuck);
+	EXPECT_EQ(comp->value, 0);
 }

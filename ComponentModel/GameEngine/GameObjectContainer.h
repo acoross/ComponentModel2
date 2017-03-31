@@ -14,7 +14,7 @@ namespace GameEngine
 	class GameObjectContainer
 	{
 	public:
-		typedef std::unordered_map<int, Sp<GameObject>> MapType;
+		typedef std::unordered_map<uint64, Sp<GameObject>> MapType;
 
 		const MapType& GetAllObjects() const
 		{
@@ -33,17 +33,25 @@ namespace GameEngine
 			_gameObjectMap.erase(gameObject->Id());
 		}
 
-		template <class TMessage, 
-			class = Require<IComponentMessage<TMessage>, TMessage>>
-		void BroadcastMessage(Sp<TMessage> message)
+		template <class TMessage>
+		void BroadcastMsg(const TMessage& message)
 		{
 			for (auto& pair : _gameObjectMap)
 			{
-				pair.second->SendMessage_(message);
+				pair.second->SendMsg(message);
+			}
+		}
+
+		template <class TMessage>
+		void BroadcastMsg(const Event<TMessage>& message)
+		{
+			for (auto& pair : _gameObjectMap)
+			{
+				pair.second->SendMsg(message);
 			}
 		}
 
 	private:
-		std::unordered_map<int, Sp<GameObject>> _gameObjectMap;
+		std::unordered_map<uint64, Sp<GameObject>> _gameObjectMap;
 	};
 }
