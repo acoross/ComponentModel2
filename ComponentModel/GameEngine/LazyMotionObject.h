@@ -3,18 +3,24 @@
 #include <functional>
 #include "scl/MathLib.h"
 #include "scl/Types.h"
+#include "scl/TemplateHelper.h"
 
 using namespace scl;
 
 namespace GameEngine
 {
-	class LazyRigidBody
+	class LazyRigidBody : public NoCopy<LazyRigidBody>
 	{
 	public:
-		using PositionUpdaterFunc = std::function<void(Vector3f& /*pos*/, const Vector3f& /*vel*/, int64 /*diff*/)>;
-		using YawUpdaterFunc = std::function<void(float& /*yaw*/, const float /*ang vel*/, int64 /*diff*/)>;
-
-		LazyRigidBody()
+		using PositionUpdaterFunc = 
+			std::function<Vector3f(
+				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, int64 /*diff*/, int64 /*currentTick*/)>;
+		using YawUpdaterFunc =
+			std::function<float(
+				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, int64 /*diff*/, int64 /*currentTick*/)>;
+		
+		LazyRigidBody(int64 gametick = 0)
+			: _lastUpdated(gametick)
 		{}
 
 		LazyRigidBody(Vector3f pos, float yaw, Vector3f vel, float angVel, int64 gametick = 0)
@@ -70,6 +76,11 @@ namespace GameEngine
 	private:
 		void update(int64 gametick)
 		{
+			if (gametick == 0)
+			{
+				return;
+			}
+
 			if (_lastUpdated == 0)
 			{
 				_lastUpdated = gametick;
@@ -83,11 +94,17 @@ namespace GameEngine
 			if (diffms < 0)
 				throw std::exception("invalid time value!");
 
-			if (_positionUpdater) { _positionUpdater(_position, _velocity, diffms); }
-			else { _position = _position + _velocity * diffms; }
-			
-			if (_yawUpdater) { _yawUpdater(_yaw, _angVelocity, diffms); }
-			else { _yaw = _yaw + _angVelocity * diffms; }
+			_position = _position + _velocity * diffms;
+			_yaw = _yaw + _angVelocity * diffms;
+
+			if (_positionUpdater) 
+			{ 
+				_position = _positionUpdater(_position, _yaw, _velocity, _angVelocity, diffms, gametick);
+			}
+			if (_yawUpdater) 
+			{ 
+				_yaw = _yawUpdater(_position, _yaw, _velocity, _angVelocity, diffms, gametick);
+			}
 
 			_lastUpdated = gametick;
 		}

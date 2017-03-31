@@ -12,15 +12,39 @@ namespace GameEngine
 {
 	using namespace scl;
 
+	class IEventHandlerBinder
+	{
+	public:
+		virtual void Bind() = 0;
+	};
+
 	class GameObject;
 	
 	class GameComponent : public Component<GameObject>
 	{
 	public:
+		virtual ~GameComponent() {}
+
 		Sp<GameObject> GetGameObject()
 		{
 			return GetOwner();
 		}
+
+		void OnBound()
+		{
+			for (auto& binder : _binders)
+			{
+				binder->Bind();
+			}
+		}
+
+		void AddBinder(class IEventHandlerBinder* binder)
+		{
+			_binders.push_back(binder);
+		}
+
+	private:
+		std::list<IEventHandlerBinder*> _binders;
 	};
 
 	class GameObject : public ComponentOwner<GameObject, GameComponent>
@@ -28,6 +52,7 @@ namespace GameEngine
 	public:
 		GameObject()
 			: _id(scl::UniqueId <GameObject, scl::uint64>::Generate())
+			, _rigidBody()
 		{}
 
 		uint64 Id() const
@@ -56,6 +81,11 @@ namespace GameEngine
 		void SendMsg(const T& msg)
 		{
 			_eventDispatcher.InvokeEvent(Event<T>(msg));
+		}
+
+		LazyRigidBody& RigidBody()
+		{
+			return _rigidBody;
 		}
 
 	private:

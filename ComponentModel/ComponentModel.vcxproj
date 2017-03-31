@@ -134,18 +134,22 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameEngine\EventHandlerBinder.h" />
+    <ClInclude Include="GameEngine\GameComponents\Character\CharacterMoveController.h" />
     <ClInclude Include="GameEngine\GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="GameEngine\LazyMotionObject.h" />
     <ClInclude Include="GameEngine\Zone.h" />
     <ClInclude Include="Message\Shared.message.h" />
-    <ClInclude Include="UnitTest.h" />
+    <ClInclude Include="UnitTests\UnitTest.h" />
     <ClInclude Include="Message\csprotocol.include.h" />
     <ClInclude Include="Message\CSProtocol.message.h" />
     <ClInclude Include="Message\CSProtocol.stub.h" />
     <ClInclude Include="Message\SCProtocol.message.h" />
     <ClInclude Include="CSProtocolHandler.h" />
+    <ClInclude Include="UnitTests\UT_Character.h" />
+    <ClInclude Include="UnitTests\UT_Default.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SingleCoreLib\SingleCoreLib.vcxproj">

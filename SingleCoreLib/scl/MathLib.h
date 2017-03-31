@@ -5,11 +5,17 @@
 
 #include <type_traits>
 #include <cmath>
+#include <math.h>
+
+#pragma push_macro("PI")
+#undef PI
 
 namespace scl
 {
 	namespace Math
 	{
+		const float PI = (float)3.14159265358979323846;
+
 		template<class T>
 		typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type
 			almost_equal(T x, T y)
@@ -41,8 +47,22 @@ namespace scl
 				return degree - (n - 1) * 360;
 			}
 		}
+
+		float RadianToDegree(float radian)
+		{
+			return radian / PI * 180;
+		}
+
+		float DegreeToRadian(float degree)
+		{
+			return degree / 180 * PI;
+		}
+
+		float Pi()
+		{
+			return PI;
+		}
 	}
-	
 
 	template <class T>
 	class Vector3
@@ -106,10 +126,10 @@ namespace scl
 				X * v.Y - Y * v.X);
 		}
 		
-		// return: yaw radian
+		// return: yaw degree
 		T Yaw() const
 		{
-			return std::atan2(Y, X);
+			return Math::RadianToDegree(std::atan2(Y, X));
 		}
 		
 		Vector3 Invert() const
@@ -138,9 +158,20 @@ namespace scl
 
 			return (*this);
 		}
+
+		Vector3 Rotate2d(float degree)
+		{
+			float rad = Math::DegreeToRadian(degree);
+			return Vector3(X * std::cosf(rad) - Y * std::sinf(rad),
+				Y * std::cosf(rad) + X * std::sinf(rad),
+				Z);
+		}
 	};
 
 	typedef Vector3<float> Vector3f;
 }
 
 #pragma pop_macro("min")
+
+#undef PI
+#pragma pop_macro("PI")

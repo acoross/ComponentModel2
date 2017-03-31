@@ -2,12 +2,14 @@
 
 #include <iostream>
 #include <sstream>
+
+#include "scl/time.h"
 #include "scl/MathLib.h"
 #include "scl/EventDispatcher.h"
 #include "GameEngine/GameComponent.h"
 #include "GameEngine/GameObjectContainer.h"
 #include "GameEngine/LazyMotionObject.h"
-#include "scl/time.h"
+#include "GameEngine/EventHandlerBinder.h"
 
 #include "gtest/gtest.h"
 
@@ -30,7 +32,7 @@ TEST(Default, TestVectorDiv)
 	EXPECT_EQ(vec + vec2, Vector3f(8, 11, 14));
 	EXPECT_EQ(vec - vec2, Vector3f(-2, 1, 4));
 	EXPECT_EQ(vec * vec2, 15 + 30 + 45);
-	
+
 	// 외적... 맞겠지 뭐
 	//printVec(vec % vec2);
 
@@ -43,7 +45,7 @@ TEST(Default, TestVectorDiv)
 
 	//
 	EXPECT_FLOAT_EQ(vec.Normalize().Magnitude(), 1);
-	
+
 	//
 	EXPECT_FLOAT_EQ(vec.Yaw(), Vector3f(1, 2, 3).Yaw());
 }
@@ -55,21 +57,16 @@ public:
 	class TestComponent : public GameEngine::GameComponent
 	{
 	public:
-		void OnBound() override
+		GameEngine::EventHandlerBinder<int> intHandler = { *this, [&](const int& v)
 		{
-			if (auto o = _owner.lock())
-			{
-				o->RegisterMsgHandler<int>([&](const int& v)
-				{
-					value = 1;
-					std::cout << v << std::endl;
-				});
-				o->RegisterMsgHandler<std::string>([&](const std::string& str)
-				{
-					value = 2;
-				});
-			}
-		}
+			value = 1;
+			std::cout << v << std::endl;
+		} };
+
+		GameEngine::EventHandlerBinder<std::string> stringHandler = { *this, [&](const std::string& str)
+		{
+			value = 2;
+		} };
 
 		int value = 0;
 	};
@@ -96,7 +93,7 @@ TEST_F(SendMsgFixture, TestEventDispatcher)
 	invoked = false;
 	e1.InvokeEvent(Event<int>(2));
 	EXPECT_EQ(invoked, true);
-	
+
 	invoked = false;
 	e1.InvokeEvent(Event<float>(3.f));
 	EXPECT_EQ(invoked, false);
@@ -181,4 +178,12 @@ TEST(LazyRigidBody, TestLazyMotionObject)
 
 	current += 200;
 	EXPECT_EQ(body.Position(current), Vector3f(201, 402, 603));
+}
+
+TEST(Math, DegreeConvert)
+{
+	EXPECT_FLOAT_EQ(Math::RadianToDegree(Math::PI), 180);
+	EXPECT_FLOAT_EQ(Math::RadianToDegree(2 * Math::PI), 360);
+	EXPECT_FLOAT_EQ(Math::DegreeToRadian(180), Math::PI);
+	EXPECT_FLOAT_EQ(Math::DegreeToRadian(360), 2 * Math::PI);
 }

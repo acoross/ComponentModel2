@@ -7,7 +7,7 @@
 
 using namespace scl;
 
-#include "UnitTest.h"
+#include "UnitTests/UnitTest.h"
 
 int main(int argc, char **argv)
 {

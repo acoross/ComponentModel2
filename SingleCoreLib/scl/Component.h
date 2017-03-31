@@ -18,6 +18,8 @@ namespace scl
 		/*static_assert(std::is_base_of<ComponentOwnerBase, TOwner>::value,
 			"Component<TOwner> should have template arg TOwner based of ComponentOwnerBase");*/
 		
+		virtual ~Component(){}
+
 		virtual void OnBound() {};
 
 		void SetOwner(Sp<TOwner> owner)
@@ -85,15 +87,6 @@ namespace scl
 		template <class TCompU, class X = Require<TComp, TCompU>>
 		void SetComponent(Sp<TCompU> comp)
 		{
-			auto id = TMyComp::TypeId<TCompU>();
-			_components.emplace(id, comp);
-			comp->SetOwner(shared_from_this());
-		}
-
-		template <class TCompU, class... Args, class X = Require<TComp, TCompU>>
-		void MakeComponent(Args&&... args)
-		{
-			auto comp = New<TCompU>(std::forward<Args>(args)...);
 			auto id = TMyComp::TypeId<TCompU>();
 			_components.emplace(id, comp);
 			comp->SetOwner(shared_from_this());
