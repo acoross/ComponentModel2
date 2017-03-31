@@ -1,7 +1,10 @@
 #pragma once
 
+#include <iostream>
+#include <sstream>
 #include "scl/MathLib.h"
 #include "scl/EventDispatcher.h"
+#include "GameEngine/GameComponent.h"
 
 using namespace scl;
 
@@ -56,12 +59,12 @@ inline void TestVectorDiv()
 	printf("%f\n", vec.Yaw());
 }
 
-inline void StaticEventHandlerTest()
+inline void TestEventDispatcher()
 {
 	EventDispatcher e1;
-	e1.RegisterHandler<Event<int>>([](const Event<int>& e)
+	e1.RegisterHandler<int>([](const int& e)
 	{
-		std::cout << e.value << std::endl;
+		std::cout << e << std::endl;
 	});
 
 	Event<int> ee(1);
@@ -71,7 +74,37 @@ inline void StaticEventHandlerTest()
 	e1.InvokeEvent(Event<float>(3.f));
 }
 
+inline void TestGameObjectSendMsg()
+{
+	class TestComponent : public GameEngine::GameComponent
+	{
+	public:
+		void OnBound() override
+		{
+			if (auto o = _owner.lock())
+			{
+				o->RegisterMsgHandler<int>([](const int& v)
+				{
+					std::cout << v << std::endl;
+				});
+				o->RegisterMsgHandler<std::string>([](const std::string& str)
+				{
+					std::cout << str.c_str() << std::endl;
+				});
+			}
+		}
+	};
+
+	auto obj = New<GameEngine::GameObject>();
+	obj->SetComponent<TestComponent>();
+	obj->SendMsg(Event<int>(1));
+	obj->SendMsg(1);
+	obj->SendMsg<std::string>("fuck");
+}
+
 inline void Tests()
 {
 	TestVectorDiv();
+	TestEventDispatcher();
+	TestGameObjectSendMsg();
 }

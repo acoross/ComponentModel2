@@ -5,6 +5,7 @@
 #include "memory.h"
 #include <unordered_map>
 #include "./GameComponent.h"
+#include "scl/TypeTraits.h"
 
 namespace GameEngine
 {
@@ -33,7 +34,7 @@ namespace GameEngine
 		}
 
 		template <class TMessage, 
-			class = std::enable_if_t<IComponentMessage<TMessage>, TMessage>::value>
+			class = Require<IComponentMessage<TMessage>, TMessage>>
 		void BroadcastMessage(Sp<TMessage> message)
 		{
 			for (auto& pair : _gameObjectMap)

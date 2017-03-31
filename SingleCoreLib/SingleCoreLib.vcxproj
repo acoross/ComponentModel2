@@ -138,6 +138,7 @@
     <ClInclude Include="scl\TemplateHelper.h" />
     <ClInclude Include="scl\TemplateUtility.h" />
     <ClInclude Include="scl\Types.h" />
+    <ClInclude Include="scl\TypeTraits.h" />
     <ClInclude Include="scl\UniqueId.h" />
     <ClInclude Include="scl\SingleCoreLib.h" />
   </ItemGroup>

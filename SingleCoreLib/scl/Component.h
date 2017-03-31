@@ -4,6 +4,7 @@
 #include "scl/Types.h"
 #include "scl/UniqueId.h"
 #include "scl/memory.h"
+#include "scl/TypeTraits.h"
 
 namespace scl
 {
@@ -19,13 +20,13 @@ namespace scl
 			static int typeId;
 		};
 
-		template <class TMessage, class = std::enable_if_t<std::is_base_of<IComponentMessageBase, TMessage>::value>>
+		template <class TMessage, class = Require<IComponentMessageBase, TMessage>>
 		static int TypeId()
 		{
 			return MessageTypeIdHelper<std::remove_reference<TMessage>::type>::typeId;
 		}
 
-		template <class U, class = std::enable_if_t<std::is_base_of<IComponentMessageBase, U>::value>>
+		template <class U, class = Require<IComponentMessageBase, U>>
 		bool Is()
 		{
 			auto myId = GetTypeId();
@@ -34,7 +35,7 @@ namespace scl
 			return myId == uId;
 		}
 
-		template <class U, class = std::enable_if_t<std::is_base_of<IComponentMessageBase, U>::value>>
+		template <class U, class = Require<IComponentMessageBase, U>>
 		Sp<U> As()
 		{
 			if (Is<U>())
@@ -72,10 +73,13 @@ namespace scl
 
 		/*static_assert(std::is_base_of<ComponentOwnerBase, TOwner>::value,
 			"Component<TOwner> should have template arg TOwner based of ComponentOwnerBase");*/
-	
+		
+		virtual void OnBound() {};
+
 		void SetOwner(Sp<TOwner> owner)
 		{
 			_owner = owner;
+			OnBound();
 		}
 
 		Sp<TOwner> GetOwner() const
@@ -83,7 +87,7 @@ namespace scl
 			return _owner.lock();
 		}
 
-		template <class TComp, class = std::enable_if_t<std::is_base_of<TMy, TComp>::value>>
+		template <class TComp, class = Require<TMy, TComp>>
 		Sp<TComp> GetComponent()
 		{
 			if (auto owner = GetOwner())
@@ -92,15 +96,6 @@ namespace scl
 			}
 
 			return nullptr;
-		}
-
-		template <class TMessage, class = std::enable_if_t<std::is_base_of<IComponentMessage<TMessage>, TMessage>::value>>
-		void SendMessage_(Sp<TMessage> message)
-		{
-			if (auto owner = GetOwner())
-			{
-				owner->SendMessage_(message);
-			}
 		}
 
 		template <class TComp>
@@ -112,7 +107,7 @@ namespace scl
 			static int typeId;
 		};
 
-		template <class TComp, class = std::enable_if_t<std::is_base_of<TMy, TComp>::value>>
+		template <class TComp, class = Require<TMy, TComp>>
 		static int TypeId()
 		{
 			return ComponentTypeIdHelper<std::remove_reference<TComp>::type>::typeId;
@@ -134,7 +129,7 @@ namespace scl
 
 		typedef Component<TOwner> TMyComp;
 
-		template <class TCompU, class X = std::enable_if_t<std::is_base_of<TComp, TCompU>::value>>
+		template <class TCompU, class X = Require<TComp, TCompU>>
 		void SetComponent()
 		{
 			auto comp = New<TCompU>();
@@ -143,7 +138,7 @@ namespace scl
 			comp->SetOwner(shared_from_this());
 		}
 
-		template <class TCompU, class... Args, class X = std::enable_if_t<std::is_base_of<TComp, TCompU>::value>>
+		template <class TCompU, class... Args, class X = Require<TComp, TCompU>>
 		void SetComponent(Args&&... args)
 		{
 			auto comp = New<TCompU>(std::forward(args)...);
@@ -152,7 +147,7 @@ namespace scl
 			comp->SetOwner(shared_from_this());
 		}
 
-		template <class TCompU, class = std::enable_if_t<std::is_base_of<TComp, TCompU>::value>>
+		template <class TCompU, class = Require<TComp, TCompU>>
 		Sp<TCompU> GetComponent()
 		{
 			auto id = TMyComp::TypeId<TCompU>();
@@ -163,12 +158,6 @@ namespace scl
 			}
 
 			return nullptr;
-		}
-
-		// send message to components
-		template <class TMessage, class = std::enable_if_t<std::is_base_of<IComponentMessage<TMessage>, TMessage>::value>>
-		void SendMessage_(Sp<TMessage> message)
-		{
 		}
 
 	private:

@@ -5,6 +5,7 @@
 #include <vector>
 #include <functional>
 #include "scl/UniqueId.h"
+#include "scl/TypeTraits.h"
 
 namespace scl
 {
@@ -28,28 +29,33 @@ namespace scl
 	{
 	public:
 		template <class T>
+		using TEventHandler = std::function<void(const T&)>;
+
+		using EventHandlerFunc = TEventHandler<IEvent>;
+
+		template <class T>
 		class EventTypeIdGenerator
 		{
 		public:
 			static int typeId;
 		};
 
-		template <class T, class = std::enable_if_t<std::is_base_of<IEvent, T>::value>>
+		template <class T, class = Require<IEvent, T>>
 		static int GetEventType()
 		{
 			return EventTypeIdGenerator<T>::typeId;
 		}
 
-		template <class T, class = std::enable_if_t<std::is_base_of<IEvent, T>::value>>
-		void RegisterHandler(std::function<void(const T&)> func)
+		template <class T>
+		void RegisterHandler(TEventHandler<T> func)
 		{
 			auto handler = [func](const IEvent& e)
 			{
-				auto& evt = dynamic_cast<const T&>(e);
-				func(evt);
+				auto& evt = dynamic_cast<const Event<T>&>(e);
+				func(evt.value);
 			};
 
-			auto typeId = GetEventType<T>();
+			auto typeId = GetEventType<Event<T>>();
 			auto it = _handlerListMap.find(typeId);
 			if (it != _handlerListMap.end())
 			{
@@ -57,16 +63,16 @@ namespace scl
 			}
 			else
 			{
-				std::vector<TEventHandler> list;
+				std::vector<EventHandlerFunc> list;
 				list.emplace_back(std::move(handler));
 				_handlerListMap.emplace(typeId, std::move(list));
 			}
 		}
 
-		template <class T, class = std::enable_if_t<std::is_base_of<IEvent, T>::value>>
-		void InvokeEvent(const T& evt)
+		template <class T>
+		void InvokeEvent(const Event<T>& evt)
 		{
-			auto typeId = GetEventType<T>();
+			auto typeId = GetEventType<Event<T>>();
 			auto it = _handlerListMap.find(typeId);
 			if (it != _handlerListMap.end())
 			{
@@ -83,8 +89,7 @@ namespace scl
 			InvokeEvent(evt);
 		}
 
-		using TEventHandler = std::function<void(const IEvent&)>;
-		std::unordered_map<int, std::vector<TEventHandler>> _handlerListMap;
+		std::unordered_map<int, std::vector<EventHandlerFunc>> _handlerListMap;
 	};
 
 	template <class T>
