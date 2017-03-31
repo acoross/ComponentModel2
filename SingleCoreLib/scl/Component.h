@@ -138,10 +138,18 @@ namespace scl
 			comp->SetOwner(shared_from_this());
 		}
 
-		template <class TCompU, class... Args, class X = Require<TComp, TCompU>>
-		void SetComponent(Args&&... args)
+		template <class TCompU, class X = Require<TComp, TCompU>>
+		void SetComponent(Sp<TCompU> comp)
 		{
-			auto comp = New<TCompU>(std::forward(args)...);
+			auto id = TMyComp::TypeId<TCompU>();
+			_components.emplace(id, comp);
+			comp->SetOwner(shared_from_this());
+		}
+
+		template <class TCompU, class... Args, class X = Require<TComp, TCompU>>
+		void MakeComponent(Args&&... args)
+		{
+			auto comp = New<TCompU>(std::forward<Args>(args)...);
 			auto id = TMyComp::TypeId<TCompU>();
 			_components.emplace(id, comp);
 			comp->SetOwner(shared_from_this());

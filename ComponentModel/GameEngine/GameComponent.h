@@ -46,9 +46,9 @@ namespace GameEngine
 		}
 
 		template <class T>
-		void SendMsg(Event<T>& message)
+		void SendMsg(Event<T>&& message)
 		{
-			_eventDispatcher.InvokeEvent(message);
+			_eventDispatcher.InvokeEvent(std::forward<Event<T>>(message));
 		}
 
 		template <class T>

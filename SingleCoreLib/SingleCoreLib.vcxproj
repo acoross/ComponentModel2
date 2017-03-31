@@ -135,6 +135,7 @@
     <ClInclude Include="scl\Network\SessionBuffer.h" />
     <ClInclude Include="scl\PhysicsLib.h" />
     <ClInclude Include="scl\Pipeline.h" />
+    <ClInclude Include="scl\Strigify.h" />
     <ClInclude Include="scl\TemplateHelper.h" />
     <ClInclude Include="scl\TemplateUtility.h" />
     <ClInclude Include="scl\Types.h" />

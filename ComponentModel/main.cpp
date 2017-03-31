@@ -9,9 +9,16 @@ using namespace scl;
 
 #include "UnitTest.h"
 
-int main()
+int main(int argc, char **argv)
 {
-	::Tests();
+#ifdef _DEBUG
+	::testing::InitGoogleTest(&argc, argv);
+	int result = RUN_ALL_TESTS();
+	if (result > 0)
+	{
+		throw std::exception();
+	}
+#endif
 
 	auto networkWorker = New<NetworkWorker>();
 	auto listener = New<Listener>(networkWorker);

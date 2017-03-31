@@ -1,16 +1,36 @@
 #pragma once
 
+#pragma push_macro("min")
+#undef min
+
 #include <type_traits>
 #include <cmath>
 
 namespace scl
 {
+	template<class T>
+	typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type
+		almost_equal(T x, T y)
+	{
+		// the machine epsilon has to be scaled to the magnitude of the values used
+		// and multiplied by the desired precision in ULPs (units in the last place)
+		return std::abs(x - y) < std::numeric_limits<T>::epsilon() * std::abs(x + y) * 1
+			// unless the result is subnormal
+			|| std::abs(x - y) < std::numeric_limits<T>::min();
+	}
+
+	template<class T>
+	typename std::enable_if<std::numeric_limits<T>::is_integer, bool>::type
+		almost_equal(T x, T y)
+	{
+		return x == y;
+	}
+
 	template <class T>
 	class Vector3
 	{
 	public:
 		static_assert(std::is_arithmetic<T>::value, "Vector3<T> should have arithmetic template Arg T");
-		typedef Vector3<T> MyT;
 
 		T X{ 0 };
 		T Y{ 0 };
@@ -20,46 +40,51 @@ namespace scl
 		Vector3() : X(0), Y(0), Z(0) {}
 		Vector3(T x, T y, T z, T w = 0) : X(x), Y(y), Z(z), W(w) {}
 
-		MyT operator * (T v) const
+		Vector3 operator * (T v) const
 		{
-			return MyT(X * v, Y * v, Z * v);
+			return Vector3(X * v, Y * v, Z * v);
 		}
 
-		MyT operator / (T v) const
+		Vector3 operator / (T v) const
 		{
 			if (v == 0)
 			{
 				throw std::invalid_argument("Vector3 divided by zero");
 			}
 
-			return MyT(X / v, Y / v, Z / v);
+			return Vector3(X / v, Y / v, Z / v);
 		}
 
-		MyT operator + (const MyT& v) const
+		Vector3 operator + (const Vector3& v) const
 		{
-			return MyT(X + v.X, Y + v.Y, Z + v.Z);
+			return Vector3(X + v.X, Y + v.Y, Z + v.Z);
 		}
 		
-		MyT operator - (const MyT& v) const
+		Vector3 operator - (const Vector3& v) const
 		{
-			return MyT(X - v.X, Y - v.Y, Z - v.Z);
+			return Vector3(X - v.X, Y - v.Y, Z - v.Z);
 		}
 
-		MyT ComponentProduct(const MyT& v) const
+		friend bool operator == (const Vector3& v1, const Vector3& v)
 		{
-			return MyT(X * v.X, Y * v.Y, Z * v.Z);
+			return almost_equal<T>(v1.X, v.X) && almost_equal<T>(v1.Y, v.Y) && almost_equal<T>(v1.Z, v.Z);
+		}
+
+		Vector3 ComponentProduct(const Vector3& v) const
+		{
+			return Vector3(X * v.X, Y * v.Y, Z * v.Z);
 		}
 
 		// scalar product
-		T operator * (const MyT& v) const
+		T operator * (const Vector3& v) const
 		{
 			return (X * v.X + Y * v.Y + Z * v.Z);
 		}
 
 		// cross product
-		MyT operator % (const MyT& v) const
+		Vector3 operator % (const Vector3& v) const
 		{
-			return MyT(Y * v.Z - Z * v.Y,
+			return Vector3(Y * v.Z - Z * v.Y,
 				Z * v.X - X * v.Z,
 				X * v.Y - Y * v.X);
 		}
@@ -70,9 +95,9 @@ namespace scl
 			return std::atan2(Y, X);
 		}
 		
-		MyT Invert() const
+		Vector3 Invert() const
 		{
-			return MyT(-X, -Y, -Z);
+			return Vector3(-X, -Y, -Z);
 		}
 
 		float SqrMagnitude() const
@@ -86,7 +111,7 @@ namespace scl
 			return std::sqrt(sqMag);
 		}
 
-		MyT Normalize() const
+		Vector3 Normalize() const
 		{
 			auto mag = Magnitude();
 			if (mag > 0)
@@ -100,3 +125,5 @@ namespace scl
 
 	typedef Vector3<float> Vector3f;
 }
+
+#pragma pop_macro("min")
