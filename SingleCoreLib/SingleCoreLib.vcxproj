@@ -119,6 +119,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="scl\Alloc.h" />
     <ClInclude Include="scl\Component.h" />
     <ClInclude Include="scl\EventDispatcher.h" />
     <ClInclude Include="scl\MathLib.h" />
