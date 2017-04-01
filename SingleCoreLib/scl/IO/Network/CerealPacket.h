@@ -5,6 +5,7 @@
 #include <cereal/types/string.hpp>
 #include <strstream>
 #include "scl/Types.h"
+#include "scl/memory.h"
 
 namespace scl
 {
@@ -29,17 +30,15 @@ namespace scl
 		psizT filled;
 	};
 
-	typedef std::shared_ptr<_PacketBuffer> PacketBuffer;
-
 	class PacketWriter
 	{
 	public:
 		PacketWriter()
-			: _buf(std::make_shared<_PacketBuffer>(1024 * 4)), _stream(_buf->buf, _buf->size), _ar(_stream)
+			: _buf(New<_PacketBuffer>(1024 * 4)), _stream(_buf->buf, _buf->size), _ar(_stream)
 		{}
 
 		template <class T>
-		PacketBuffer Write(const T& val)
+		Sp<_PacketBuffer> Write(const T& val)
 		{
 			_ar((psizT)0);	//frame
 			_ar(val.PacketId);	//type
@@ -50,7 +49,7 @@ namespace scl
 			return _buf;
 		}
 		
-		PacketBuffer _buf;
+		Sp<_PacketBuffer> _buf;
 		std::ostrstream _stream;
 		cereal::BinaryOutputArchive _ar;
 	};

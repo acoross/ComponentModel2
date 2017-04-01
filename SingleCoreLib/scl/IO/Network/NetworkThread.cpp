@@ -24,6 +24,7 @@ namespace scl
 	{
 		HANDLE h = ::CreateIoCompletionPort((HANDLE)session->GetRawSocket(), _iocp, 0, 0);
 		_connectedSessions.insert(std::make_pair(session->GetSessionId(), session));
+		session->SetIOCP(_iocp);
 	}
 
 	void NetworkThread::Unregister(Sp<class Session> session)
@@ -37,7 +38,6 @@ namespace scl
 		while (_tasks.try_pop(task))
 		{
 			task->Process((DWORD)task->InternalHigh);
-			delete task;
 		}
 	}
 
@@ -52,8 +52,8 @@ namespace scl
 		{
 			DWORD bytesTransferred = 0;
 			ULONG_PTR completionKey = 0;
-			OVERLAPPED* overlapped;
-			BOOL ok = ::GetQueuedCompletionStatus(_iocp, &bytesTransferred, &completionKey, &overlapped, 0);
+			IocpTask* iocpTask = nullptr;
+			BOOL ok = ::GetQueuedCompletionStatus(_iocp, &bytesTransferred, &completionKey, (OVERLAPPED**)&iocpTask, 0);
 			if (!ok)
 			{
 				DWORD error = ::GetLastError();
@@ -61,13 +61,29 @@ namespace scl
 				{
 					continue;
 				}
+				else if (error == ERROR_NETNAME_DELETED)
+				{
+					iocpTask->Type = IocpType::Close;
+				}
 				else
 				{
 					Exception::RaiseException();
 				}
 			}
 
-			_tasks.push((IocpTask*)overlapped);
+			if (iocpTask->Type == IocpType::Send)
+			{
+				iocpTask->Process((DWORD)iocpTask->InternalHigh);
+			}
+			else if (iocpTask->Type == IocpType::Close)
+			{
+				Unregister(iocpTask->session);
+				iocpTask->Process(0);
+			}
+			else
+			{
+				_tasks.push(iocpTask);
+			}
 		}
 	}
 }

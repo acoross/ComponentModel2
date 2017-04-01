@@ -25,15 +25,11 @@
     <ClInclude Include="scl\EventDispatcher.h" />
     <ClInclude Include="scl\TypeTraits.h" />
     <ClInclude Include="scl\Strigify.h" />
-    <ClInclude Include="scl\scl.h" />
     <ClInclude Include="scl\time.h" />
     <ClInclude Include="scl\IO\Network\CerealPacket.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="scl\IO\Network\CerealPacketHandlerTable.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="scl\IO\Network\IocpTask.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="scl\IO\Network\Listener.h">
@@ -57,6 +53,7 @@
     <ClInclude Include="scl\IO\Network.h" />
     <ClInclude Include="scl\IO\Pipeline.h" />
     <ClInclude Include="scl\Alloc.h" />
+    <ClInclude Include="scl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scl\IO\Network\Listener.cpp">
