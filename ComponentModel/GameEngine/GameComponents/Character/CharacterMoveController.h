@@ -21,7 +21,7 @@ namespace GameEngine
 				// 또한 owner 가 존재하므로 Component 인 이 객체 (MoveController) 도 유효하다.
 				rbody.SetYawUpdater(
 					[&rbody, this](
-						const Vector3f& position, const float& yaw, const Vector3f& vel, float angVel, int64 diffTick, int64 currentTick)
+						const Vector3f& position, const float& yaw, const Vector3f& vel, float angVel, int64 lastTick, int64 currentTick)
 					->float
 				{
 					if (auto target = _target.lock())

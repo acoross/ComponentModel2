@@ -14,10 +14,10 @@ namespace GameEngine
 	public:
 		using PositionUpdaterFunc = 
 			std::function<Vector3f(
-				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, int64 /*diff*/, int64 /*currentTick*/)>;
+				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, int64 /*last updated*/, int64 /*currentTick*/)>;
 		using YawUpdaterFunc =
 			std::function<float(
-				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, int64 /*diff*/, int64 /*currentTick*/)>;
+				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, int64 /*last updated*/, int64 /*currentTick*/)>;
 		
 		LazyRigidBody(int64 gametick = 0)
 			: _lastUpdated(gametick)
@@ -99,11 +99,11 @@ namespace GameEngine
 
 			if (_positionUpdater) 
 			{ 
-				_position = _positionUpdater(_position, _yaw, _velocity, _angVelocity, diffms, gametick);
+				_position = _positionUpdater(_position, _yaw, _velocity, _angVelocity, _lastUpdated, gametick);
 			}
 			if (_yawUpdater) 
 			{ 
-				_yaw = _yawUpdater(_position, _yaw, _velocity, _angVelocity, diffms, gametick);
+				_yaw = _yawUpdater(_position, _yaw, _velocity, _angVelocity, _lastUpdated, gametick);
 			}
 
 			_lastUpdated = gametick;
