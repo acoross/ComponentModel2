@@ -76,6 +76,8 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <PreBuildEvent>
       <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
@@ -88,6 +90,8 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <PreBuildEvent>
       <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
