@@ -35,6 +35,7 @@
     <ClInclude Include="UnitTests\UnitTest.h" />
     <ClInclude Include="UnitTests\UT_Character.h" />
     <ClInclude Include="UnitTests\UT_Default.h" />
+    <ClInclude Include="GameEngine\GameComponents\Character\SkillActor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

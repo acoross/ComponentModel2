@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 	{
 		throw std::exception();
 	}
+	printf("\n\n\n");
 #endif
 
 	auto networkWorker = New<NetworkWorker>();
@@ -27,12 +28,14 @@ int main(int argc, char **argv)
 	
 	listener->Listen("0.0.0.0", 17777, [](Sp<Session> session)
 	{
-		Sp<CSProtocolHandler> handler;
+		Sp<CSProtocolHandler> handler = New<CSProtocolHandler>();
 		session->StartRecv([handler](char* buf, ulong size, ulong& processed)
 		{
 			handler->Handle(buf, size, processed);
 		});
 	});
+
+	printf("Listen start... 17777\n");
 
 	Pipeline pipeline;
 	pipeline.Push(networkWorker);

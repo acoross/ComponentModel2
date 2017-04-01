@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="GameEngine\EventHandlerBinder.h" />
     <ClInclude Include="GameEngine\GameComponents\Character\CharacterMoveController.h" />
+    <ClInclude Include="GameEngine\GameComponents\Character\SkillActor.h" />
     <ClInclude Include="GameEngine\GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />

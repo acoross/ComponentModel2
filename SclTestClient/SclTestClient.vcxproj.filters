@@ -26,5 +26,16 @@
     <ClInclude Include="message\shared.shared.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="message\Shared.message.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="message\SCProtocol.message.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="message\message.include.txt">
+      <Filter>헤더 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>

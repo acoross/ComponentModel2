@@ -14,6 +14,11 @@ namespace scl
 		Recv();
 	}
 
+	inline void Session::Close()
+	{
+		::closesocket(_socket);
+	}
+
 	void Session::Recv()
 	{
 		auto iocpTask = new class RecvTask();
@@ -34,12 +39,18 @@ namespace scl
 
 	void Session::ProcessRecv(DWORD transferred)
 	{
+		if (transferred == 0)
+		{
+			Close();
+			return;
+		}
+
 		_recvBuf.offset += transferred;
 
 		DWORD processed = 0;
 		do
 		{
-			_recvHandler(_recvBuf.buffer + _recvBuf.start, _recvBuf.offset, processed);
+			_recvHandler(_recvBuf.buffer + _recvBuf.start, _recvBuf.offset - _recvBuf.start, processed);
 			_recvBuf.start += processed;
 		} while (_recvBuf.UnhandledSize() > 0);
 

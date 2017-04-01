@@ -74,10 +74,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
     </ClCompile>
     <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message"</Command>
+      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/message.include.txt"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -85,10 +85,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
     </ClCompile>
     <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message"</Command>
+      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/message.include.txt"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,7 +130,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="message\CSProtocol.message.h" />
+    <ClInclude Include="message\SCProtocol.message.h" />
+    <ClInclude Include="message\Shared.message.h" />
     <ClInclude Include="message\shared.shared.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SingleCoreLib\SingleCoreLib.vcxproj">
+      <Project>{db617796-520b-4a60-a0c5-e83d93103426}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="message\message.include.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

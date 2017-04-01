@@ -1,173 +1,75 @@
 #pragma once
 
-#include "shared.shared.h"
+#pragma once
+
+#include "scl/Types.h"
+using namespace scl;
+
+#include "Shared.message.h"
+#include "SCProtocol.message.h"
 
 namespace CSProtocol
 {
-	namespace Command
+	enum class PacketType : uint32
 	{
-		enum class PacketType : uint32
-		{
-			RequestLogin, 
-			Move, 
-			MAX
-		};
-		
-		struct RequestLogin
-		{
-			const static uint32 PacketId = (uint32)PacketType::RequestLogin;
-			
-			RequestLogin()
-			{
-			}
-			
-			RequestLogin(String id, String password)
-				: id(id)
-				, password(password)
-			{
-			}
-			
-			String id;
-			String password;
-			
-			template <class Ar>
-			void serialize(Ar& ar)
-			{
-				ar(id, password);
-			}
-		};
-		
-		struct Move
-		{
-			const static uint32 PacketId = (uint32)PacketType::Move;
-			
-			Move()
-			{
-			}
-			
-			Move(shared::FVector position, shared::FVector velocity)
-				: position(position)
-				, velocity(velocity)
-			{
-			}
-			
-			shared::FVector position;
-			shared::FVector velocity;
-			
-			template <class Ar>
-			void serialize(Ar& ar)
-			{
-				ar(position, velocity);
-			}
-		};
-		
-	}
-	namespace Noti
+		RequestLogin, 
+		Move, 
+		MAX
+	};
+	
+	enum class TestEnum : int32
 	{
-		enum class PacketType : uint32
-		{
-			ResponseLogin, 
-			NotiMove, 
-			NotiEnterZone, 
-			NotiLeaveZone, 
-			MAX
-		};
+		Foo, 
+		Bar, 
+		Max, 
+	};
+	
+	struct RequestLogin
+	{
+		const static uint32 PacketId = (uint32)PacketType::RequestLogin;
 		
-		struct ResponseLogin
+		RequestLogin()
 		{
-			const static uint32 PacketId = (uint32)PacketType::ResponseLogin;
-			
-			ResponseLogin()
-			{
-			}
-			
-			ResponseLogin(bool ok, uint64 gameObjectId)
-				: ok(ok)
-				, gameObjectId(gameObjectId)
-			{
-			}
-			
-			bool ok;
-			uint64 gameObjectId;
-			
-			template <class Ar>
-			void serialize(Ar& ar)
-			{
-				ar(ok, gameObjectId);
-			}
-		};
+		}
 		
-		struct NotiMove
+		RequestLogin(String inid, String inpassword)
+			: id(inid)
+			, password(inpassword)
 		{
-			const static uint32 PacketId = (uint32)PacketType::NotiMove;
-			
-			NotiMove()
-			{
-			}
-			
-			NotiMove(uint64 gameObjectId, shared::FVector position)
-				: gameObjectId(gameObjectId)
-				, position(position)
-			{
-			}
-			
-			uint64 gameObjectId;
-			shared::FVector position;
-			
-			template <class Ar>
-			void serialize(Ar& ar)
-			{
-				ar(gameObjectId, position);
-			}
-		};
+		}
 		
-		struct NotiEnterZone
+		String id;
+		String password;
+		
+		template <class Ar>
+		void serialize(Ar& ar)
 		{
-			const static uint32 PacketId = (uint32)PacketType::NotiEnterZone;
-			
-			NotiEnterZone()
-			{
-			}
-			
-			NotiEnterZone(uint64 gameObjectId, shared::FVector position, shared::FVector velocity)
-				: gameObjectId(gameObjectId)
-				, position(position)
-				, velocity(velocity)
-			{
-			}
-			
-			uint64 gameObjectId;
-			shared::FVector position;
-			shared::FVector velocity;
-			
-			template <class Ar>
-			void serialize(Ar& ar)
-			{
-				ar(gameObjectId, position, velocity);
-			}
-		};
+			ar(id, password);
+		}
+	};
+	
+	struct Move
+	{
+		const static uint32 PacketId = (uint32)PacketType::Move;
 		
-		struct NotiLeaveZone
+		Move()
 		{
-			const static uint32 PacketId = (uint32)PacketType::NotiLeaveZone;
-			
-			NotiLeaveZone()
-			{
-			}
-			
-			NotiLeaveZone(uint64 gameObjectId)
-				: gameObjectId(gameObjectId)
-			{
-			}
-			
-			uint64 gameObjectId;
-			
-			template <class Ar>
-			void serialize(Ar& ar)
-			{
-				ar(gameObjectId);
-			}
-		};
+		}
 		
-	}
+		Move(Shared::NetVector inposition, Shared::NetVector invelocity)
+			: position(inposition)
+			, velocity(invelocity)
+		{
+		}
+		
+		Shared::NetVector position;
+		Shared::NetVector velocity;
+		
+		template <class Ar>
+		void serialize(Ar& ar)
+		{
+			ar(position, velocity);
+		}
+	};
+	
 }

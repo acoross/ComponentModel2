@@ -8,10 +8,12 @@
 
 namespace scl
 {
+	typedef int32 psizT;
+
 	class _PacketBuffer
 	{
 	public:
-		_PacketBuffer(ulong size)
+		_PacketBuffer(psizT size)
 			: buf(new char[size]), size(size), filled(0)
 		{
 			
@@ -23,8 +25,8 @@ namespace scl
 		}
 
 		char* buf;
-		ulong size;
-		ulong filled;
+		psizT size;
+		psizT filled;
 	};
 
 	typedef std::shared_ptr<_PacketBuffer> PacketBuffer;
@@ -39,12 +41,12 @@ namespace scl
 		template <class T>
 		PacketBuffer Write(const T& val)
 		{
-			_ar((uint32)0);	//frame
+			_ar((psizT)0);	//frame
 			_ar(val.PacketId);	//type
 			_ar(val);		//msg
 			_buf->filled += _stream.tellp();
 
-			*(uint32*)_buf->buf = (uint32)_buf->filled;
+			*(psizT*)_buf->buf = (psizT)_buf->filled;
 			return _buf;
 		}
 		
@@ -56,13 +58,13 @@ namespace scl
 	class PacketReader
 	{
 	public:
-		PacketReader(char* buf, ulong siz)
+		PacketReader(char* buf, psizT siz)
 			: _siz(siz), _stream(buf, siz), _ar(_stream)
 		{}
 
-		bool ReadHeader(uint32& packetLen, uint32& type)
+		bool ReadHeader(psizT& packetLen, psizT& type)
 		{
-			if (_siz < sizeof(uint32))
+			if (_siz < sizeof(psizT))
 				return false;
 			
 			_ar(packetLen);
@@ -79,7 +81,7 @@ namespace scl
 			_ar(val);
 		}
 
-		const ulong _siz;
+		const psizT _siz;
 		std::istrstream _stream;
 		cereal::BinaryInputArchive _ar;
 	};

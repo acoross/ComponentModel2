@@ -25,19 +25,19 @@ namespace scl
 		{
 			PacketReader reader(buf, size);
 
-			uint32 packetLen, msgType;
+			int32 packetLen, msgType;
 			if (!reader.ReadHeader(packetLen, msgType))
 			{
 				return;
 			}
 
-			auto msgLen = packetLen - (ulong)sizeof(uint32) * 2;
+			auto msgLen = packetLen - (int32)sizeof(int32) * 2;
 			_table[msgType](handler, reader);
 
 			processed += packetLen;
 		}
 
 	private:
-		std::map<uint32, std::function<void(HandlerT&, PacketReader&)>> _table;
+		std::map<int32, std::function<void(HandlerT&, PacketReader&)>> _table;
 	};
 }
