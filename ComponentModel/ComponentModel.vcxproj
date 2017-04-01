@@ -78,7 +78,7 @@
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
+      <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -90,7 +90,7 @@
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
+      <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

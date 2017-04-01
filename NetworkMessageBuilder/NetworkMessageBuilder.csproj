@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D073F41F-F97F-418B-AA9B-AF6653DF101C}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{EE2C4FEA-E1E9-4594-9881-A9E918FD3FC2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetworkMessage</RootNamespace>
-    <AssemblyName>NetworkMessage</AssemblyName>
+    <RootNamespace>NetworkMessageBuilder</RootNamespace>
+    <AssemblyName>NetworkMessageBuilder</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,16 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messages.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MessageBuilder\CerealCodeGenerator\CerealCodeGenerator.csproj">
+      <Project>{dec41c65-7ce4-4be2-9464-afc8254ca882}</Project>
+      <Name>CerealCodeGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MessageBuilder\MessageBuilderCore\MessageBuilderCore.csproj">
       <Project>{0d0a2af7-ac7a-4b9d-93ed-ae7e643c3a92}</Project>
       <Name>MessageBuilderCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkMessage\NetworkMessage.csproj">
+      <Project>{d073f41f-f97f-418b-aa9b-af6653df101c}</Project>
+      <Name>NetworkMessage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

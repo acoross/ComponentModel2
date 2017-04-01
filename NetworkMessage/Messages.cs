@@ -12,7 +12,7 @@ namespace NetworkMessage
     using static Shared;
 
     [Message]
-    class Shared
+    public class Shared
     {
         public struct NetVector
         {
@@ -30,7 +30,7 @@ namespace NetworkMessage
     }
 
     [Message(typeof(Shared), typeof(SCProtocol))]
-    struct CSProtocol
+    public struct CSProtocol
     {
         public enum TestEnum : Int32
         {
@@ -53,7 +53,7 @@ namespace NetworkMessage
     }
 
     [Message(typeof(Shared))]
-    struct SCProtocol
+    public struct SCProtocol
     {
         public struct ResponseLogin
         {
@@ -82,7 +82,7 @@ namespace NetworkMessage
     }
 
     [Rpc("CSService", typeof(CSProtocol), typeof(SCProtocol))]
-    interface CSServiceRpc
+    public interface CSServiceRpc
     {
         // client to server (and server to client response)
         SCProtocol.ResponseLogin Process(CSProtocol.RequestLogin msg);

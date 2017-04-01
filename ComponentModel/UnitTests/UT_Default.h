@@ -2,6 +2,10 @@
 
 #include <iostream>
 #include <sstream>
+#include <strstream>
+
+#include "cereal/cereal.hpp"
+#include "cereal/archives/binary.hpp"
 
 #include "scl/time.h"
 #include "scl/MathLib.h"
@@ -10,6 +14,8 @@
 #include "GameEngine/GameObjectContainer.h"
 #include "GameEngine/LazyMotionObject.h"
 #include "GameEngine/EventHandlerBinder.h"
+
+#include "Message/SCProtocol.message.h"
 
 #include "gtest/gtest.h"
 
@@ -20,6 +26,40 @@ inline std::string ToString(const Vector3f& vec)
 	std::stringstream ss;
 	ss << "(" << vec.X << ", " << vec.Y << ", " << vec.Z << ")";
 	return ss.str();
+}
+
+inline void printBytes(scl::byte* bytes, int len)
+{
+	for (int i = 0; i < len; ++i)
+	{
+		printf("%4d ", bytes[i]);
+		if (i % 10 == 9)
+		{
+			printf("\n");
+		}
+	}
+	printf("\n");
+}
+
+TEST(Default, cereal)
+{
+	scl::byte buf[1024]{ 0, };
+	std::ostrstream ss((char*)buf, 1024);
+
+	cereal::BinaryOutputArchive ar(ss);
+	ar('c');
+	ar((short)50);
+	ar((int64)100);
+	ar(String(L"shin ÀÏÈ¯"));
+	ar((char)1);
+
+	ar(std::vector<int>{1, 2, 3, 4, 5});
+	ar(SCProtocol::NotiEnterZone(1, { 3,4,5 }, { -1, 0, 1 }));
+	ar(123);
+
+	auto writed = ss.tellp();
+	printBytes(buf, writed);
+
 }
 
 TEST(Default, TestVectorDiv)

@@ -34,6 +34,7 @@ namespace scl
 
 		void StartRecv(PacketHandler recvHandler);
 
+
 		void Close();
 
 	private:

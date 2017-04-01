@@ -20,6 +20,6 @@ int main()
 	auto buf = writer.Write(loginMsg);
 
 	socket.send(asio::buffer(buf->buf, buf->filled));
-
+	
 	ios.run();
 }

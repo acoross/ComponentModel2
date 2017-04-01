@@ -77,7 +77,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
     </ClCompile>
     <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/message.include.txt"</Command>
+      <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/message.include.txt"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -88,7 +88,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)/External/;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
     </ClCompile>
     <PreBuildEvent>
-      <Command>$(SolutionDir)/NetworkMessage\bin\$(Configuration)\NetworkMessage.exe "$(ProjectDir)/message" "$(ProjectDir)/message/message.include.txt"</Command>
+      <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/message.include.txt"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
