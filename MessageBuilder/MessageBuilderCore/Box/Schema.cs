@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MessageBuilderLib
 {
@@ -62,11 +61,20 @@ namespace MessageBuilderLib
                 throw new Exception("e is not enum type");
 
             Name = e.Name;
-            underlying = e.GetEnumUnderlyingType();
+            
+            //underlying = e.GetEnumUnderlyingType();
+            underlying = typeof(Int32);
 
-            foreach (var eName in e.GetEnumNames())
+            //foreach (var eName in e.GetEnumNames())
+            //{
+            //    EnumNames.Add(eName);
+            //}
+            foreach (var ef in e.GetFields())
             {
-                EnumNames.Add(eName);
+                if (ef.FieldType == e)
+                {
+                    EnumNames.Add(ef.Name);
+                }
             }
         }
     }

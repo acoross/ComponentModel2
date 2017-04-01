@@ -92,8 +92,26 @@ namespace CerealMini
         
         public void WriteVal(object v)
         {
-            dynamic vv = v;
-            Write(vv);
+            //dynamic vv = v;
+            //Write(vv);
+
+            foreach (var method in this.GetType().GetMethods())
+            {
+                if (method.Name == "Write" )
+                {
+                    var ps = method.GetParameters();
+                    if (ps.Length == 1)
+                    {
+                        if (ps[0].ParameterType == v.GetType())
+                        {
+                            method.Invoke(this, new object[] { v });
+                            return;
+                        }
+                    }
+                }
+            }
+
+            throw new Exception();
         }
 
         public void Write<T>(T v)
@@ -112,8 +130,23 @@ namespace CerealMini
                 }
                 else
                 {
-                    dynamic fv = f.GetValue(v);
-                    Write(fv);
+                    //dynamic fv = f.GetValue(v);
+                    //Write(fv);
+
+                    bool invoked = false;
+                    object fv = f.GetValue(v);
+                    foreach (var method in this.GetType().GetMethods())
+                    {
+                        if (method.Name == "Write" && method.IsGenericMethod)
+                        {
+                            var generic = method.MakeGenericMethod(fv.GetType());
+                            generic.Invoke(this, new object[] { fv });
+                            invoked = true;
+                            break;
+                        }
+                    }
+
+                    if (!invoked) throw new Exception();
                 }
             }
         }

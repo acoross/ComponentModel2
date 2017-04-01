@@ -135,6 +135,9 @@
     <ClInclude Include="message\shared.shared.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NetworkMessageBuilder\NetworkMessageBuilder.csproj">
+      <Project>{ee2c4fea-e1e9-4594-9881-a9e918fd3fc2}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\SingleCoreLib\SingleCoreLib.vcxproj">
       <Project>{db617796-520b-4a60-a0c5-e83d93103426}</Project>
     </ProjectReference>

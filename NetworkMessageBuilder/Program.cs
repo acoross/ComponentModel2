@@ -12,13 +12,13 @@ namespace NetworkMessage
     {
         static void Main(string[] args)
         {
-            if (args.Length < 1)
-            {
-                Console.WriteLine("need input args: [dirpath] (optional)[includefile]");
-                return;
-            }
+            Console.WriteLine("NetworkMessageBuilder run");
 
-            string outputDir = args[0];
+            string outputDir = "./";
+            if (args.Length > 0)
+            {
+                outputDir = args[0];
+            }
 
             string includeFile = null;
             if (args.Length > 1)
@@ -26,6 +26,10 @@ namespace NetworkMessage
                 includeFile = args[1];
             }
 
+            Console.WriteLine(outputDir);
+            Console.WriteLine(includeFile);
+
+            AppDomain.CurrentDomain.Load("NetworkMessage");
             SchemaBox.Parse();
 
             GroupWriter groupWriter = new GroupWriter();

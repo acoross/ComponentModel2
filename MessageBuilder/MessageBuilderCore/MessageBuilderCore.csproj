@@ -7,10 +7,11 @@
     <ProjectGuid>{0D0A2AF7-AC7A-4B9D-93ED-AE7E643C3A92}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MessageBuilder</RootNamespace>
-    <AssemblyName>MessageBuilder</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>MessageBuilderLib</RootNamespace>
+    <AssemblyName>MessageBuilderCore</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -16,9 +16,12 @@ namespace MessageBuilderLib
 
         public void GenerateCode(string dirpath, string includeFile = null)
         {
-            if (!Directory.Exists(dirpath))
+
+            string dirFullPath = Path.GetFullPath(dirpath);
+
+            if (!Directory.Exists(dirFullPath))
             {
-                Directory.CreateDirectory(dirpath);
+                Directory.CreateDirectory(dirFullPath);
             }
 
             string includeContents = null;
@@ -35,7 +38,7 @@ namespace MessageBuilderLib
 
             foreach (var group in SchemaBox.GetSchemas())
             {
-                var filepath = dirpath + "/" + getFileName(group.Name);
+                var filepath = dirFullPath + "/" + getFileName(group.Name);
                 using (var fs = File.Create(filepath))
                 using (var sw = new StreamWriter(fs))
                 {
@@ -88,6 +91,8 @@ namespace MessageBuilderLib
                         }
                     }
                 }
+
+                Console.WriteLine($"{group.Name} generated ({filepath})");
             }
         } //GenerateCode
 

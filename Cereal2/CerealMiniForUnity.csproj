@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A37CAF30-B8E0-490F-B546-710E99C4690B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{FC672217-3104-41E3-8C6C-7840553687A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
-    <AssemblyName>ConsoleApplication1</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Cereal2</RootNamespace>
+    <AssemblyName>Cereal2</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,20 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="BinaryInputArchive.cs" />
+    <Compile Include="BinaryOutputArchive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeChecker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cereal2\CerealMiniForUnity.csproj">
-      <Project>{fc672217-3104-41e3-8c6c-7840553687a2}</Project>
-      <Name>CerealMiniForUnity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetworkMessage\NetworkMessage.csproj">
-      <Project>{d073f41f-f97f-418b-aa9b-af6653df101c}</Project>
-      <Name>NetworkMessage</Name>
+    <ProjectReference Include="..\MessageBuilder\MessageBuilderCore\MessageBuilderCore.csproj">
+      <Project>{0d0a2af7-ac7a-4b9d-93ed-ae7e643c3a92}</Project>
+      <Name>MessageBuilderCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
