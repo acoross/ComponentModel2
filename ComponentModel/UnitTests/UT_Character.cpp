@@ -1,9 +1,9 @@
 #pragma once
 
+#include "gtest/gtest.h"
+
 #include "scl/MathLib.h"
 #include "GameEngine/GameComponents/Character/CharacterMoveController.h"
-
-#include "gtest/gtest.h"
 
 using namespace scl;
 using namespace GameEngine;

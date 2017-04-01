@@ -34,7 +34,7 @@ namespace scl
 			return x == y;
 		}
 
-		float AdjustAngle(float degree)
+		inline float AdjustAngle(float degree)
 		{
 			if (degree >= 0)
 			{
@@ -48,17 +48,17 @@ namespace scl
 			}
 		}
 
-		float RadianToDegree(float radian)
+		inline float RadianToDegree(float radian)
 		{
 			return radian / PI * 180;
 		}
 
-		float DegreeToRadian(float degree)
+		inline float DegreeToRadian(float degree)
 		{
 			return degree / 180 * PI;
 		}
 
-		float Pi()
+		inline float Pi()
 		{
 			return PI;
 		}
@@ -76,8 +76,9 @@ namespace scl
 
 		Vector3() : X(0), Y(0), Z(0) {}
 		Vector3(T x, T y, T z) : X(x), Y(y), Z(z) {}
-
-		Vector3 operator * (T v) const
+		
+		template <class U, class = std::enable_if_t<std::is_arithmetic<T>::value>>
+		Vector3 operator * (U v) const
 		{
 			return Vector3(X * v, Y * v, Z * v);
 		}

@@ -1,11 +1,15 @@
 #pragma once
 
+#include "gtest/gtest.h"
+
 #include <iostream>
 #include <sstream>
 #include <strstream>
 
 #include "cereal/cereal.hpp"
 #include "cereal/archives/binary.hpp"
+#include "cereal/types/string.hpp"
+#include "cereal/types/vector.hpp"
 
 #include "scl/time.h"
 #include "scl/MathLib.h"
@@ -16,8 +20,6 @@
 #include "GameEngine/EventHandlerBinder.h"
 
 #include "Message/SCProtocol.message.h"
-
-#include "gtest/gtest.h"
 
 using namespace scl;
 
@@ -58,7 +60,7 @@ TEST(Default, cereal)
 	ar(123);
 
 	auto writed = ss.tellp();
-	printBytes(buf, writed);
+	//printBytes(buf, writed);
 
 }
 
@@ -88,103 +90,6 @@ TEST(Default, TestVectorDiv)
 
 	//
 	EXPECT_FLOAT_EQ(vec.Yaw(), Vector3f(1, 2, 3).Yaw());
-}
-
-
-class SendMsgFixture : public ::testing::Test
-{
-public:
-	class TestComponent : public GameEngine::GameComponent
-	{
-	public:
-		GameEngine::EventHandlerBinder<int> intHandler = { *this, [&](const int& v)
-		{
-			value = 1;
-			std::cout << v << std::endl;
-		} };
-
-		GameEngine::EventHandlerBinder<std::string> stringHandler = { *this, [&](const std::string& str)
-		{
-			value = 2;
-		} };
-
-		int value = 0;
-	};
-};
-
-TEST_F(SendMsgFixture, TestEventDispatcher)
-{
-	EventDispatcher e1;
-	bool invoked = false;
-	e1.RegisterHandler<int>([&invoked](const int& e)
-	{
-		invoked = true;
-	});
-
-	Event<int> ee(1);
-	invoked = false;
-	e1(ee);
-	EXPECT_EQ(invoked, true);
-
-	invoked = false;
-	e1.InvokeEvent(ee);
-	EXPECT_EQ(invoked, true);
-
-	invoked = false;
-	e1.InvokeEvent(Event<int>(2));
-	EXPECT_EQ(invoked, true);
-
-	invoked = false;
-	e1.InvokeEvent(Event<float>(3.f));
-	EXPECT_EQ(invoked, false);
-}
-
-TEST_F(SendMsgFixture, TestGameObjectSendMsg)
-{
-	auto obj = New<GameEngine::GameObject>();
-	auto comp = New<TestComponent>();
-
-	obj->SetComponent<TestComponent>(comp);
-
-	comp->value = 0;
-	obj->SendMsg(Event<int>(1));
-	EXPECT_EQ(comp->value, 1);
-
-	comp->value = 0;
-	obj->SendMsg(1);
-	EXPECT_EQ(comp->value, 1);
-
-	comp->value = 0;
-	obj->SendMsg<std::string>("fuck");
-	EXPECT_EQ(comp->value, 2);
-}
-
-TEST_F(SendMsgFixture, GameObjectContainer)
-{
-	GameEngine::GameObjectContainer container;
-	auto obj = New<GameEngine::GameObject>();
-	auto comp = New<TestComponent>();
-
-	obj->SetComponent<TestComponent>(comp);
-
-	container.Add(obj);
-
-	comp->value = 0;
-	container.BroadcastMsg(Event<int>(1));
-	EXPECT_EQ(comp->value, 1);
-
-	comp->value = 0;
-	container.BroadcastMsg(1);
-	EXPECT_EQ(comp->value, 1);
-
-	comp->value = 0;
-	container.BroadcastMsg<std::string>("fuck");
-	EXPECT_EQ(comp->value, 2);
-
-	const char* fuck = "fuck";
-	comp->value = 0;
-	container.BroadcastMsg(fuck);
-	EXPECT_EQ(comp->value, 0);
 }
 
 TEST(LazyRigidBody, TestLazyMotionObject)
@@ -226,4 +131,15 @@ TEST(Math, DegreeConvert)
 	EXPECT_FLOAT_EQ(Math::RadianToDegree(2 * Math::PI), 360);
 	EXPECT_FLOAT_EQ(Math::DegreeToRadian(180), Math::PI);
 	EXPECT_FLOAT_EQ(Math::DegreeToRadian(360), 2 * Math::PI);
+}
+
+TEST(Default, WeakPtr)
+{
+	Wp<int> wp;
+	EXPECT_EQ(wp.lock(), nullptr);
+	EXPECT_EQ(wp.expired(), true);
+	auto sp = New<int>(1);
+	wp = sp;
+	EXPECT_EQ(wp.expired(), false);
+
 }

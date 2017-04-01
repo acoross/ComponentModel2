@@ -131,7 +131,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CSProtocolHandler.cpp" />
+    <ClCompile Include="UnitTests\Comp1.cpp" />
+    <ClCompile Include="UnitTests\Comp2.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="UnitTests\UT_GameComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\EventHandlerBinder.h" />
@@ -139,18 +142,23 @@
     <ClInclude Include="GameEngine\GameComponents\Character\SkillActor.h" />
     <ClInclude Include="GameEngine\GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
+    <ClInclude Include="UnitTests\Comp1.h" />
+    <ClInclude Include="UnitTests\Comp2.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="GameEngine\LazyMotionObject.h" />
     <ClInclude Include="GameEngine\Zone.h" />
     <ClInclude Include="Message\Shared.message.h" />
-    <ClInclude Include="UnitTests\UnitTest.h" />
     <ClInclude Include="Message\csprotocol.include.h" />
     <ClInclude Include="Message\CSProtocol.message.h" />
     <ClInclude Include="Message\CSProtocol.stub.h" />
     <ClInclude Include="Message\SCProtocol.message.h" />
     <ClInclude Include="CSProtocolHandler.h" />
-    <ClInclude Include="UnitTests\UT_Character.h" />
-    <ClInclude Include="UnitTests\UT_Default.h" />
+    <ClCompile Include="UnitTests\UT_Character.cpp">
+      <FileType>CppHeader</FileType>
+    </ClCompile>
+    <ClCompile Include="UnitTests\UT_Default.cpp">
+      <FileType>CppHeader</FileType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SingleCoreLib\SingleCoreLib.vcxproj">

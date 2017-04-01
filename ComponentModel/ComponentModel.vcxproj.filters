@@ -32,14 +32,18 @@
     <ClInclude Include="GameEngine\GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\EventHandlerBinder.h" />
     <ClInclude Include="GameEngine\GameComponents\Character\CharacterMoveController.h" />
-    <ClInclude Include="UnitTests\UnitTest.h" />
-    <ClInclude Include="UnitTests\UT_Character.h" />
-    <ClInclude Include="UnitTests\UT_Default.h" />
     <ClInclude Include="GameEngine\GameComponents\Character\SkillActor.h" />
+    <ClInclude Include="UnitTests\UT_Default.cpp" />
+    <ClInclude Include="UnitTests\UT_Character.cpp" />
+    <ClInclude Include="UnitTests\Comp2.h" />
+    <ClInclude Include="UnitTests\Comp1.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CSProtocolHandler.cpp" />
+    <ClCompile Include="UnitTests\UT_GameComponent.cpp" />
+    <ClCompile Include="UnitTests\Comp1.cpp" />
+    <ClCompile Include="UnitTests\Comp2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

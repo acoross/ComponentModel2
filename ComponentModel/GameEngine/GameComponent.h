@@ -97,4 +97,39 @@ namespace GameEngine
 
 		EventDispatcher _eventDispatcher;
 	};
+
+	template <class T>//, class = Require<GameComponent, T>>
+	class ComponentBinder
+	{
+	public:
+		//static_assert(std::is_base_of<GameComponent, T>::value, "ComponentBinder<T>: T should inherit GameCopmponent");
+
+		ComponentBinder(GameComponent* owner)
+			: _owner(owner)
+		{}
+
+		T* operator->()
+		{
+			if (_comp.expired())
+			{
+				if (auto comp = _owner->GetComponent<T>())
+				{
+					_comp = comp;
+					return comp.get();
+				}
+			}
+			else
+			{
+				if (auto comp = _comp.lock())
+				{
+					return comp.get();
+				}
+			}
+
+			return nullptr;
+		}
+
+		GameComponent* const _owner;
+		Wp<T> _comp;
+	};
 }
