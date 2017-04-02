@@ -9,12 +9,12 @@ using MessageBuilderLib;
 
 namespace NetworkMessage
 {
-    using static Shared;
+    using static Net;
 
     [Message]
-    public class Shared
+    public class Net
     {
-        public struct NetVector
+        public struct Vector3
         {
             public float X;
             public float Y;
@@ -29,7 +29,7 @@ namespace NetworkMessage
         }
     }
 
-    [Message(typeof(Shared), typeof(SCProtocol))]
+    [Message(typeof(Net), typeof(SCProtocol))]
     public struct CSProtocol
     {
         public enum TestEnum : Int32
@@ -47,12 +47,12 @@ namespace NetworkMessage
 
         public struct Move
         {
-            public NetVector position;
-            public NetVector velocity;
+            public Vector3 position;
+            public Vector3 velocity;
         }
     }
 
-    [Message(typeof(Shared))]
+    [Message(typeof(Net))]
     public struct SCProtocol
     {
         public struct ResponseLogin
@@ -64,15 +64,15 @@ namespace NetworkMessage
         public struct NotiMove
         {
             public UInt64 gameObjectId;
-            public NetVector position;
-            public NetVector velocity;
+            public Vector3 position;
+            public Vector3 velocity;
         }
 
         public struct NotiEnterZone
         {
             public UInt64 gameObjectId;
-            public NetVector position;
-            public NetVector velocity;
+            public Vector3 position;
+            public Vector3 velocity;
         }
 
         public struct NotiLeaveZone

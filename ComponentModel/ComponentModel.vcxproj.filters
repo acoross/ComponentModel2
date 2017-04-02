@@ -27,16 +27,14 @@
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="CSProtocolHandler.h" />
     <ClInclude Include="GameEngine\Zone.h" />
-    <ClInclude Include="Message\Shared.message.h" />
     <ClInclude Include="GameEngine\LazyMotionObject.h" />
     <ClInclude Include="GameEngine\GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\EventHandlerBinder.h" />
     <ClInclude Include="GameEngine\GameComponents\Character\CharacterMoveController.h" />
     <ClInclude Include="GameEngine\GameComponents\Character\SkillActor.h" />
-    <ClInclude Include="UnitTests\UT_Default.cpp" />
-    <ClInclude Include="UnitTests\UT_Character.cpp" />
     <ClInclude Include="UnitTests\Comp2.h" />
     <ClInclude Include="UnitTests\Comp1.h" />
+    <ClInclude Include="Message\Net.message.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -44,6 +42,8 @@
     <ClCompile Include="UnitTests\UT_GameComponent.cpp" />
     <ClCompile Include="UnitTests\Comp1.cpp" />
     <ClCompile Include="UnitTests\Comp2.cpp" />
+    <ClCompile Include="UnitTests\UT_Character.cpp" />
+    <ClCompile Include="UnitTests\UT_Default.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

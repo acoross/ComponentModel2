@@ -22,7 +22,7 @@ public:
 		wprintf(L"%s, %s\n", msg.id.c_str(), msg.password.c_str());
 	}
 
-	static std::wstring ToString(Shared::NetVector& vec)
+	static std::wstring ToString(Net::Vector3& vec)
 	{
 		std::wstringstream stream;
 		stream << "(" << vec.X << ", " << vec.Y << ", " << vec.Z << ")";

@@ -3,7 +3,7 @@
 #include <string>
 #include <cstdint>
 
-#include "Shared.message.h"
+#include "Net.message.h"
 #include "SCProtocol.message.h"
 
 namespace CSProtocol
@@ -54,14 +54,14 @@ namespace CSProtocol
 		{
 		}
 		
-		Move(Shared::NetVector inposition, Shared::NetVector invelocity)
+		Move(Net::Vector3 inposition, Net::Vector3 invelocity)
 			: position(inposition)
 			, velocity(invelocity)
 		{
 		}
 		
-		Shared::NetVector position;
-		Shared::NetVector velocity;
+		Net::Vector3 position;
+		Net::Vector3 velocity;
 		
 		template <class Ar>
 		void serialize(Ar& ar)

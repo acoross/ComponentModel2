@@ -4,11 +4,11 @@
 #include <cstdint>
 
 
-namespace Shared
+namespace Net
 {
 	enum class PacketType : uint32_t
 	{
-		NetVector, 
+		Vector3, 
 		MAX
 	};
 	
@@ -19,15 +19,15 @@ namespace Shared
 		Max, 
 	};
 	
-	struct NetVector
+	struct Vector3
 	{
-		const static uint32_t PacketId = (uint32_t)PacketType::NetVector;
+		const static uint32_t PacketId = (uint32_t)PacketType::Vector3;
 		
-		NetVector()
+		Vector3()
 		{
 		}
 		
-		NetVector(float inX, float inY, float inZ)
+		Vector3(float inX, float inY, float inZ)
 			: X(inX)
 			, Y(inY)
 			, Z(inZ)

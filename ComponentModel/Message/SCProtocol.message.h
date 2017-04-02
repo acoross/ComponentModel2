@@ -3,7 +3,7 @@
 #include <string>
 #include <cstdint>
 
-#include "Shared.message.h"
+#include "Net.message.h"
 
 namespace SCProtocol
 {
@@ -48,7 +48,7 @@ namespace SCProtocol
 		{
 		}
 		
-		NotiMove(uint64_t ingameObjectId, Shared::NetVector inposition, Shared::NetVector invelocity)
+		NotiMove(uint64_t ingameObjectId, Net::Vector3 inposition, Net::Vector3 invelocity)
 			: gameObjectId(ingameObjectId)
 			, position(inposition)
 			, velocity(invelocity)
@@ -56,8 +56,8 @@ namespace SCProtocol
 		}
 		
 		uint64_t gameObjectId;
-		Shared::NetVector position;
-		Shared::NetVector velocity;
+		Net::Vector3 position;
+		Net::Vector3 velocity;
 		
 		template <class Ar>
 		void serialize(Ar& ar)
@@ -74,7 +74,7 @@ namespace SCProtocol
 		{
 		}
 		
-		NotiEnterZone(uint64_t ingameObjectId, Shared::NetVector inposition, Shared::NetVector invelocity)
+		NotiEnterZone(uint64_t ingameObjectId, Net::Vector3 inposition, Net::Vector3 invelocity)
 			: gameObjectId(ingameObjectId)
 			, position(inposition)
 			, velocity(invelocity)
@@ -82,8 +82,8 @@ namespace SCProtocol
 		}
 		
 		uint64_t gameObjectId;
-		Shared::NetVector position;
-		Shared::NetVector velocity;
+		Net::Vector3 position;
+		Net::Vector3 velocity;
 		
 		template <class Ar>
 		void serialize(Ar& ar)

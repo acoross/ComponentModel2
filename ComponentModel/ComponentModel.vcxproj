@@ -146,12 +146,12 @@
     <ClInclude Include="GameEngine\GameComponents\Character\SkillActor.h" />
     <ClInclude Include="GameEngine\GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
+    <ClInclude Include="Message\Net.message.h" />
     <ClInclude Include="UnitTests\Comp1.h" />
     <ClInclude Include="UnitTests\Comp2.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="GameEngine\LazyMotionObject.h" />
     <ClInclude Include="GameEngine\Zone.h" />
-    <ClInclude Include="Message\Shared.message.h" />
     <ClInclude Include="Message\csprotocol.include.h" />
     <ClInclude Include="Message\CSProtocol.message.h" />
     <ClInclude Include="Message\CSProtocol.stub.h" />
