@@ -5,6 +5,7 @@
 
 namespace scl
 {
+	inline
 	namespace types{
 		typedef unsigned char byte;
 		typedef int16_t int16;
@@ -18,5 +19,4 @@ namespace scl
 		typedef unsigned long ulong;
 		typedef std::wstring String;
 	}
-	using namespace types;
 }

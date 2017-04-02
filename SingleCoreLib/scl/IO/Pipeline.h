@@ -8,8 +8,11 @@ namespace scl
 	// pipeline & interfaces
 	class IThreadWorker
 	{
+	public:
+		virtual ~IThreadWorker() {}
+
 	protected:
-		virtual void Run() {}
+		virtual void Run() = 0;
 
 		friend class Pipeline;
 	};

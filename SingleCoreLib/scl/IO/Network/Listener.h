@@ -18,6 +18,8 @@ namespace scl
 		Listener(Sp<NetworkWorker> networkWorker);
 		void Listen(std::string address, unsigned short port, AcceptHandlerType acceptor);
 
+		virtual ~Listener() {}
+
 	private:
 		// IListener을(를) 통해 상속됨
 		virtual void Accept() override;

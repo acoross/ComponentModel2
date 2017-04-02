@@ -13,6 +13,7 @@ namespace GameEngine
 	class IEventHandlerBinder
 	{
 	public:
+		virtual ~IEventHandlerBinder() {}
 		virtual void Bind() = 0;
 	};
 
@@ -28,7 +29,7 @@ namespace GameEngine
 			return GetOwner();
 		}
 
-		void OnBound()
+		virtual void OnBound() override
 		{
 			for (auto& binder : _binders)
 			{
@@ -36,7 +37,7 @@ namespace GameEngine
 			}
 		}
 
-		void AddBinder(class IEventHandlerBinder* binder)
+		void AddBinder(IEventHandlerBinder* binder)
 		{
 			_binders.push_back(binder);
 		}

@@ -8,13 +8,15 @@ namespace GameEngine
 	class EventHandlerBinder : public IEventHandlerBinder
 	{
 	public:
+		virtual ~EventHandlerBinder(){}
+
 		EventHandlerBinder(GameComponent& component, scl::EventDispatcher::TEventHandler<T> handler)
 			: _component(component), _handler(handler)
 		{
 			_component.AddBinder(this);
 		}
 
-		void Bind() override sealed
+		void Bind() final
 		{
 			_component.GetGameObject()->RegisterMsgHandler<T>(_handler);
 		}

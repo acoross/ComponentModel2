@@ -9,6 +9,8 @@
 class CSProtocolHandler : public CSProtocol::IStub
 {
 public:
+	virtual ~CSProtocolHandler() {}
+
 	static void Initialize();
 
 	void Handle(char* buf, scl::ulong size, scl::ulong& processed)
@@ -17,7 +19,7 @@ public:
 	}
 
 	// IStub을(를) 통해 상속됨
-	virtual void Process(CSProtocol::RequestLogin& msg) override
+	virtual void Process(CSProtocol::RequestLogin& msg) final
 	{
 		wprintf(L"%s, %s\n", msg.id.c_str(), msg.password.c_str());
 	}
@@ -29,7 +31,7 @@ public:
 		return stream.str();
 	}
 
-	virtual void Process(CSProtocol::Move & msg) override
+	virtual void Process(CSProtocol::Move & msg) final
 	{
 		wprintf(L"%s, %s\n", ToString(msg.position).c_str(), ToString(msg.velocity).c_str());
 	}
