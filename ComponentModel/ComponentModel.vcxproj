@@ -78,6 +78,7 @@
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <PreBuildEvent>
       <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
@@ -92,6 +93,7 @@
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <PreBuildEvent>
       <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
@@ -106,6 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -124,6 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -142,9 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\EventHandlerBinder.h" />
-    <ClInclude Include="GameEngine\GameComponents\Character\CharacterMoveController.h" />
-    <ClInclude Include="GameEngine\GameComponents\Character\SkillActor.h" />
-    <ClInclude Include="GameEngine\GameComponents\Collider.h" />
+    <ClInclude Include="GameComponents\Character\CharacterMoveController.h" />
+    <ClInclude Include="GameComponents\Character\SkillActor.h" />
+    <ClInclude Include="GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="Message\Net.message.h" />
     <ClInclude Include="UnitTests\Comp1.h" />

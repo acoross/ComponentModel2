@@ -98,12 +98,12 @@ namespace GameEngine
 	};
 
 	template <class T>//, class = Require<GameComponent, T>>
-	class ComponentBinder
+	class GameComponentBinder
 	{
 	public:
-		//static_assert(std::is_base_of<GameComponent, T>::value, "ComponentBinder<T>: T should inherit GameCopmponent");
+		//static_assert(std::is_base_of<GameComponent, T>::value, "GameComponentBinder<T>: T should inherit GameCopmponent");
 
-		ComponentBinder(GameComponent* owner)
+		GameComponentBinder(GameComponent* owner)
 			: _owner(owner)
 		{}
 

@@ -16,7 +16,7 @@ namespace GameEngine
 			_component.AddBinder(this);
 		}
 
-		void Bind() final
+		virtual void Bind() final
 		{
 			_component.GetGameObject()->RegisterMsgHandler<T>(_handler);
 		}

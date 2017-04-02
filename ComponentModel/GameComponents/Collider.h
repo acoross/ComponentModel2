@@ -19,6 +19,6 @@ namespace GameEngine
 
 	private:
 		float _radius;
-		Wp<Zone> _zone;
+		scl::Wp<Zone> _zone;
 	};
 }

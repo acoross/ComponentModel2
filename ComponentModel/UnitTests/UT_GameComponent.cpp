@@ -108,7 +108,7 @@ namespace UnitTest
 		EXPECT_EQ(comp->value, 0);
 	}
 
-	TEST(ComponentBinder, TestBinder)
+	TEST(GameComponentBinder, TestBinder)
 	{
 		auto gameObject = New<GameEngine::GameObject>();
 		auto comp1 = New<Component1>();

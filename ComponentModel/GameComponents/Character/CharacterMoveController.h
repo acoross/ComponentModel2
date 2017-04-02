@@ -28,9 +28,9 @@ namespace GameEngine
 				{
 					if (auto target = _target.lock())
 					{
-						auto myPos = rbody.Position(0);
-						auto tPos = target->RigidBody().Position(currentTick);
-						auto direction = tPos - myPos;
+						Vector3f myPos = rbody.Position(0);
+						Vector3f tPos = target->RigidBody().Position(currentTick);
+						Vector3f direction = tPos - myPos;
 
 						return direction.Yaw();
 					}

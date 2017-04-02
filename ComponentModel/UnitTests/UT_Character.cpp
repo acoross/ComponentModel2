@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 #include "scl/MathLib.h"
-#include "GameEngine/GameComponents/Character/CharacterMoveController.h"
+#include "GameComponents/Character/CharacterMoveController.h"
 
 using namespace scl;
 using namespace GameEngine;

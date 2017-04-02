@@ -11,7 +11,7 @@ namespace UnitTest
 
 		int val{ 0 };
 
-		GameEngine::ComponentBinder<class Component2> _comp2{ this };
+		GameEngine::GameComponentBinder<class Component2> _comp2{ this };
 
 		float GetComp2Val();
 	};
