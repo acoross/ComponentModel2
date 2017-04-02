@@ -1,9 +1,6 @@
 #pragma once
 
 #include "scl/EventDispatcher.h"
-using namespace scl;
-
-#include "scl/Component.h"
 
 namespace GameEngine
 {
@@ -11,7 +8,7 @@ namespace GameEngine
 	class EventHandlerBinder : public IEventHandlerBinder
 	{
 	public:
-		EventHandlerBinder(GameComponent& component, EventDispatcher::TEventHandler<T> handler)
+		EventHandlerBinder(GameComponent& component, scl::EventDispatcher::TEventHandler<T> handler)
 			: _component(component), _handler(handler)
 		{
 			_component.AddBinder(this);
@@ -22,7 +19,8 @@ namespace GameEngine
 			_component.GetGameObject()->RegisterMsgHandler<T>(_handler);
 		}
 
+	private:
 		GameComponent& _component;
-		EventDispatcher::TEventHandler<T> _handler;
+		scl::EventDispatcher::TEventHandler<T> _handler;
 	};
 }

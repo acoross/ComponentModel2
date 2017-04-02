@@ -171,7 +171,9 @@ namespace MessageBuilderLib
             {
                 if (msg.Id >= 0)
                 {
-                    c.prn($"const static uint32 PacketId = (uint32)PacketType::{msg.Name};");
+                    var uint32 = TypeTranslator.getTypeName(typeof(UInt32));
+
+                    c.prn($"const static {uint32} PacketId = ({uint32})PacketType::{msg.Name};");
                     c.prn();
                 }
 

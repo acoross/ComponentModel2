@@ -5,25 +5,25 @@
 #include "scl/Types.h"
 #include "scl/TemplateHelper.h"
 
-using namespace scl;
-
 namespace GameEngine
 {
-	class LazyRigidBody : public NoCopy<LazyRigidBody>
+	class LazyRigidBody : public scl::NoCopy<LazyRigidBody>
 	{
+		using Vector3f = scl::Vector3f;
+
 	public:
 		using PositionUpdaterFunc = 
 			std::function<Vector3f(
-				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, int64 /*last updated*/, int64 /*currentTick*/)>;
+				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, scl::int64 /*last updated*/, scl::int64 /*currentTick*/)>;
 		using YawUpdaterFunc =
 			std::function<float(
-				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, int64 /*last updated*/, int64 /*currentTick*/)>;
+				const Vector3f& /*pos*/, const float& /*yaw*/, const Vector3f& /*vel*/, const float /*ang vel*/, scl::int64 /*last updated*/, scl::int64 /*currentTick*/)>;
 		
-		LazyRigidBody(int64 gametick = 0)
+		LazyRigidBody(scl::int64 gametick = 0)
 			: _lastUpdated(gametick)
 		{}
 
-		LazyRigidBody(Vector3f pos, float yaw, Vector3f vel, float angVel, int64 gametick = 0)
+		LazyRigidBody(Vector3f pos, float yaw, Vector3f vel, float angVel, scl::int64 gametick = 0)
 			: _position(pos), _yaw(yaw), _velocity(vel), _angVelocity(angVel), _lastUpdated(gametick)
 		{}
 
@@ -37,44 +37,44 @@ namespace GameEngine
 			_yawUpdater = updater;
 		}
 
-		void SetPosition(Vector3f pos, int64 gametick)
+		void SetPosition(Vector3f pos, scl::int64 gametick)
 		{
 			_position = pos;
 			_lastUpdated = gametick;
 		}
 
-		void SetYaw(float yaw, int64 gametick)
+		void SetYaw(float yaw, scl::int64 gametick)
 		{
 			_yaw = yaw;
 			_lastUpdated = gametick;
 		}
 
-		void SetVelocity(Vector3f vel, int64 gametick)
+		void SetVelocity(Vector3f vel, scl::int64 gametick)
 		{
 			_velocity = vel;
 			_lastUpdated = gametick;
 		}
 
-		void SetAngVelocity(float angVel, int64 gametick)
+		void SetAngVelocity(float angVel, scl::int64 gametick)
 		{
 			_angVelocity = angVel;
 			_lastUpdated = gametick;
 		}
 
-		Vector3f Position(int64 gametick)
+		Vector3f Position(scl::int64 gametick)
 		{
 			update(gametick);
 			return _position;
 		}
 
-		float Yaw(int64 gametick)
+		float Yaw(scl::int64 gametick)
 		{
 			update(gametick);
-			return Math::AdjustAngle(_yaw);
+			return scl::Math::AdjustAngle(_yaw);
 		}
 
 	private:
-		void update(int64 gametick)
+		void update(scl::int64 gametick)
 		{
 			if (gametick == 0)
 			{
@@ -115,7 +115,7 @@ namespace GameEngine
 		Vector3f _velocity{ 0, 0, 0 };	// cm / ms
 		float _angVelocity{ 0 };	// degree / ms
 
-		int64 _lastUpdated;
+		scl::int64 _lastUpdated;
 
 		PositionUpdaterFunc _positionUpdater{ nullptr };
 		YawUpdaterFunc _yawUpdater{ nullptr };

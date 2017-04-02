@@ -7,6 +7,9 @@
 #include "UnitTests/Comp1.h"
 #include "UnitTests/Comp2.h"
 
+using namespace scl;
+using namespace GameEngine;
+
 namespace UnitTest
 {
 	class SendMsgFixture : public ::testing::Test

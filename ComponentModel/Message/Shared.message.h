@@ -1,18 +1,18 @@
 #pragma once
 
-#include "scl/Types.h"
-using namespace scl;
+#include <string>
+#include <cstdint>
 
 
 namespace Shared
 {
-	enum class PacketType : uint32
+	enum class PacketType : uint32_t
 	{
 		NetVector, 
 		MAX
 	};
 	
-	enum class ESex : int32
+	enum class ESex : int32_t
 	{
 		Male, 
 		Female, 
@@ -21,7 +21,7 @@ namespace Shared
 	
 	struct NetVector
 	{
-		const static uint32 PacketId = (uint32)PacketType::NetVector;
+		const static uint32_t PacketId = (uint32_t)PacketType::NetVector;
 		
 		NetVector()
 		{

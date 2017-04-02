@@ -3,7 +3,6 @@
 #include <functional>
 
 #include "GameEngine/GameObjectContainer.h"
-using namespace scl;
 
 namespace GameEngine
 {
@@ -15,7 +14,7 @@ namespace GameEngine
 	class AppearingMsg
 	{
 	public:
-		uint64 objectId;
+		scl::uint64 objectId;
 
 		std::function<void()> f = [this]() {
 			objectId = 1;
@@ -25,13 +24,13 @@ namespace GameEngine
 	class DisappearingMsg
 	{
 	public:
-		uint64 objectId;
+		scl::uint64 objectId;
 	};
 
 	class Zone
 	{
 	public:
-		void EnterZone(Sp<GameObject> gameObject)
+		void EnterZone(scl::Sp<GameObject> gameObject)
 		{
 			AppearingMsg sendMsg{ gameObject->Id() };
 
@@ -44,7 +43,7 @@ namespace GameEngine
 			_container.Add(gameObject);
 		}
 
-		void LeaveZone(Sp<GameObject> gameObject)
+		void LeaveZone(scl::Sp<GameObject> gameObject)
 		{
 			_container.Remove(gameObject);
 

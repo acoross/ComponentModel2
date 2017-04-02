@@ -1,2 +1,2 @@
-#include "scl/Types.h"
-using namespace scl;
+#include <string>
+#include <cstdint>

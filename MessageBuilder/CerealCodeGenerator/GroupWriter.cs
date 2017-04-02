@@ -63,8 +63,9 @@ namespace MessageBuilderLib
                     // file
                     using (c.func($"namespace {group.Name}"))
                     {
+                        var uint32 = TypeTranslator.getTypeName(typeof(UInt32));
                         // PacketType
-                        using (c.type($"enum class PacketType : uint32"))
+                        using (c.type($"enum class PacketType : {uint32}"))
                         {
                             foreach (var msgT in group.messageMap)
                             {

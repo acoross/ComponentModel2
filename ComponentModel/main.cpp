@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	listener->Listen("0.0.0.0", 17777, [](Sp<Session> session)
 	{
 		Sp<CSProtocolHandler> handler = New<CSProtocolHandler>();
-		session->StartRecv([handler](char* buf, ulong size, ulong& processed)
+		session->StartRecv([handler](char* buf, scl::ulong size, scl::ulong& processed)
 		{
 			handler->Handle(buf, size, processed);
 		});

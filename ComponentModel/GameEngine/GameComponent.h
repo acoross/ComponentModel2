@@ -10,8 +10,6 @@
 
 namespace GameEngine
 {
-	using namespace scl;
-
 	class IEventHandlerBinder
 	{
 	public:
@@ -20,12 +18,12 @@ namespace GameEngine
 
 	class GameObject;
 	
-	class GameComponent : public Component<GameObject>
+	class GameComponent : public scl::Component<GameObject>
 	{
 	public:
 		virtual ~GameComponent() {}
 
-		Sp<GameObject> GetGameObject()
+		scl::Sp<GameObject> GetGameObject()
 		{
 			return GetOwner();
 		}
@@ -47,32 +45,32 @@ namespace GameEngine
 		std::list<IEventHandlerBinder*> _binders;
 	};
 
-	class GameObject : public ComponentOwner<GameObject, GameComponent>
+	class GameObject : public scl::ComponentOwner<GameObject, GameComponent>
 	{
 	public:
 		GameObject()
-			: _id(scl::UniqueId <GameObject, scl::uint64>::Generate())
+			: _id(scl::UniqueId<GameObject, scl::uint64>::Generate())
 			, _rigidBody()
 		{}
 
-		uint64 Id() const
+		scl::uint64 Id() const
 		{
 			return _id;
 		}
 
-		Sp<class GameObjectContainer> GetContainer()
+		scl::Sp<class GameObjectContainer> GetContainer()
 		{
 			return _container.lock();
 		}
 
 		template <class T>
-		void RegisterMsgHandler(EventDispatcher::TEventHandler<T> func)
+		void RegisterMsgHandler(scl::EventDispatcher::TEventHandler<T> func)
 		{
 			_eventDispatcher.RegisterHandler(func);
 		}
 
 		template <class T>
-		void SendMsg(const Event<T>& message)
+		void SendMsg(const scl::Event<T>& message)
 		{
 			_eventDispatcher.InvokeEvent(message);
 		}
@@ -80,7 +78,7 @@ namespace GameEngine
 		template <class T>
 		void SendMsg(const T& msg)
 		{
-			_eventDispatcher.InvokeEvent(Event<T>(msg));
+			_eventDispatcher.InvokeEvent(scl::Event<T>(msg));
 		}
 
 		LazyRigidBody& RigidBody()
@@ -93,9 +91,9 @@ namespace GameEngine
 		
 		LazyRigidBody _rigidBody;
 
-		Wp<class GameObjectContainer> _container;
+		scl::Wp<class GameObjectContainer> _container;
 
-		EventDispatcher _eventDispatcher;
+		scl::EventDispatcher _eventDispatcher;
 	};
 
 	template <class T>//, class = Require<GameComponent, T>>
@@ -130,6 +128,6 @@ namespace GameEngine
 		}
 
 		GameComponent* const _owner;
-		Wp<T> _comp;
+		scl::Wp<T> _comp;
 	};
 }
