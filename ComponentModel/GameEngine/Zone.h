@@ -1,9 +1,9 @@
 #pragma once
 
+#include <functional>
+
 #include "GameEngine/GameObjectContainer.h"
 using namespace scl;
-
-#include <functional>
 
 namespace GameEngine
 {

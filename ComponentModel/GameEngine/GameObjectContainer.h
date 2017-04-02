@@ -1,11 +1,12 @@
 #pragma once
 
 #include <map>
-
-#include "memory.h"
 #include <unordered_map>
-#include "./GameComponent.h"
+
+#include "scl/memory.h"
 #include "scl/TypeTraits.h"
+#include "GameEngine/GameComponent.h"
+
 
 namespace GameEngine
 {

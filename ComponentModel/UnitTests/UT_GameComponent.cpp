@@ -4,8 +4,8 @@
 #include "GameEngine/EventHandlerBinder.h"
 #include "GameEngine/GameObjectContainer.h"
 
-#include "./Comp1.h"
-#include "./Comp2.h"
+#include "UnitTests/Comp1.h"
+#include "UnitTests/Comp2.h"
 
 namespace UnitTest
 {
