@@ -1,8 +1,7 @@
-#include "./NetworkThread.h"
+#include "scl/IO/Network/NetworkThread.h"
 
 #include "scl/exception.h"
-#include "./Session.h"
-
+#include "scl/IO/Network/Session.h"
 
 namespace scl
 {

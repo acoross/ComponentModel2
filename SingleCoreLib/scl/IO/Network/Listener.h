@@ -2,9 +2,9 @@
 
 #include <functional>
 
-#include "./NetworkInitializer.h"
-#include "./NetworkWorker.h"
-#include "./Session.h"
+#include "scl/IO/Network/NetworkInitializer.h"
+#include "scl/IO/Network/NetworkWorker.h"
+#include "scl/IO/Network/Session.h"
 
 namespace scl
 {
