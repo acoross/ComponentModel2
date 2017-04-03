@@ -3,7 +3,6 @@
 #include "GameEngine/GameComponent.h"
 #include "GameEngine/GameObjectContainer.h"
 #include "GameEngine/GameComponentBinder.h"
-#include "GameEngine/MessageDispatcher.h"
 
 #include "UnitTests/Comp1.h"
 #include "UnitTests/Comp2.h"
@@ -74,8 +73,6 @@ namespace UnitTest
 
 	TEST(MessageDispatchFixture, ReceiverBox)
 	{
-		GameEngine::MessageReceiverBox<int> recvBox;
-		
 		
 	}
 

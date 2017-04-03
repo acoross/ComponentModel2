@@ -34,8 +34,11 @@
     <ClInclude Include="GameComponents\Character\CharacterMoveController.h" />
     <ClInclude Include="GameComponents\Character\SkillActor.h" />
     <ClInclude Include="GameComponents\Collider.h" />
-    <ClInclude Include="GameEngine\MessageDispatcher.h" />
     <ClInclude Include="GameEngine\GameComponentBinder.h" />
+    <ClInclude Include="Devs\EventDispatcher.h" />
+    <ClInclude Include="Devs\MessageDispatcher.h" />
+    <ClInclude Include="Devs\RestrictMessageTypes.h" />
+    <ClInclude Include="Devs\FloodingDispatcher.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

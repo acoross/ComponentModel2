@@ -8,8 +8,10 @@
 #include "scl/TypeTraits.h"
 #include "TypeInfo.h"
 
-namespace scl
+namespace devs
 {
+	using namespace scl;
+
 	class IEvent
 	{
 	public:

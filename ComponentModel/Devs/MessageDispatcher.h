@@ -5,9 +5,12 @@
 #include "scl/TypeTraits.h"
 #include "scl/TypeInfo.h"
 #include "scl/exception.h"
+#include "GameEngine/GameComponent.h"
 
-namespace GameEngine
+namespace devs
 {
+	using namespace GameEngine;
+
 	class IReceiverBox
 	{
 	public:
