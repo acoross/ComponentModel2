@@ -4,6 +4,12 @@
 
 namespace devs
 {
+	/*
+	장점: 간결하다. 착각할 여지도 없다.
+
+	단점: message 하나 보낼 때 마다 전체 순회하므로 비효율적이다.
+	*/
+
 	class IFLMsg
 	{
 	public:

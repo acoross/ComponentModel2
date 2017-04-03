@@ -9,6 +9,18 @@
 
 namespace devs
 {
+	/*
+	장점: Component 를 통째로 이용
+			generic 과 specialized 사이에 있는 듯.
+			성능과 편의성도 중간?
+	
+	단점: Handler 를 정의하고 event 등록을 안 할수 있다. 
+		Handler 형식이 HandleMessage(TMsg& ) 로 고정되어서, Handler 정의와 Handler 등록이 분리된다.
+
+	개발 상태: Box 에 Comp 붙일 때 원래 타입으로 넣어야 한다. (지금은 GameComponent)
+		이 부분에 function 으로 wrapping 필요할 듯
+	*/
+
 	using namespace GameEngine;
 
 	class IReceiverBox
@@ -42,7 +54,10 @@ namespace devs
 			{
 				if (pair.first != senderType)
 				{
-					pair.second(msg);
+					if (auto comp = pair.second->lock())
+					{
+						comp->HandleMsg(msg);
+					}
 				}
 			}
 		}
@@ -125,4 +140,31 @@ namespace devs
 
 		std::map<size_t, scl::Sp<IReceiverBox>> _msgTypeToBox;
 	};
+
+	//usage
+	inline void msgdispatch_sample()
+	{
+		MessageReceiverBox<int> box;
+
+		class Comp1 : public GameComponent, std::enable_shared_from_this<Comp1>
+		{
+		public:
+			virtual void OnBound() final
+			{
+				
+			}
+
+			void OnInit(MessageReceiverBox<int>& box)
+			{
+				box.AddReceiver(shared_from_this());
+			}
+
+			void HandleMsg(int msg)
+			{
+
+			}
+		};
+
+
+	}
 }

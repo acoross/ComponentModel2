@@ -10,6 +10,19 @@
 
 namespace devs
 {
+	/*
+	장점: function 을 받으므로 유연하다. 가장 generic 한 형태이다.
+	
+	단점: event handler 일일히 등록해야 되서 귀찮음 (MessageDispatcher 와는 동일)
+		Component 전용이 아니라서 사용시 헷갈릴 수도?
+
+	의문: Component 를 receiver 로 고정해서 사용하는 것에 비해 casting 등이 부하가 될 수도?
+
+	개발 상태: 일단 돌아가는 상태
+	handler 를 list 로 들고있는데, MessageReceiverBox 같은 식으로 한번 감싸서 들고있게 변경
+	*/
+
+
 	using namespace scl;
 
 	class IEvent

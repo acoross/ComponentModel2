@@ -2,6 +2,12 @@
 
 namespace devs
 {
+	/*
+	장점: 가장 빠르고 효율적이다.
+
+	단점: 필요한 메세지 형식을 미리 한 곳에 정의해 놓아야 한다.
+	*/
+
 	class DDMessage1
 	{
 	public:
