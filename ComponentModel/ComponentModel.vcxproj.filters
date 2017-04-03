@@ -28,13 +28,14 @@
     <ClInclude Include="CSProtocolHandler.h" />
     <ClInclude Include="GameEngine\Zone.h" />
     <ClInclude Include="GameEngine\LazyMotionObject.h" />
-    <ClInclude Include="GameEngine\EventHandlerBinder.h" />
     <ClInclude Include="UnitTests\Comp2.h" />
     <ClInclude Include="UnitTests\Comp1.h" />
     <ClInclude Include="Message\Net.message.h" />
     <ClInclude Include="GameComponents\Character\CharacterMoveController.h" />
     <ClInclude Include="GameComponents\Character\SkillActor.h" />
     <ClInclude Include="GameComponents\Collider.h" />
+    <ClInclude Include="GameEngine\MessageDispatcher.h" />
+    <ClInclude Include="GameEngine\GameComponentBinder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

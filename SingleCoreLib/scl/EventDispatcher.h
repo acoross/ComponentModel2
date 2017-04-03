@@ -6,6 +6,7 @@
 #include <functional>
 #include "scl/UniqueId.h"
 #include "scl/TypeTraits.h"
+#include "TypeInfo.h"
 
 namespace scl
 {
@@ -33,17 +34,10 @@ namespace scl
 
 		using EventHandlerFunc = TEventHandler<IEvent>;
 
-		template <class T>
-		class EventTypeIdGenerator
-		{
-		public:
-			static int typeId;
-		};
-
 		template <class T, class = Require<IEvent, T>>
-		static int GetEventType()
+		static size_t GetEventType()
 		{
-			return EventTypeIdGenerator<T>::typeId;
+			return scl::TypeId<T>();
 		}
 
 		template <class T>
@@ -89,9 +83,6 @@ namespace scl
 			InvokeEvent(evt);
 		}
 
-		std::unordered_map<int, std::vector<EventHandlerFunc>> _handlerListMap;
+		std::unordered_map<size_t, std::vector<EventHandlerFunc>> _handlerListMap;
 	};
-
-	template <class T>
-	int EventDispatcher::EventTypeIdGenerator<T>::typeId = scl::UniqueId<EventDispatcher, int>::Generate();
 }

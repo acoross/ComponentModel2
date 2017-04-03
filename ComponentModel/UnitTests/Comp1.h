@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameEngine/GameComponent.h"
+#include "GameEngine/GameComponentBinder.h"
 
 namespace UnitTest
 {

@@ -97,23 +97,4 @@ namespace scl
 	private:
 		std::map<size_t, Sp<TComp>> _components;
 	};
-
-	//template <class T>
-	//class ComponentMessageHandlerBox
-	//{
-	//public:
-	//	void AddComponentAsHandler(Sp<Component> comp)
-	//	{
-	//		/*Component::
-	//		_components.emplace()*/
-	//	}
-
-	//	void SendMsg(const T& msg)
-	//	{
-
-	//	}
-
-	//private:
-	//	std::map<size_t, Sp<Component>> _components;
-	//};
 }

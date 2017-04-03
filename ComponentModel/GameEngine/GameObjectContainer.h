@@ -31,24 +31,6 @@ namespace GameEngine
 			_gameObjectMap.erase(gameObject->Id());
 		}
 
-		template <class TMessage>
-		void BroadcastMsg(const TMessage& message)
-		{
-			for (auto& pair : _gameObjectMap)
-			{
-				pair.second->SendMsg(message);
-			}
-		}
-
-		template <class TMessage>
-		void BroadcastMsg(const scl::Event<TMessage>& message)
-		{
-			for (auto& pair : _gameObjectMap)
-			{
-				pair.second->SendMsg(message);
-			}
-		}
-
 	private:
 		std::unordered_map<scl::uint64, scl::Sp<GameObject>> _gameObjectMap;
 	};

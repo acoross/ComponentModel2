@@ -145,11 +145,12 @@
     <ClCompile Include="UnitTests\UT_GameComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngine\EventHandlerBinder.h" />
     <ClInclude Include="GameComponents\Character\CharacterMoveController.h" />
     <ClInclude Include="GameComponents\Character\SkillActor.h" />
     <ClInclude Include="GameComponents\Collider.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
+    <ClInclude Include="GameEngine\GameComponentBinder.h" />
+    <ClInclude Include="GameEngine\MessageDispatcher.h" />
     <ClInclude Include="Message\Net.message.h" />
     <ClInclude Include="UnitTests\Comp1.h" />
     <ClInclude Include="UnitTests\Comp2.h" />

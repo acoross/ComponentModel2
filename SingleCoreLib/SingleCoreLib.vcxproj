@@ -144,6 +144,7 @@
     <ClInclude Include="scl\TemplateHelper.h" />
     <ClInclude Include="scl\TemplateUtility.h" />
     <ClInclude Include="scl\time.h" />
+    <ClInclude Include="scl\TypeInfo.h" />
     <ClInclude Include="scl\Types.h" />
     <ClInclude Include="scl\TypeTraits.h" />
     <ClInclude Include="scl\UniqueId.h" />
