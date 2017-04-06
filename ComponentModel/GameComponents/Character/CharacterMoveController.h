@@ -59,6 +59,11 @@ namespace GameEngine
 			_target.reset();
 		}
 
+		void Move(Vector3f pos, Vector3f velocity, float yaw)
+		{
+
+		}
+
 		scl::uint64 _targetObjId;
 		scl::Wp<GameObject> _target;
 	};

@@ -39,6 +39,9 @@
     <ClInclude Include="Devs\MessageDispatcher.h" />
     <ClInclude Include="Devs\RestrictMessageTypes.h" />
     <ClInclude Include="Devs\FloodingDispatcher.h" />
+    <ClInclude Include="Message\SCProtocol.stub.h" />
+    <ClInclude Include="Message\Net.stub.h" />
+    <ClInclude Include="GameComponents\SkillActor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

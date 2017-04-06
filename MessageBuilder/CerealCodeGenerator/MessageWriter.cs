@@ -111,7 +111,7 @@ namespace MessageBuilderLib
             return "in" + name;
         }
 
-        public void prnConstructors()
+        void prnConstructors()
         {
             // null constructor
             c.prn($"{msg.Name}()");

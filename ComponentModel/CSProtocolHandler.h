@@ -6,7 +6,7 @@
 #include "Message/CSProtocol.message.h"
 #include "Message/CSProtocol.stub.h"
 
-class CSProtocolHandler : public CSProtocol::IStub
+class CSProtocolHandler : public CSProtocol::IHandler
 {
 public:
 	virtual ~CSProtocolHandler() {}

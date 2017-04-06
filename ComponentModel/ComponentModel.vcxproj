@@ -151,10 +151,13 @@
     <ClInclude Include="GameComponents\Character\CharacterMoveController.h" />
     <ClInclude Include="GameComponents\Character\SkillActor.h" />
     <ClInclude Include="GameComponents\Collider.h" />
+    <ClInclude Include="GameComponents\SkillActor.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="GameEngine\GameComponentBinder.h" />
     <ClInclude Include="Devs\MessageDispatcher.h" />
     <ClInclude Include="Message\Net.message.h" />
+    <ClInclude Include="Message\Net.stub.h" />
+    <ClInclude Include="Message\SCProtocol.stub.h" />
     <ClInclude Include="UnitTests\Comp1.h" />
     <ClInclude Include="UnitTests\Comp2.h" />
     <ClInclude Include="GameEngine\GameObjectContainer.h" />

@@ -32,8 +32,11 @@ namespace NetworkMessage
             AppDomain.CurrentDomain.Load("NetworkMessage");
             SchemaBox.Parse();
 
-            GroupWriter groupWriter = new GroupWriter();
+            var groupWriter = new GroupWriter();
             groupWriter.GenerateCode(outputDir, includeFile);
+
+            var groupHandlerWriter = new GroupHandlerWriter();
+            groupHandlerWriter.GenerateCode(outputDir, includeFile);
         }
     }
 }

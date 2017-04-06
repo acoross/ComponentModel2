@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace MessageBuilderLib
 {
-    public class GroupWriter
+    public class GroupHandlerWriter
     {
-        public static string getFileName(string groupName)
+        string getHandlerFileName(string groupName)
         {
-            return groupName + ".message.h";
+            return groupName + ".stub.h";
         }
-        
+
         public void GenerateCode(string dirpath, string includeFile = null)
         {
-
             string dirFullPath = Path.GetFullPath(dirpath);
 
             if (!Directory.Exists(dirFullPath))
@@ -38,7 +37,7 @@ namespace MessageBuilderLib
 
             foreach (var group in SchemaBox.GetSchemas())
             {
-                var filepath = dirFullPath + "/" + getFileName(group.Name);
+                var filepath = dirFullPath + "/" + getHandlerFileName(group.Name);
                 using (var fs = File.Create(filepath))
                 using (var sw = new StreamWriter(fs))
                 {
@@ -56,39 +55,29 @@ namespace MessageBuilderLib
                     // dependencies
                     foreach (var dep in group.dependencies)
                     {
-                        c.prn($"#include \"{getFileName(dep.Name)}\"");
+                        c.prn($"#include \"{getHandlerFileName(dep.Name)}\"");
                     }
+                    c.prn();
+
+                    // include this group message.h
+                    c.prn($"#include \"{GroupWriter.getFileName(group.Name)}\"");
                     c.prn();
 
                     // file
                     using (c.func($"namespace {group.Name}"))
                     {
-                        var uint32 = TypeTranslator.getTypeName(typeof(UInt32));
-                        // PacketType
-                        using (c.type($"enum class PacketType : {uint32}"))
+                        using (c.type("class IHandler"))
                         {
-                            foreach (var msgT in group.messageMap)
+                            c.acc("public:");
+
+                            // virtual destructor
+                            c.prn($"virtual ~IHandler() {{}}");
+
+                            // messages
+                            foreach (var msgT in group.messageMap.Values)
                             {
-                                c.prn($"{msgT.Value.Name}, ");
+                                c.prn($"virtual void Handle(const {msgT.Name}& msg) {{}}");
                             }
-                            c.prn("MAX");
-                        }
-                        c.prn();
-
-                        // enums
-                        foreach (var eT in group.enumTypes)
-                        {
-                            EnumWriter writer = new EnumWriter(c, eT);
-                            writer.PrintEnumType();
-                            c.prn("");
-                        }
-
-                        // messages
-                        foreach (var msgT in group.messageMap.Values)
-                        {
-                            MessageWriter writer = new MessageWriter(c, group, msgT);
-                            writer.PrintMessage();
-                            c.prn("");
                         }
                     }
                 }
@@ -96,6 +85,5 @@ namespace MessageBuilderLib
                 Console.WriteLine($"{group.Name} generated ({filepath})");
             }
         } //GenerateCode
-
     }
 }
