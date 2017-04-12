@@ -20,27 +20,28 @@ TEST(CharacterMoveController, MoveWithTarget)
 	EXPECT_EQ(movController != nullptr, true);
 
 	movController->SetTarget(target);
-	
-	int64 tick = 0;
-	auto& rb = obj->RigidBody();
-	rb.SetAngVelocity(1, tick);
-	EXPECT_EQ(rb.Position(tick), Vector3f(0, 0, 0));
-	EXPECT_FLOAT_EQ(rb.Yaw(tick), 0);
 
-	tick += 100;
-	EXPECT_EQ(rb.Position(tick), Vector3f(0, 0, 0));
-	EXPECT_FLOAT_EQ(rb.Yaw(tick), 0);
+	GameTick::Init();
+	GameTick::UpdateTick(0);
+
+	auto& rb = obj->Transform();
+	rb.SetAngVelocity(1);
+	EXPECT_EQ(rb.Position(), Vector3f(0, 0, 0));
+	EXPECT_FLOAT_EQ(rb.Yaw(), 0);
+
+	GameTick::UpdateTick(100);
+	EXPECT_EQ(rb.Position(), Vector3f(0, 0, 0));
+	EXPECT_FLOAT_EQ(rb.Yaw(), 0);
 
 	Vector3f targetPosition = Vector3f(100, 0, 0);
-
-	tick += 100;
 	targetPosition = targetPosition.Rotate2d(10);
-	target->RigidBody().SetPosition(targetPosition, tick);
-	EXPECT_FLOAT_EQ(rb.Yaw(tick), 10);
+	target->Transform().SetPosition(targetPosition);
+	GameTick::UpdateTick(200);
+	EXPECT_FLOAT_EQ(rb.Yaw(), 10);
 
-	tick += 100;
 	targetPosition = targetPosition.Rotate2d(10);
-	target->RigidBody().SetPosition(targetPosition, tick);
-	EXPECT_FLOAT_EQ(rb.Yaw(tick), 20);
+	target->Transform().SetPosition(targetPosition);
+	GameTick::UpdateTick(300);
+	EXPECT_FLOAT_EQ(rb.Yaw(), 20);
 }
 

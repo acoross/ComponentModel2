@@ -24,10 +24,8 @@
     <ClInclude Include="GameEngine\GameComponent.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngine\GameObjectContainer.h" />
     <ClInclude Include="CSProtocolHandler.h" />
     <ClInclude Include="GameEngine\Zone.h" />
-    <ClInclude Include="GameEngine\LazyMotionObject.h" />
     <ClInclude Include="UnitTests\Comp2.h" />
     <ClInclude Include="UnitTests\Comp1.h" />
     <ClInclude Include="Message\Net.message.h" />
@@ -42,6 +40,12 @@
     <ClInclude Include="Message\SCProtocol.stub.h" />
     <ClInclude Include="Message\Net.stub.h" />
     <ClInclude Include="GameComponents\SkillActor.h" />
+    <ClInclude Include="GameEngine\DataBinder.h" />
+    <ClInclude Include="GameEngine\LazyTransform.h" />
+    <ClInclude Include="GameEngine\GameTick.h" />
+    <ClInclude Include="GameEngine\DataObserver.h" />
+    <ClInclude Include="GameComponents\Character\CharacterInfo.h" />
+    <ClInclude Include="GameEngine\Actor\ActionController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -51,6 +55,8 @@
     <ClCompile Include="UnitTests\Comp2.cpp" />
     <ClCompile Include="UnitTests\UT_Character.cpp" />
     <ClCompile Include="UnitTests\UT_Default.cpp" />
+    <ClCompile Include="GameEngine\GameTick.cpp" />
+    <ClCompile Include="GameEngine\GameComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

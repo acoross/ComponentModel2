@@ -1,6 +1,8 @@
 #pragma once
 
 #include <typeinfo>
+#include <numeric>
+#include <unordered_map>
 
 #include "scl/Types.h"
 #include "scl/TypeInfo.h"
@@ -9,7 +11,7 @@
 #include "scl/PhysicsLib.h"
 #include "scl/Component.h"
 #include "scl/exception.h"
-#include "GameEngine/LazyMotionObject.h"
+#include "GameEngine/LazyTransform.h"
 
 namespace GameEngine
 {
@@ -25,10 +27,6 @@ namespace GameEngine
 			return GetOwner();
 		}
 
-		virtual void OnBound() override
-		{
-		}
-
 		template <class TComp, class = Require<GameComponent, TComp>>
 		static size_t GetTypeId()
 		{
@@ -39,6 +37,8 @@ namespace GameEngine
 		{
 			return scl::TypeId(obj);
 		}
+
+		void ForAllNeighbors(std::function<void(scl::Sp<GameObject>)> func);
 	};
 
 	class GameObject : public scl::ComponentOwner<GameObject, GameComponent>
@@ -46,7 +46,7 @@ namespace GameEngine
 	public:
 		GameObject()
 			: _id(scl::UniqueId<GameObject, scl::uint64>::Generate())
-			, _rigidBody()
+			, _transform()
 		{}
 
 		scl::uint64 Id() const
@@ -59,16 +59,43 @@ namespace GameEngine
 			return _container.lock();
 		}
 
-		LazyRigidBody& RigidBody()
+		LazyTransform& Transform()
 		{
-			return _rigidBody;
+			return _transform;
 		}
 
 	private:
 		const scl::uint64 _id;
 		
-		LazyRigidBody _rigidBody;
+		LazyTransform _transform;
 
 		scl::Wp<class GameObjectContainer> _container;
 	};
+
+	class GameObjectContainer
+	{
+	public:
+		typedef std::unordered_map<scl::uint64, scl::Sp<GameObject>> MapType;
+
+		const MapType& GetAllObjects() const
+		{
+			return _gameObjectMap;
+		}
+
+		void Add(scl::Sp<GameObject> gameObject)
+		{
+			if (!gameObject) return;
+			_gameObjectMap[gameObject->Id()] = gameObject;
+		}
+
+		void Remove(scl::Sp<GameObject> gameObject)
+		{
+			if (!gameObject) return;
+			_gameObjectMap.erase(gameObject->Id());
+		}
+
+	private:
+		std::unordered_map<scl::uint64, scl::Sp<GameObject>> _gameObjectMap;
+	};
+
 }

@@ -13,15 +13,14 @@
 
 #include "scl/time.h"
 #include "scl/MathLib.h"
-#include "scl/EventDispatcher.h"
 #include "scl/TypeInfo.h"
 #include "GameEngine/GameComponent.h"
-#include "GameEngine/GameObjectContainer.h"
-#include "GameEngine/LazyMotionObject.h"
+#include "GameEngine/LazyTransform.h"
 
 #include "Message/SCProtocol.message.h"
 
 using namespace scl;
+using namespace GameEngine;
 
 inline std::string ToString(const Vector3f& vec)
 {
@@ -92,37 +91,43 @@ TEST(Default, TestVectorDiv)
 	EXPECT_FLOAT_EQ(vec.Yaw(), Vector3f(1, 2, 3).Yaw());
 }
 
-TEST(LazyRigidBody, TestLazyMotionObject)
+TEST(LazyTransform, TestLazyMotionObject)
 {
 	EXPECT_EQ(Math::AdjustAngle(370), 10);
 	EXPECT_EQ(Math::AdjustAngle(-240), 120);
 
 	auto tick = scl::GetSystemTickMilli();
-	GameEngine::LazyRigidBody body(Vector3f(0, 0, 0), 0, { 0, 0, 0 }, 0, tick);
+	GameTick::Init();
+	GameTick::UpdateTick(tick);
+	GameEngine::LazyTransform body(Vector3f(0, 0, 0), 0, { 0, 0, 0 }, 0);
 
 	auto current = tick + 100;
-	EXPECT_EQ(body.Position(current), Vector3f(0, 0, 0));
-	EXPECT_EQ(body.Yaw(current), 0);
+	GameTick::UpdateTick(current);
+	EXPECT_EQ(body.Position(), Vector3f(0, 0, 0));
+	EXPECT_EQ(body.Yaw(), 0);
 
-	body.SetVelocity(Vector3f(1, 2, 3), current);
-	body.SetAngVelocity(2, current);
-
-	current += 100;
-	EXPECT_EQ(body.Position(current), Vector3f(100, 200, 300));
-	EXPECT_EQ(body.Yaw(current), 200);
-
-	EXPECT_EQ(body.Position(current), Vector3f(100, 200, 300));
-	EXPECT_EQ(body.Yaw(current), 200);
+	body.SetVelocity(Vector3f(1, 2, 3));
+	body.SetAngVelocity(2);
 
 	current += 100;
-	EXPECT_EQ(body.Position(current), Vector3f(200, 400, 600));
-	EXPECT_EQ(body.Yaw(current), 40);
+	GameTick::UpdateTick(current);
+	EXPECT_EQ(body.Position(), Vector3f(100, 200, 300));
+	EXPECT_EQ(body.Yaw(), 200);
 
-	body.SetPosition(Vector3f(1, 2, 3), current);
-	EXPECT_EQ(body.Position(current), Vector3f(1, 2, 3));
+	EXPECT_EQ(body.Position(), Vector3f(100, 200, 300));
+	EXPECT_EQ(body.Yaw(), 200);
+
+	current += 100;
+	GameTick::UpdateTick(current);
+	EXPECT_EQ(body.Position(), Vector3f(200, 400, 600));
+	EXPECT_EQ(body.Yaw(), 40);
+
+	body.SetPosition(Vector3f(1, 2, 3));
+	EXPECT_EQ(body.Position(), Vector3f(1, 2, 3));
 
 	current += 200;
-	EXPECT_EQ(body.Position(current), Vector3f(201, 402, 603));
+	GameTick::UpdateTick(current);
+	EXPECT_EQ(body.Position(), Vector3f(201, 402, 603));
 }
 
 TEST(Math, DegreeConvert)

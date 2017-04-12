@@ -139,6 +139,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CSProtocolHandler.cpp" />
+    <ClCompile Include="GameEngine\GameComponent.cpp" />
+    <ClCompile Include="GameEngine\GameTick.cpp" />
     <ClCompile Include="UnitTests\Comp1.cpp" />
     <ClCompile Include="UnitTests\Comp2.cpp" />
     <ClCompile Include="main.cpp" />
@@ -148,20 +150,24 @@
     <ClInclude Include="Devs\EventDispatcher.h" />
     <ClInclude Include="Devs\FloodingDispatcher.h" />
     <ClInclude Include="Devs\RestrictMessageTypes.h" />
+    <ClInclude Include="GameComponents\Character\CharacterInfo.h" />
     <ClInclude Include="GameComponents\Character\CharacterMoveController.h" />
     <ClInclude Include="GameComponents\Character\SkillActor.h" />
     <ClInclude Include="GameComponents\Collider.h" />
     <ClInclude Include="GameComponents\SkillActor.h" />
+    <ClInclude Include="GameEngine\Actor\ActionController.h" />
+    <ClInclude Include="GameEngine\DataBinder.h" />
+    <ClInclude Include="GameEngine\DataObserver.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
     <ClInclude Include="GameEngine\GameComponentBinder.h" />
     <ClInclude Include="Devs\MessageDispatcher.h" />
+    <ClInclude Include="GameEngine\GameTick.h" />
     <ClInclude Include="Message\Net.message.h" />
     <ClInclude Include="Message\Net.stub.h" />
     <ClInclude Include="Message\SCProtocol.stub.h" />
     <ClInclude Include="UnitTests\Comp1.h" />
     <ClInclude Include="UnitTests\Comp2.h" />
-    <ClInclude Include="GameEngine\GameObjectContainer.h" />
-    <ClInclude Include="GameEngine\LazyMotionObject.h" />
+    <ClInclude Include="GameEngine\LazyTransform.h" />
     <ClInclude Include="GameEngine\Zone.h" />
     <ClInclude Include="Message\csprotocol.include.h" />
     <ClInclude Include="Message\CSProtocol.message.h" />

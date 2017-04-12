@@ -1,7 +1,6 @@
 #include "gtest/gtest.h"
 
 #include "GameEngine/GameComponent.h"
-#include "GameEngine/GameObjectContainer.h"
 #include "GameEngine/GameComponentBinder.h"
 
 #include "UnitTests/Comp1.h"
