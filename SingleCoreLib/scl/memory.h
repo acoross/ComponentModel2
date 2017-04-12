@@ -16,4 +16,7 @@ namespace scl
 
 	template <class T>
 	using Wp = std::weak_ptr<T>;
+
+	template <class T>
+	using Up = std::unique_ptr<T>;
 }

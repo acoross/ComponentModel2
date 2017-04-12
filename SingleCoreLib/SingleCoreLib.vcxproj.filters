@@ -54,6 +54,7 @@
     <ClInclude Include="scl\Alloc.h" />
     <ClInclude Include="scl.h" />
     <ClInclude Include="scl\TypeInfo.h" />
+    <ClInclude Include="scl\System.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scl\IO\Network\Listener.cpp">

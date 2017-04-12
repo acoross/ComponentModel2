@@ -140,6 +140,7 @@
     <ClInclude Include="scl\PhysicsLib.h" />
     <ClInclude Include="scl\IO\Pipeline.h" />
     <ClInclude Include="scl\Strigify.h" />
+    <ClInclude Include="scl\System.h" />
     <ClInclude Include="scl\TemplateHelper.h" />
     <ClInclude Include="scl\TemplateUtility.h" />
     <ClInclude Include="scl\time.h" />
