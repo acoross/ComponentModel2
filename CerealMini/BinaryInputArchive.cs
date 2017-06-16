@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using MessageBuilderLib;
 
 namespace CerealMini
 {
@@ -28,7 +27,7 @@ namespace CerealMini
             }
         }
 
-        object ReadNumeric(Type t)
+        object ReadDefault(Type t)
         {
             switch (Type.GetTypeCode(t))
             {
@@ -54,6 +53,12 @@ namespace CerealMini
                     return br.ReadDouble();
                 case TypeCode.Single:
                     return br.ReadSingle();
+                case TypeCode.String:
+                    {
+                        var length = br.ReadInt64();
+                        var bytes = br.ReadBytes((int)length);
+                        return Encoding.Unicode.GetString(bytes);
+                    }
                 default:
                     throw new Exception();
             }
@@ -66,21 +71,20 @@ namespace CerealMini
             return (T)Read(msgT);
         }
 
-        object Read(Type msgT)
+        public object Read(Type msgT)
         {
-            var attr = msgT.ReflectedType?.GetCustomAttributes(typeof(MessageAttribute), false);
-            if (attr == null)
-            {
-                throw new Exception("invalid type");
-            }
-
             var v = Activator.CreateInstance(msgT);
+
+            if (msgT.IsDefaultType())
+            {
+                return ReadDefault(msgT);
+            }
 
             foreach (var f in msgT.GetFields())
             {
-                if (f.FieldType.IsNumeric())
+                if (f.FieldType.IsDefaultType())
                 {
-                    var val = ReadNumeric(f.FieldType);
+                    var val = ReadDefault(f.FieldType);
                     f.SetValue(v, val);
                 }
                 else

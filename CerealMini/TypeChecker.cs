@@ -7,7 +7,7 @@ namespace CerealMini
 {
     public static class TypeChecker
     {
-        public static bool IsNumeric(this Type type)
+        public static bool IsDefaultType(this Type type)
         {
             var d = Type.GetTypeCode(type);
             switch (d)
@@ -23,6 +23,7 @@ namespace CerealMini
                 case TypeCode.Decimal:
                 case TypeCode.Double:
                 case TypeCode.Single:
+                case TypeCode.String:
                     return true;
                 default:
                     return false;

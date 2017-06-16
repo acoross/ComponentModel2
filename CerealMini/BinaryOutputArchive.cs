@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using MessageBuilderLib;
 
 namespace CerealMini
 {
@@ -98,15 +97,9 @@ namespace CerealMini
 
         public void Write<T>(T v)
         {
-            var attr = typeof(T).ReflectedType?.GetCustomAttributes(typeof(MessageAttribute), false);
-            if (attr == null)
-            {
-                throw new Exception();
-            }
-
             foreach (var f in typeof(T).GetFields())
             {
-                if (f.FieldType.IsNumeric())
+                if (f.FieldType.IsDefaultType())
                 {
                     WriteVal(f.GetValue(v));
                 }
