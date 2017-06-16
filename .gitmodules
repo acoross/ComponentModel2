@@ -1,0 +1,3 @@
+[submodule "CerealMini"]
+	path = CerealMini
+	url = https://github.com/acoross/CerealMini
