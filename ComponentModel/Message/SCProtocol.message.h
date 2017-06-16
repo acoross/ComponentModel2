@@ -1,13 +1,13 @@
 #pragma once
 
-#include "scl/Types.h"
-using namespace scl;
+#include <string>
+#include <cstdint>
 
-#include "Shared.message.h"
+#include "Net.message.h"
 
 namespace SCProtocol
 {
-	enum class PacketType : uint32
+	enum class PacketType : uint32_t
 	{
 		ResponseLogin, 
 		NotiMove, 
@@ -18,20 +18,20 @@ namespace SCProtocol
 	
 	struct ResponseLogin
 	{
-		const static uint32 PacketId = (uint32)PacketType::ResponseLogin;
+		const static uint32_t PacketId = (uint32_t)PacketType::ResponseLogin;
 		
 		ResponseLogin()
 		{
 		}
 		
-		ResponseLogin(bool inok, uint64 ingameObjectId)
+		ResponseLogin(bool inok, uint64_t ingameObjectId)
 			: ok(inok)
 			, gameObjectId(ingameObjectId)
 		{
 		}
 		
 		bool ok;
-		uint64 gameObjectId;
+		uint64_t gameObjectId;
 		
 		template <class Ar>
 		void serialize(Ar& ar)
@@ -42,22 +42,22 @@ namespace SCProtocol
 	
 	struct NotiMove
 	{
-		const static uint32 PacketId = (uint32)PacketType::NotiMove;
+		const static uint32_t PacketId = (uint32_t)PacketType::NotiMove;
 		
 		NotiMove()
 		{
 		}
 		
-		NotiMove(uint64 ingameObjectId, Shared::NetVector inposition, Shared::NetVector invelocity)
+		NotiMove(uint64_t ingameObjectId, Net::Vector3 inposition, Net::Vector3 invelocity)
 			: gameObjectId(ingameObjectId)
 			, position(inposition)
 			, velocity(invelocity)
 		{
 		}
 		
-		uint64 gameObjectId;
-		Shared::NetVector position;
-		Shared::NetVector velocity;
+		uint64_t gameObjectId;
+		Net::Vector3 position;
+		Net::Vector3 velocity;
 		
 		template <class Ar>
 		void serialize(Ar& ar)
@@ -68,22 +68,22 @@ namespace SCProtocol
 	
 	struct NotiEnterZone
 	{
-		const static uint32 PacketId = (uint32)PacketType::NotiEnterZone;
+		const static uint32_t PacketId = (uint32_t)PacketType::NotiEnterZone;
 		
 		NotiEnterZone()
 		{
 		}
 		
-		NotiEnterZone(uint64 ingameObjectId, Shared::NetVector inposition, Shared::NetVector invelocity)
+		NotiEnterZone(uint64_t ingameObjectId, Net::Vector3 inposition, Net::Vector3 invelocity)
 			: gameObjectId(ingameObjectId)
 			, position(inposition)
 			, velocity(invelocity)
 		{
 		}
 		
-		uint64 gameObjectId;
-		Shared::NetVector position;
-		Shared::NetVector velocity;
+		uint64_t gameObjectId;
+		Net::Vector3 position;
+		Net::Vector3 velocity;
 		
 		template <class Ar>
 		void serialize(Ar& ar)
@@ -94,18 +94,18 @@ namespace SCProtocol
 	
 	struct NotiLeaveZone
 	{
-		const static uint32 PacketId = (uint32)PacketType::NotiLeaveZone;
+		const static uint32_t PacketId = (uint32_t)PacketType::NotiLeaveZone;
 		
 		NotiLeaveZone()
 		{
 		}
 		
-		NotiLeaveZone(uint64 ingameObjectId)
+		NotiLeaveZone(uint64_t ingameObjectId)
 			: gameObjectId(ingameObjectId)
 		{
 		}
 		
-		uint64 gameObjectId;
+		uint64_t gameObjectId;
 		
 		template <class Ar>
 		void serialize(Ar& ar)

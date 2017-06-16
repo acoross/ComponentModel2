@@ -2,7 +2,7 @@
 
 #include <map>
 #include <functional>
-#include "./CerealPacket.h"
+#include "scl/IO/Network/CerealPacket.h"
 
 namespace scl
 {

@@ -22,7 +22,6 @@
     <ClInclude Include="scl\TemplateUtility.h" />
     <ClInclude Include="scl\TemplateHelper.h" />
     <ClInclude Include="scl\PhysicsLib.h" />
-    <ClInclude Include="scl\EventDispatcher.h" />
     <ClInclude Include="scl\TypeTraits.h" />
     <ClInclude Include="scl\Strigify.h" />
     <ClInclude Include="scl\time.h" />
@@ -54,6 +53,8 @@
     <ClInclude Include="scl\IO\Pipeline.h" />
     <ClInclude Include="scl\Alloc.h" />
     <ClInclude Include="scl.h" />
+    <ClInclude Include="scl\TypeInfo.h" />
+    <ClInclude Include="scl\System.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scl\IO\Network\Listener.cpp">

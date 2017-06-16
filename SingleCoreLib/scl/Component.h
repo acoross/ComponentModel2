@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <typeinfo>
 #include "scl/Types.h"
 #include "scl/UniqueId.h"
 #include "scl/memory.h"
@@ -14,9 +15,6 @@ namespace scl
 	{
 	public:
 		typedef Component<TOwner> TMy;
-
-		/*static_assert(std::is_base_of<ComponentOwnerBase, TOwner>::value,
-			"Component<TOwner> should have template arg TOwner based of ComponentOwnerBase");*/
 		
 		virtual ~Component(){}
 
@@ -43,28 +41,9 @@ namespace scl
 
 			return nullptr;
 		}
-
-		template <class TComp>
-		struct ComponentTypeIdHelper
-		{
-			static_assert(std::is_base_of<TMy, TComp>::value,
-				"ComponentTypeIdHelper<> should have template arg TComp derived from Component");
-
-			static int typeId;
-		};
-
-		template <class TComp, class = Require<TMy, TComp>>
-		static int TypeId()
-		{
-			return ComponentTypeIdHelper<std::remove_reference<TComp>::type>::typeId;
-		}
 		
 		Wp<TOwner> _owner;
 	};
-
-	template <class TOwner> template <class U>
-	int Component<TOwner>::ComponentTypeIdHelper<U>::typeId = scl::UniqueId<Component<TOwner>, int>::Generate();
-
 
 	// ComponentOwner
 	template <class TOwner, class TComp>
@@ -79,23 +58,33 @@ namespace scl
 		void SetComponent()
 		{
 			auto comp = New<TCompU>();
-			auto id = TMyComp::TypeId<TCompU>();
-			_components.emplace(id, comp);
+			auto id = typeid(TCompU).hash_code();
+			auto ret = _components.emplace(id, comp);
+			if (!ret.second)
+			{
+				throw std::exception();
+			}
+
 			comp->SetOwner(shared_from_this());
 		}
 
 		template <class TCompU, class X = Require<TComp, TCompU>>
 		void SetComponent(Sp<TCompU> comp)
 		{
-			auto id = TMyComp::TypeId<TCompU>();
-			_components.emplace(id, comp);
+			auto id = typeid(TCompU).hash_code();
+			auto ret = _components.emplace(id, comp);
+			if (!ret.second)
+			{
+				throw std::exception();
+			}
+
 			comp->SetOwner(shared_from_this());
 		}
 
 		template <class TCompU, class = Require<TComp, TCompU>>
 		Sp<TCompU> GetComponent()
 		{
-			auto id = TMyComp::TypeId<TCompU>();
+			auto id = typeid(TCompU).hash_code();
 			auto it = _components.find(id);
 			if (it != _components.end())
 			{
@@ -106,6 +95,6 @@ namespace scl
 		}
 
 	private:
-		std::map<int, Sp<TComp>> _components;
+		std::map<size_t, Sp<TComp>> _components;
 	};
 }

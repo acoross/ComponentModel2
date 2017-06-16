@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./NetworkInitializer.h"
+#include "scl/IO/Network/NetworkInitializer.h"
 
 #include <thread>
 #include <map>

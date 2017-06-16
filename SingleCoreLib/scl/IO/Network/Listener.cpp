@@ -1,7 +1,7 @@
-#include "./Listener.h"
+#include "scl/IO/Network//Listener.h"
 
 #include "scl/exception.h"
-#include "./NetworkWorker.h"
+#include "scl/IO/Network//NetworkWorker.h"
 
 namespace scl
 {

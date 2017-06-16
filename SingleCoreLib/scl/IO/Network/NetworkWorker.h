@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./NetworkInitializer.h"
+#include "scl/IO/Network/NetworkInitializer.h"
 
 #include <atomic>
 
@@ -15,6 +15,8 @@ namespace scl
 		class IListener
 		{
 		protected:
+			virtual ~IListener() {}
+
 			virtual void Accept() = 0;
 			virtual void ProcessAccept() = 0;
 			static void AddListener(Sp<NetworkWorker> worker, Sp<IListener> listener);
@@ -23,7 +25,7 @@ namespace scl
 		};
 
 		NetworkWorker();
-		~NetworkWorker();
+		virtual ~NetworkWorker();
 
 		NetworkWorker(const NetworkWorker&) = delete;
 		NetworkWorker& operator=(const NetworkWorker&) = delete;
@@ -32,7 +34,7 @@ namespace scl
 
 	private:
 		// IThreadWorker
-		virtual void Run() sealed override;
+		virtual void Run() final;
 		void AddListener(Sp<IListener> listener);
 
 	private:

@@ -2,9 +2,9 @@
 
 #include <functional>
 
-#include "./NetworkInitializer.h"
-#include "./NetworkWorker.h"
-#include "./Session.h"
+#include "scl/IO/Network/NetworkInitializer.h"
+#include "scl/IO/Network/NetworkWorker.h"
+#include "scl/IO/Network/Session.h"
 
 namespace scl
 {
@@ -17,6 +17,8 @@ namespace scl
 
 		Listener(Sp<NetworkWorker> networkWorker);
 		void Listen(std::string address, unsigned short port, AcceptHandlerType acceptor);
+
+		virtual ~Listener() {}
 
 	private:
 		// IListener을(를) 통해 상속됨

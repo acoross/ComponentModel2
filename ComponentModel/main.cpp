@@ -3,11 +3,13 @@
 #include "scl/MathLib.h"
 
 #include "GameEngine/GameComponent.h"
+#include "GameEngine/GameTick.h"
+
 #include "CSProtocolHandler.h"
+#include "gtest/gtest.h"
 
 using namespace scl;
-
-#include "gtest/gtest.h"
+using namespace GameEngine;
 
 int main(int argc, char **argv)
 {
@@ -20,6 +22,8 @@ int main(int argc, char **argv)
 	}
 	printf("\n\n\n");
 #endif
+	
+	GameTick::Init();
 
 	auto networkWorker = New<NetworkWorker>();
 	auto listener = New<Listener>(networkWorker);
@@ -29,7 +33,7 @@ int main(int argc, char **argv)
 	listener->Listen("0.0.0.0", 17777, [](Sp<Session> session)
 	{
 		Sp<CSProtocolHandler> handler = New<CSProtocolHandler>();
-		session->StartRecv([handler](char* buf, ulong size, ulong& processed)
+		session->StartRecv([handler](char* buf, scl::ulong size, scl::ulong& processed)
 		{
 			handler->Handle(buf, size, processed);
 		});
@@ -39,6 +43,7 @@ int main(int argc, char **argv)
 
 	Pipeline pipeline;
 	pipeline.Push(networkWorker);
+	pipeline.Push(New<GameTickUpdateTask>());
 
 	pipeline.Run();
 }

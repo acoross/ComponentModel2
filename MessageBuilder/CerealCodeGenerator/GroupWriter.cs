@@ -9,11 +9,11 @@ namespace MessageBuilderLib
 {
     public class GroupWriter
     {
-        string getFileName(string groupName)
+        public static string getFileName(string groupName)
         {
             return groupName + ".message.h";
         }
-
+        
         public void GenerateCode(string dirpath, string includeFile = null)
         {
 
@@ -63,8 +63,9 @@ namespace MessageBuilderLib
                     // file
                     using (c.func($"namespace {group.Name}"))
                     {
+                        var uint32 = TypeTranslator.getTypeName(typeof(UInt32));
                         // PacketType
-                        using (c.type($"enum class PacketType : uint32"))
+                        using (c.type($"enum class PacketType : {uint32}"))
                         {
                             foreach (var msgT in group.messageMap)
                             {

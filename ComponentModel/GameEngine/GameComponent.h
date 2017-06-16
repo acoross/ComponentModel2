@@ -1,135 +1,101 @@
 #pragma once
 
+#include <typeinfo>
+#include <numeric>
+#include <unordered_map>
+
 #include "scl/Types.h"
+#include "scl/TypeInfo.h"
 #include "scl/memory.h"
 #include "scl/MathLib.h"
 #include "scl/PhysicsLib.h"
 #include "scl/Component.h"
-#include "scl/EventDispatcher.h"
-#include "GameEngine/LazyMotionObject.h"
+#include "scl/exception.h"
+#include "GameEngine/LazyTransform.h"
 
 namespace GameEngine
 {
-	using namespace scl;
-
-	class IEventHandlerBinder
-	{
-	public:
-		virtual void Bind() = 0;
-	};
-
 	class GameObject;
 	
-	class GameComponent : public Component<GameObject>
+	class GameComponent : public scl::Component<GameObject>
 	{
 	public:
 		virtual ~GameComponent() {}
 
-		Sp<GameObject> GetGameObject()
+		scl::Sp<GameObject> GetGameObject()
 		{
 			return GetOwner();
 		}
 
-		void OnBound()
+		template <class TComp, class = Require<GameComponent, TComp>>
+		static size_t GetTypeId()
 		{
-			for (auto& binder : _binders)
-			{
-				binder->Bind();
-			}
+			return scl::TypeId<TComp>();
 		}
 
-		void AddBinder(class IEventHandlerBinder* binder)
+		static size_t GetTypeId(GameComponent& obj)
 		{
-			_binders.push_back(binder);
+			return scl::TypeId(obj);
 		}
 
-	private:
-		std::list<IEventHandlerBinder*> _binders;
+		void ForAllNeighbors(std::function<void(scl::Sp<GameObject>)> func);
 	};
 
-	class GameObject : public ComponentOwner<GameObject, GameComponent>
+	class GameObject : public scl::ComponentOwner<GameObject, GameComponent>
 	{
 	public:
 		GameObject()
-			: _id(scl::UniqueId <GameObject, scl::uint64>::Generate())
-			, _rigidBody()
+			: _id(scl::UniqueId<GameObject, scl::uint64>::Generate())
+			, _transform()
 		{}
 
-		uint64 Id() const
+		scl::uint64 Id() const
 		{
 			return _id;
 		}
 
-		Sp<class GameObjectContainer> GetContainer()
+		scl::Sp<class GameObjectContainer> GetContainer()
 		{
 			return _container.lock();
 		}
 
-		template <class T>
-		void RegisterMsgHandler(EventDispatcher::TEventHandler<T> func)
+		LazyTransform& Transform()
 		{
-			_eventDispatcher.RegisterHandler(func);
-		}
-
-		template <class T>
-		void SendMsg(const Event<T>& message)
-		{
-			_eventDispatcher.InvokeEvent(message);
-		}
-
-		template <class T>
-		void SendMsg(const T& msg)
-		{
-			_eventDispatcher.InvokeEvent(Event<T>(msg));
-		}
-
-		LazyRigidBody& RigidBody()
-		{
-			return _rigidBody;
+			return _transform;
 		}
 
 	private:
 		const scl::uint64 _id;
 		
-		LazyRigidBody _rigidBody;
+		LazyTransform _transform;
 
-		Wp<class GameObjectContainer> _container;
-
-		EventDispatcher _eventDispatcher;
+		scl::Wp<class GameObjectContainer> _container;
 	};
 
-	template <class T>//, class = Require<GameComponent, T>>
-	class ComponentBinder
+	class GameObjectContainer
 	{
 	public:
-		//static_assert(std::is_base_of<GameComponent, T>::value, "ComponentBinder<T>: T should inherit GameCopmponent");
+		typedef std::unordered_map<scl::uint64, scl::Sp<GameObject>> MapType;
 
-		ComponentBinder(GameComponent* owner)
-			: _owner(owner)
-		{}
-
-		T* operator->()
+		const MapType& GetAllObjects() const
 		{
-			if (_comp.expired())
-			{
-				if (auto comp = _owner->GetComponent<T>())
-				{
-					_comp = comp;
-					return comp.get();
-				}
-			}
-			else
-			{
-				if (auto comp = _comp.lock())
-				{
-					return comp.get();
-				}
-			}
-
-			return nullptr;
+			return _gameObjectMap;
 		}
 
-		GameComponent* const _owner;
-		Wp<T> _comp;
+		void Add(scl::Sp<GameObject> gameObject)
+		{
+			if (!gameObject) return;
+			_gameObjectMap[gameObject->Id()] = gameObject;
+		}
+
+		void Remove(scl::Sp<GameObject> gameObject)
+		{
+			if (!gameObject) return;
+			_gameObjectMap.erase(gameObject->Id());
+		}
+
+	private:
+		std::unordered_map<scl::uint64, scl::Sp<GameObject>> _gameObjectMap;
 	};
+
 }

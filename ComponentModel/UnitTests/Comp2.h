@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameEngine/GameComponent.h"
-#include "GameEngine/EventHandlerBinder.h"
+#include "GameEngine/GameComponentBinder.h"
 
 namespace UnitTest
 {
@@ -9,7 +9,7 @@ namespace UnitTest
 	{
 	public:
 		float val{ 0.f };
-		GameEngine::ComponentBinder<class Component1> _comp1{ this };
+		GameEngine::GameComponentBinder<class Component1> _comp1{ this };
 
 		int getComp1Val();
 	};

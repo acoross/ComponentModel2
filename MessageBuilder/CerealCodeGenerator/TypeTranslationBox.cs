@@ -11,17 +11,17 @@ namespace MessageBuilderLib
         static Dictionary<Type, string> registeredTypes = new Dictionary<Type, string>
         {
             {typeof(Boolean), "bool" },
-            {typeof(UInt16), "uint16" },
-            {typeof(UInt32), "uint32" },
-            {typeof(UInt64), "uint64" },
-            {typeof(Int16), "int16" },
-            {typeof(Int32), "int32" },
-            {typeof(Int64), "int64" },
+            {typeof(UInt16), "uint16_t" },
+            {typeof(UInt32), "uint32_t" },
+            {typeof(UInt64), "uint64_t" },
+            {typeof(Int16), "int16_t" },
+            {typeof(Int32), "int32_t" },
+            {typeof(Int64), "int64_t" },
             {typeof(Char), "char" },
             {typeof(Byte), "char" },
             {typeof(float), "float" },
             {typeof(double), "double" },
-            {typeof(string), "String" },
+            {typeof(string), "std::wstring" },
         };
 
         public static void registerType(Type t, string name)

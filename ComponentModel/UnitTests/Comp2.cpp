@@ -1,5 +1,5 @@
-#include "Comp2.h"
-#include "./Comp1.h"
+#include "UnitTests/Comp2.h"
+#include "UnitTests/Comp1.h"
 
 int UnitTest::Component2::getComp1Val()
 {

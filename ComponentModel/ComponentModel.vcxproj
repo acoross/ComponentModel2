@@ -78,6 +78,7 @@
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <PreBuildEvent>
       <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
@@ -92,6 +93,7 @@
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <PreBuildEvent>
       <Command>$(SolutionDir)/NetworkMessageBuilder\bin\$(Configuration)\NetworkMessageBuilder.exe "$(ProjectDir)/message" "$(ProjectDir)/message/csprotocol.include.h"</Command>
@@ -106,6 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -124,6 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ProjectDir);$(ProjectDir)../External;$(SolutionDir)/SingleCoreLib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -135,23 +139,36 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CSProtocolHandler.cpp" />
+    <ClCompile Include="GameEngine\GameComponent.cpp" />
+    <ClCompile Include="GameEngine\GameTick.cpp" />
     <ClCompile Include="UnitTests\Comp1.cpp" />
     <ClCompile Include="UnitTests\Comp2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="UnitTests\UT_GameComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngine\EventHandlerBinder.h" />
-    <ClInclude Include="GameEngine\GameComponents\Character\CharacterMoveController.h" />
-    <ClInclude Include="GameEngine\GameComponents\Character\SkillActor.h" />
-    <ClInclude Include="GameEngine\GameComponents\Collider.h" />
+    <ClInclude Include="Devs\EventDispatcher.h" />
+    <ClInclude Include="Devs\FloodingDispatcher.h" />
+    <ClInclude Include="Devs\RestrictMessageTypes.h" />
+    <ClInclude Include="GameComponents\Character\CharacterInfo.h" />
+    <ClInclude Include="GameComponents\Character\CharacterMoveController.h" />
+    <ClInclude Include="GameComponents\Character\SkillActor.h" />
+    <ClInclude Include="GameComponents\Collider.h" />
+    <ClInclude Include="GameComponents\SkillActor.h" />
+    <ClInclude Include="GameEngine\Actor\ActionController.h" />
+    <ClInclude Include="GameEngine\DataBinder.h" />
+    <ClInclude Include="GameEngine\DataObserver.h" />
     <ClInclude Include="GameEngine\GameComponent.h" />
+    <ClInclude Include="GameEngine\GameComponentBinder.h" />
+    <ClInclude Include="Devs\MessageDispatcher.h" />
+    <ClInclude Include="GameEngine\GameTick.h" />
+    <ClInclude Include="Message\Net.message.h" />
+    <ClInclude Include="Message\Net.stub.h" />
+    <ClInclude Include="Message\SCProtocol.stub.h" />
     <ClInclude Include="UnitTests\Comp1.h" />
     <ClInclude Include="UnitTests\Comp2.h" />
-    <ClInclude Include="GameEngine\GameObjectContainer.h" />
-    <ClInclude Include="GameEngine\LazyMotionObject.h" />
+    <ClInclude Include="GameEngine\LazyTransform.h" />
     <ClInclude Include="GameEngine\Zone.h" />
-    <ClInclude Include="Message\Shared.message.h" />
     <ClInclude Include="Message\csprotocol.include.h" />
     <ClInclude Include="Message\CSProtocol.message.h" />
     <ClInclude Include="Message\CSProtocol.stub.h" />
